@@ -16,9 +16,10 @@ import static org.lwjgl.opengl.GL11.glLineWidth;
 
 public class MainRenderer {
 
-    private static float lineWidth = 1f;
+    private static double lineWidth = 1.0;
 
     private static List<Render> renderList = new ArrayList<>();
+
     private MainRenderer() {}
 
     public static void addRender(Render render) {
@@ -50,12 +51,19 @@ public class MainRenderer {
         glfwTerminate();
     }
 
-    public static float getLineWidth() {
+    public static double getLineWidth() {
         return lineWidth;
     }
-
     public static void setLineWidth(float lineWidth) {
         MainRenderer.lineWidth = lineWidth;
         glLineWidth(lineWidth);
     }
+
+    public static double getVertexLineWidthX() {
+        return lineWidth * 2 / WindowManager.getScreenWidth();
+    }
+    public static double getVertexLineWidthY() {
+        return lineWidth * 2 / WindowManager.getScreenHeight();
+    }
+
 }

@@ -20,8 +20,8 @@ public class WindowManager {
 
     private static long currentWindow;
 
-    public static final int screenWidth;
-    public static final int screenHeight;
+    private static final int screenWidth;
+    private static final int screenHeight;
 
     static {
 
@@ -38,7 +38,6 @@ public class WindowManager {
     public static long getCurrentWindow() {
         return currentWindow;
     }
-
     public static void setCurrentWindow(long window) {
         currentWindow = window;
         glfwMakeContextCurrent(window);
@@ -50,7 +49,6 @@ public class WindowManager {
     public static long getNewWindow(String title, boolean fullscreen, boolean setCurrent) {
         return getNewWindow(WindowManager.screenWidth, WindowManager.screenHeight, title, fullscreen, setCurrent);
     }
-
     public static long getNewWindow(int screenWidth, int screenHeight, String title, boolean fullscreen, boolean setCurrent) {
         long newWindow = glfwCreateWindow(screenWidth, screenHeight, title, fullscreen ? glfwGetPrimaryMonitor() : 0, 0);
 
@@ -73,17 +71,23 @@ public class WindowManager {
         return new Dimension(w.get(0), h.get(0));
     }
 
-    public static float sidesScreenRatio() {
-        return (float) screenHeight / screenWidth;
+    public static double sidesScreenRatio() {
+        return (double) screenHeight / screenWidth;
     }
-
     public static double sidesWindowRatio() {
         Dimension winDimension = getWindowSize();
         return (double) winDimension.height / winDimension.width;
     }
 
-    public static double sidesRatio(Dimension dimension) {
-        return (double) dimension.height / dimension.width;
+    public static double sidesRatio(FormatType type) {
+        Dimension d = type == FormatType.SCREEN ? getScreenSize() : getWindowSize();
+        return (double) d.height / d.width;
     }
 
+    public static int getScreenWidth() {
+        return screenWidth;
+    }
+    public static int getScreenHeight() {
+        return screenHeight;
+    }
 }

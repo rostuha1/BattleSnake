@@ -26,7 +26,6 @@
                     <argLine>-Djava.library.path=native/</argLine>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
@@ -43,7 +42,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
+
 
 </project>
