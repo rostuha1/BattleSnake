@@ -30,7 +30,7 @@ public class WindowManager {
         screenHeight = d.height;
         glfwInit();
 
-        currentWindow = WindowManager.getNewWindow("Window", true, true);
+        currentWindow = getNewWindow("Window", true, true);
         GridRender.getInstance().add();
 
     }
@@ -74,16 +74,16 @@ public class WindowManager {
     }
 
     public static float sidesScreenRatio() {
-        return (float) screenWidth / screenHeight;
+        return (float) screenHeight / screenWidth;
     }
 
     public static double sidesWindowRatio() {
         Dimension winDimension = getWindowSize();
-        return (double) winDimension.width / winDimension.height;
+        return (double) winDimension.height / winDimension.width;
     }
 
     public static double sidesRatio(Dimension dimension) {
-        return (double) dimension.width / dimension.height;
+        return (double) dimension.height / dimension.width;
     }
 
 }
