@@ -1,9 +1,16 @@
 package rendering;
 
+import windows.WindowManager;
+
+import java.awt.Dimension;
+
+import static org.lwjgl.opengl.GL11.GL_LINES;
 import static org.lwjgl.opengl.GL11.GL_QUADS;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glColor4f;
 import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glLineWidth;
+import static org.lwjgl.opengl.GL11.glVertex2d;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
 public class GridRender implements Render {
@@ -14,7 +21,9 @@ public class GridRender implements Render {
     private int squareNumber = 25; // n * n
 
     private final static GridRender instance = new GridRender();
-    private GridRender() {}
+
+    private GridRender() {
+    }
 
     public static GridRender getInstance() {
         return instance;
@@ -30,28 +39,32 @@ public class GridRender implements Render {
 
     @Override
     public void render() {
-        glBegin(GL_QUADS);
 
         glColor4f(1, 0, 0, 0);
-        glVertex2f(-0.5f, 0.5f);
 
-        glColor4f(0, 1, 0, 0);
-        glVertex2f(0.5f, 0.5f);
+        Dimension winDimension = WindowManager.getWindowSize();
+        double ratio = WindowManager.sidesRatio(winDimension);
 
-        glColor4f(0, 0, 1, 0);
-        glVertex2f(0.5f, -0.5f);
+        if (ratio > 1) {
+            double res = (double) winDimension.height / winDimension.width;
+            double verticalPart = res * 2 / (squareNumber - 1);
+            double horizontalPart = (double) 2 / squareNumber;
 
-        glColor4f(1, 0, 0, 0);
-        glVertex2f(-0.5f, -0.5f);
+            glBegin(GL_LINES);
 
-        glEnd();
-    }
+            for (int i = 0; i < squareNumber; i++) {
+                glVertex2d(-res + verticalPart * i, -1);
+                glVertex2d(-res + verticalPart * i, 1);
+            }
 
-    private class DrawingArea {
-        int width;
-        int height;
-        int x;
-        int y;
+            for (int i = 0; i < squareNumber; i++) {
+                glVertex2d(-res, -1 + horizontalPart * i);
+                glVertex2d(res, -1 + horizontalPart * i);
+            }
+
+            glEnd();
+        }
+
     }
 
 }

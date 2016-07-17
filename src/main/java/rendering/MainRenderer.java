@@ -12,8 +12,11 @@ import static org.lwjgl.glfw.GLFW.glfwTerminate;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.glLineWidth;
 
 public class MainRenderer {
+
+    private static float lineWidth = 1f;
 
     private static List<Render> renderList = new ArrayList<>();
     private MainRenderer() {}
@@ -47,4 +50,12 @@ public class MainRenderer {
         glfwTerminate();
     }
 
+    public static float getLineWidth() {
+        return lineWidth;
+    }
+
+    public static void setLineWidth(float lineWidth) {
+        MainRenderer.lineWidth = lineWidth;
+        glLineWidth(lineWidth);
+    }
 }

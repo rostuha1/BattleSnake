@@ -7,6 +7,7 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
+import static org.lwjgl.glfw.GLFW.glfwTerminate;
 
 public class KeyboardEvents extends GLFWKeyCallback {
 
@@ -30,6 +31,7 @@ public class KeyboardEvents extends GLFWKeyCallback {
 
         if (isKeyDown(GLFW_KEY_ESCAPE)) {
             glfwDestroyWindow(WindowManager.getCurrentWindow());
+            glfwTerminate();
             System.exit(0);
         }
     }
