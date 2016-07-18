@@ -1,12 +1,13 @@
 package rendering;
 
-import windows.WindowManager;
+import javafx.scene.Node;
+import main.Line;
+import main.Main;
+import windows.ScreenSize;
 
-import static org.lwjgl.opengl.GL11.GL_LINES;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glColor4f;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glVertex2d;
+import java.util.ArrayList;
+import java.util.List;
+
 import static rendering.RenderField.SQUARE_NUMBER;
 import static rendering.RenderField.parts;
 import static rendering.RenderField.startPoint;
@@ -25,21 +26,14 @@ public class GridRender implements Render {
     @Override
     public void render() {
 
-        glColor4f(1, 1, 1, 0);
+        List<Node> nodes = new ArrayList<>();
 
-        glBegin(GL_LINES);
-
-        for (int i = 0; i < SQUARE_NUMBER + 1; i++) {
-            glVertex2d(startPoint + parts[i], 0);
-            glVertex2d(startPoint + parts[i], WindowManager.getHeight());
+        for (int i = 0 ; i < SQUARE_NUMBER + 1; i++) {
+            nodes.add(new Line(startPoint + parts[i], 0, startPoint + parts[i], ScreenSize.getHeight()));
+            nodes.add(new Line(startPoint, parts[i], startPoint + ScreenSize.getHeight(), parts[i]));
         }
 
-        for (int i = 0; i < SQUARE_NUMBER + 1; i++) {
-            glVertex2d(startPoint, parts[i]);
-            glVertex2d(startPoint + WindowManager.getHeight(), parts[i]);
-        }
-
-        glEnd();
+        Main.root.getChildren().addAll(nodes);
 
     }
 

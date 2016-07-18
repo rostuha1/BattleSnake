@@ -1,22 +1,18 @@
 package rendering;
 
-import windows.WindowManager;
-
-import static windows.FormatType.WINDOW;
+import windows.ScreenSize;
 
 public class RenderField {
 
-    public static final int SQUARE_NUMBER = 25; // n * n
-    public static final int startPoint = WindowManager.sidesRatio(WINDOW);
-    public static final double PART = (double) WindowManager.getHeight() / SQUARE_NUMBER;
+    public static final int SQUARE_NUMBER = 45; // n * n
+    public static final int startPoint = ScreenSize.sidesRatio();
+    public static final double PART = (double) ScreenSize.getHeight() / SQUARE_NUMBER;
     public static final double[] parts = new double[SQUARE_NUMBER + 1];
 
     static {
-        parts[0] = 1;
-        for (int i = 1; i < SQUARE_NUMBER + 1; i++) {
+        for (int i = 0; i < SQUARE_NUMBER + 1; i++) {
             parts[i] = PART * i;
         }
-
     }
 
 }
