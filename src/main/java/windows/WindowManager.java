@@ -2,10 +2,11 @@ package windows;
 
 import events.KeyboardEvents;
 import org.lwjgl.BufferUtils;
-import rendering.GridRender;
 import org.lwjgl.opengl.GL;
+import rendering.GridRender;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
@@ -15,22 +16,32 @@ import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.glfw.GLFW.glfwMakeContextCurrent;
 import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
 import static org.lwjgl.glfw.GLFW.glfwShowWindow;
+import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
+import static org.lwjgl.opengl.GL11.GL_PROJECTION;
+import static org.lwjgl.opengl.GL11.glLoadIdentity;
+import static org.lwjgl.opengl.GL11.glMatrixMode;
+import static org.lwjgl.opengl.GL11.glOrtho;
 
 public class WindowManager {
 
     private static long currentWindow;
+    private static FormatType type;
 
-    private static final int screenWidth;
-    private static final int screenHeight;
+    private static final int width;
+    private static final int height;
+    private static Dimension windowSize;
 
     static {
 
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        screenWidth = d.width;
-        screenHeight = d.height;
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        width = screenSize.width;
+        height = screenSize.height;
         glfwInit();
 
-        currentWindow = getNewWindow("Window", true, true);
+        final boolean fullscreen = true;
+        final boolean setCurrent = true;
+
+        currentWindow = getNewWindow("Window", fullscreen, setCurrent);
         GridRender.getInstance().add();
 
     }
@@ -39,18 +50,28 @@ public class WindowManager {
         return currentWindow;
     }
     public static void setCurrentWindow(long window) {
-        currentWindow = window;
+
         glfwMakeContextCurrent(window);
         GL.createCapabilities();
+
+        windowSize = getWindowSize(window);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(0, getWidth(), getHeight(), 0, 1, -1);
+        glMatrixMode(GL_MODELVIEW);
+
+//        glfwHideWindow(currentWindow);
         glfwShowWindow(window);
         glfwSetKeyCallback(window, new KeyboardEvents());
+        currentWindow = window;
     }
 
     public static long getNewWindow(String title, boolean fullscreen, boolean setCurrent) {
-        return getNewWindow(WindowManager.screenWidth, WindowManager.screenHeight, title, fullscreen, setCurrent);
+        type = fullscreen ? FormatType.SCREEN : FormatType.WINDOW;
+        return getNewWindow(WindowManager.width, WindowManager.height, title, fullscreen, setCurrent);
     }
-    public static long getNewWindow(int screenWidth, int screenHeight, String title, boolean fullscreen, boolean setCurrent) {
-        long newWindow = glfwCreateWindow(screenWidth, screenHeight, title, fullscreen ? glfwGetPrimaryMonitor() : 0, 0);
+    public static long getNewWindow(int width, int height, String title, boolean fullscreen, boolean setCurrent) {
+        long newWindow = glfwCreateWindow(width, height, title, fullscreen ? glfwGetPrimaryMonitor() : 0, 0);
 
         if (setCurrent) {
             setCurrentWindow(newWindow);
@@ -62,32 +83,25 @@ public class WindowManager {
     public static Dimension getScreenSize() {
         return Toolkit.getDefaultToolkit().getScreenSize();
     }
-    public static Dimension getWindowSize() {
+    public static Dimension getWindowSize(long window) {
 
         IntBuffer w = BufferUtils.createIntBuffer(1);
         IntBuffer h = BufferUtils.createIntBuffer(1);
-        glfwGetWindowSize(currentWindow, w, h);
+        glfwGetWindowSize(window, w, h);
 
         return new Dimension(w.get(0), h.get(0));
     }
 
-    public static double sidesScreenRatio() {
-        return (double) screenHeight / screenWidth;
-    }
-    public static double sidesWindowRatio() {
-        Dimension winDimension = getWindowSize();
-        return (double) winDimension.height / winDimension.width;
+    public static int sidesRatio(FormatType type) {
+        Dimension d = type == FormatType.SCREEN ? getScreenSize() : getWindowSize(currentWindow);
+        int res = (d.width - d.height) / 2;
+        return res > 0 ? res : 0;
     }
 
-    public static double sidesRatio(FormatType type) {
-        Dimension d = type == FormatType.SCREEN ? getScreenSize() : getWindowSize();
-        return (double) d.height / d.width;
+    public static int getWidth() {
+        return type == FormatType.SCREEN ? width : windowSize.width;
     }
-
-    public static int getScreenWidth() {
-        return screenWidth;
-    }
-    public static int getScreenHeight() {
-        return screenHeight;
+    public static int getHeight() {
+        return type == FormatType.SCREEN ? height : windowSize.height;
     }
 }

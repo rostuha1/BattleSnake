@@ -6,22 +6,17 @@ import static windows.FormatType.WINDOW;
 
 public class RenderField {
 
-    public static final int SQUARE_NUMBER = 3; // n * n
-    public static final double RATIO = WindowManager.sidesRatio(WINDOW);
-    public static final double V_PART = RATIO * 2 / SQUARE_NUMBER;
-    public static final double H_PART = (double) 2 / SQUARE_NUMBER;
-    public static final double[] vParts = new double[SQUARE_NUMBER + 1];
-    public static final double[] hParts = new double[SQUARE_NUMBER + 1];
+    public static final int SQUARE_NUMBER = 10; // n * n
+    public static final int startPoint = WindowManager.sidesRatio(WINDOW);
+    public static final int PART = WindowManager.getHeight() / SQUARE_NUMBER;
+    public static final int[] parts = new int[SQUARE_NUMBER + 1];
 
     static {
-        hParts[0] = 0.00001;
-
+        parts[0] = 1;
         for (int i = 1; i < SQUARE_NUMBER + 1; i++) {
-            vParts[i] = V_PART * i;
-            hParts[i] = H_PART * i;
+            parts[i] = PART * i;
         }
 
-        hParts[SQUARE_NUMBER] = H_PART * SQUARE_NUMBER - 0.00001;
     }
 
 }

@@ -1,5 +1,6 @@
 package rendering;
 
+import rendering.snake.Snake;
 import windows.WindowManager;
 
 import java.util.ArrayList;
@@ -11,16 +12,20 @@ import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_LINE_WIDTH;
 import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.glGetInteger;
 import static org.lwjgl.opengl.GL11.glLineWidth;
 
 public class MainRenderer {
 
-    private static double lineWidth = 1.0;
+    private static int lineWidth = 1;
+    private static boolean isRun;
 
     private static List<Render> renderList = new ArrayList<>();
 
-    private MainRenderer() {}
+    private MainRenderer() {
+    }
 
     public static void addRender(Render render) {
         renderList.add(render);
@@ -32,6 +37,11 @@ public class MainRenderer {
 
     private static void render() {
         renderList.forEach(Render::render);
+        for (int i = 1; i < RenderField.SQUARE_NUMBER + 1; i++) {
+            for (int j = 1; j < RenderField.SQUARE_NUMBER + 1; j++) {
+                Snake.fillSquare(i, j);
+            }
+        }
     }
 
     private static void loop() {
@@ -44,26 +54,32 @@ public class MainRenderer {
     }
 
     public static void startLoop() {
-        while (!glfwWindowShouldClose(WindowManager.getCurrentWindow()))
+
+        long startWindow = WindowManager.getCurrentWindow();
+
+        isRun = true;
+        setLineWidth(lineWidth);
+
+        while (!glfwWindowShouldClose(startWindow))
             loop();
 
         glfwDestroyWindow(WindowManager.getCurrentWindow());
         glfwTerminate();
     }
 
-    public static double getLineWidth() {
+    public static int getLineWidth() {
         return lineWidth;
     }
-    public static void setLineWidth(float lineWidth) {
-        MainRenderer.lineWidth = lineWidth;
-        glLineWidth(lineWidth);
+
+    public static void setLineWidth(int lineWidth) {
+        if (lineWidth > 7) throw new IllegalArgumentException("Enter line width 7 or less");
+        if (!isRun) MainRenderer.lineWidth = lineWidth;
+        else {
+            glLineWidth(lineWidth);
+            MainRenderer.lineWidth = glGetInteger(GL_LINE_WIDTH);
+        }
+
     }
 
-    public static double getVertexLineWidthX() {
-        return lineWidth * 2 / WindowManager.getScreenWidth();
-    }
-    public static double getVertexLineWidthY() {
-        return lineWidth * 2 / WindowManager.getScreenHeight();
-    }
 
 }

@@ -4,7 +4,7 @@ public interface Render {
 
     void render();
 
-    default void add() {
+    default void add()  {
         MainRenderer.addRender(this);
     }
 
