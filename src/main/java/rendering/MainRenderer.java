@@ -19,7 +19,7 @@ import static org.lwjgl.opengl.GL11.glLineWidth;
 
 public class MainRenderer {
 
-    private static int lineWidth = 1;
+    private static int lineWidth = 2;
     private static boolean isRun;
 
     private static List<Render> renderList = new ArrayList<>();
@@ -36,12 +36,12 @@ public class MainRenderer {
     }
 
     private static void render() {
-        renderList.forEach(Render::render);
         for (int i = 1; i < RenderField.SQUARE_NUMBER + 1; i++) {
             for (int j = 1; j < RenderField.SQUARE_NUMBER + 1; j++) {
                 Snake.fillSquare(i, j);
             }
         }
+        renderList.forEach(Render::render);
     }
 
     private static void loop() {

@@ -38,10 +38,10 @@ public class WindowManager {
         height = screenSize.height;
         glfwInit();
 
-        final boolean fullscreen = true;
+        final boolean fullscreen = false;
         final boolean setCurrent = true;
 
-        currentWindow = getNewWindow("Window", fullscreen, setCurrent);
+        currentWindow = getNewWindow(1366, 768, "Window", fullscreen, setCurrent);
         GridRender.getInstance().add();
 
     }
