@@ -1,7 +1,7 @@
 package rendering;
 
 import javafx.scene.Node;
-import main.Line;
+import nodes.Line;
 import main.Main;
 import windows.ScreenSize;
 
@@ -33,7 +33,7 @@ public class GridRender implements Render {
             nodes.add(new Line(startPoint, parts[i], startPoint + ScreenSize.getHeight(), parts[i]));
         }
 
-        Main.root.getChildren().addAll(nodes);
+        Main.getRoot().getChildren().addAll(nodes);
 
     }
 
