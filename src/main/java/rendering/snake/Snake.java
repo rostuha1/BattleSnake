@@ -21,17 +21,26 @@ public class Snake {
     private boolean isIncrease;
 
     private Direction currentDirection = Direction.RIGHT;
+    private Direction nextDirection = currentDirection;
 
     private LinkedList<Rect> rects = new LinkedList<>();
 
     public final SnakeEngine engine = new KeyboardSnakeEngine();
 
     public Snake() {
-        Position p1 = new Position(2, 1);
-        Position p2 = new Position(1, 1);
+        Position p1 = new Position(6, 1);
+        Position p2 = new Position(5, 1);
+        Position p3 = new Position(4, 1);
+        Position p4 = new Position(3, 1);
+        Position p5 = new Position(2, 1);
+        Position p6 = new Position(1, 1);
 
         rects.add(getRect(p1));
         rects.add(getRect(p2));
+        rects.add(getRect(p3));
+        rects.add(getRect(p4));
+        rects.add(getRect(p5));
+        rects.add(getRect(p6));
 
         engine.setConduct(this, Main.getRoot().getScene());
 
@@ -42,13 +51,8 @@ public class Snake {
         Main.getRoot().getChildren().addAll(rects);
     }
 
-    public void setDirection(Direction newDirection) {
-        if (currentDirection == LEFT && newDirection == RIGHT) return;
-        if (currentDirection == RIGHT && newDirection == LEFT) return;
-        if (currentDirection == UP && newDirection == DOWN) return;
-        if (currentDirection == DOWN && newDirection == UP) return;
-
-        this.currentDirection = newDirection;
+    public void setDirection(Direction nextDirection) {
+        this.nextDirection = nextDirection;
     }
 
     private Position getNextPos(Position currentPos, Direction currentDirection) {
@@ -65,7 +69,17 @@ public class Snake {
         return null;
     }
 
+    private Direction getInverse(Direction direction) {
+        if (direction == LEFT) return RIGHT;
+        if (direction == RIGHT) return LEFT;
+        if (direction == UP) return DOWN;
+        if (direction == DOWN) return UP;
+        return currentDirection;
+    }
+
     public void render() {
+
+        if (nextDirection != getInverse(currentDirection)) currentDirection = nextDirection;
 
         Position nextPosition = getNextPos(rects.getFirst().getPos(), currentDirection);
 
@@ -74,11 +88,7 @@ public class Snake {
         rects.addFirst(rect);
 
         removeTill();
-        drawRect(rect);
-    }
-
-    private void drawRect(Rect rect) {
-        Main.getRoot().getChildren().add(rect);
+        rect.draw();
     }
 
     private Rect getRect(Position pos) {
@@ -117,7 +127,7 @@ public class Snake {
             return;
         }
 
-        Main.getRoot().getChildren().remove(rects.getLast());
+        rects.getLast().remove();
         rects.removeLast();
     }
 

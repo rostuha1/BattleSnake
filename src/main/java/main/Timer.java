@@ -12,7 +12,7 @@ public class Timer {
     private static Snake snake = new Snake();
 
     static {
-        int interval = 200;
+        int interval = 500;
         timeline = new Timeline(new KeyFrame(Duration.millis(interval), action -> step()));
         timeline.setCycleCount(Animation.INDEFINITE);
     }
