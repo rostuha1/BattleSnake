@@ -1,14 +1,16 @@
 package main;
 
+import events.KeyboardEvents;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import menu.MainMenu;
 import rendering.GridRender;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
+import java.nio.file.FileSystems;
 
 public class Main extends Application {
 
@@ -35,6 +37,8 @@ public class Main extends Application {
         GridRender.getInstance().render();
 
         Timer.start();
+        MainMenu.initMenu(scene);
+        KeyboardEvents.initKeys(scene);
 
     }
 
