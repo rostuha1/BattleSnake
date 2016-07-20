@@ -14,6 +14,7 @@ public class Rect extends Rectangle {
     FillTransition ft = new FillTransition(Duration.millis(50), this, mainColor, Color.WHITE);
 
     {
+        ft.setOnFinished(event -> Main.getRoot().getChildren().remove(this));
         setFill(Color.DARKSLATEBLUE);
     }
 

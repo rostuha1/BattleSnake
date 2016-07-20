@@ -1,5 +1,6 @@
 package main;
 
+import events.KeyboardEvents;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,6 +16,7 @@ public class Timer {
         int interval = 500;
         timeline = new Timeline(new KeyFrame(Duration.millis(interval), action -> step()));
         timeline.setCycleCount(Animation.INDEFINITE);
+        KeyboardEvents.snake = snake;
     }
 
     private static void step() {
