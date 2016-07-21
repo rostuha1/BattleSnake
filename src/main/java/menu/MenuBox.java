@@ -40,6 +40,7 @@ public class MenuBox {
     public static void setSubMenu(SubMenu newMenu) {
         if (pressLock) return;
         pressLock = true;
+        Centering.centering(newMenu, pane);
         SubMenuAnimation.init(pane, subMenu, newMenu);
         SubMenuAnimation.start();
 

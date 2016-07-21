@@ -3,9 +3,11 @@ package menu;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 
+import static menu.Centering.centeringAndGet;
+
 public class MainMenu {
 
-    private static SubMenu getMainMenu(){
+    private static SubMenu getMainMenu() {
         Region authorization = ComponentBuilder.create(Component.BUTTON, "АВТОРИЗАЦІЯ");
         Region registration = ComponentBuilder.create(Component.BUTTON, "РЕЄСТРАЦІЯ");
         Region exitGame = ComponentBuilder.create(Component.BUTTON, "ВИХІД");
@@ -42,7 +44,7 @@ public class MainMenu {
     }
 
     public static void initMenu(Pane root) {
-        MenuBox.init(root, getMainMenu());
+        MenuBox.init(root, centeringAndGet(getMainMenu(), root));
     }
 
 }

@@ -37,7 +37,7 @@ public class Main extends Application {
 
         GridRender.getInstance().render();
 
-//        Timer.start();
+        Timer.start();
         MainMenu.initMenu(root);
         KeyboardEvents.initKeys(scene);
 
