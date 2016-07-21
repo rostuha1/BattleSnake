@@ -1,11 +1,7 @@
 package menu;
 
-import events.KeyboardEvents;
-import javafx.animation.FadeTransition;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
+import javafx.scene.layout.Region;
 import main.Main;
 
 public class MainMenu {
@@ -13,9 +9,9 @@ public class MainMenu {
     private static final MenuBox menuBox = new MenuBox();
 
     private static SubMenu getMainMenu(){
-        StackPane authorization = ComponentBuilder.create(Component.BUTTON, "АВТОРИЗАЦІЯ");
-        StackPane registration = ComponentBuilder.create(Component.BUTTON, "РЕЄСТРАЦІЯ");
-        StackPane exitGame = ComponentBuilder.create(Component.BUTTON, "ВИХІД");
+        Region authorization = ComponentBuilder.create(Component.BUTTON, "АВТОРИЗАЦІЯ");
+        Region registration = ComponentBuilder.create(Component.BUTTON, "РЕЄСТРАЦІЯ");
+        Region exitGame = ComponentBuilder.create(Component.BUTTON, "ВИХІД");
 
         authorization.setOnMouseClicked(event -> menuBox.setSubMenu(getAuthorizationMenu()));
         registration.setOnMouseClicked(event -> menuBox.setSubMenu(getRegistrationMenu()));
@@ -25,11 +21,11 @@ public class MainMenu {
     }
 
     private static SubMenu getAuthorizationMenu() {
-        StackPane auth = ComponentBuilder.create(Component.LABEL, "АВТОРИЗАЦІЯ");
-        StackPane login = ComponentBuilder.create(Component.FIELD, "Ваш логін");
-        StackPane password = ComponentBuilder.create(Component.FIELD, "Ваш пароль");
-        StackPane confirmAuthorization = ComponentBuilder.create(Component.BUTTON, "ВХІД");
-        StackPane optionsBack = ComponentBuilder.create(Component.BUTTON, "Назад");
+        Region auth = ComponentBuilder.create(Component.LABEL, "АВТОРИЗАЦІЯ");
+        Region login = ComponentBuilder.create(Component.FIELD, "Ваш логін");
+        Region password = ComponentBuilder.create(Component.FIELD, "Ваш пароль");
+        Region confirmAuthorization = ComponentBuilder.create(Component.BUTTON, "ВХІД");
+        Region optionsBack = ComponentBuilder.create(Component.BUTTON, "НАЗАД");
 
         optionsBack.setOnMouseClicked(event -> menuBox.setSubMenu(getMainMenu()));
 
@@ -37,11 +33,11 @@ public class MainMenu {
     }
 
     private static SubMenu getRegistrationMenu() {
-        StackPane reg = ComponentBuilder.create(Component.LABEL, "РЕЄСТРАЦІЯ");
-        StackPane login = ComponentBuilder.create(Component.FIELD, "Ваш логін");
-        StackPane password = ComponentBuilder.create(Component.FIELD, "Ваш пароль");
-        StackPane confirmRegistration = ComponentBuilder.create(Component.BUTTON, "ЗАРЕЄСТРУВАТИСЯ");
-        StackPane optionsBack = ComponentBuilder.create(Component.BUTTON, "Назад");
+        Region reg = ComponentBuilder.create(Component.LABEL, "РЕЄСТРАЦІЯ");
+        Region login = ComponentBuilder.create(Component.FIELD, "Ваш логін");
+        Region password = ComponentBuilder.create(Component.FIELD, "Ваш пароль");
+        Region confirmRegistration = ComponentBuilder.create(Component.BUTTON, "ЗАРЕЄСТРУВАТИСЯ");
+        Region optionsBack = ComponentBuilder.create(Component.BUTTON, "НАЗАД");
 
         optionsBack.setOnMouseClicked(event -> menuBox.setSubMenu(getMainMenu()));
 
@@ -51,7 +47,6 @@ public class MainMenu {
     public static void initMenu(Scene scene) {
         menuBox.init(getMainMenu());
         Main.getRoot().getChildren().add(menuBox);
-        KeyboardEvents.menuBox = menuBox;
     }
 
 }
