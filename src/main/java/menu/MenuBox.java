@@ -1,6 +1,7 @@
 package menu;
 
 import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.animation.Transition;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -13,14 +14,20 @@ import java.nio.file.Paths;
 
 public class MenuBox extends Pane {
     private static SubMenu subMenu;
-    private enum Action { SHOW, HIDE }
+    private static MenuBox menuBox;
+    private static boolean isVisible;
+    private static FadeTransition ft;
 
-    public MenuBox() {}
+    public MenuBox() {
+        menuBox = this;
+        menuBox.setOpacity(0);
+    }
 
     public void init(SubMenu subMenu)  {
         MenuBox.subMenu = subMenu;
 
         setVisible(false);
+        isVisible = false;
         Rectangle bg = new Rectangle(Main.getRoot().getWidth(), Main.getRoot().getHeight());
         Image image = new Image("file:\\" + Paths.get("").toAbsolutePath() + "\\src\\main\\resources\\background.jpg");
         ImagePattern pattern = new ImagePattern(image);
@@ -30,12 +37,12 @@ public class MenuBox extends Pane {
     }
 
     public void setSubMenu(SubMenu newMenu) {
-        MenuAnimation.init(this, subMenu, newMenu);
-        MenuAnimation.start();
+        SubMenuAnimation.init(this, subMenu, newMenu);
+        SubMenuAnimation.start();
         subMenu = newMenu;
     }
 
-    private static class MenuAnimation {
+    private static class SubMenuAnimation {
 
         private static SubMenu currentMenu;
         private static SubMenu newMenu;
@@ -58,8 +65,8 @@ public class MenuBox extends Pane {
         };
 
         public static void init(MenuBox menuBox, SubMenu currentMenu, SubMenu newMenu) {
-            MenuAnimation.currentMenu = currentMenu;
-            MenuAnimation.newMenu = newMenu;
+            SubMenuAnimation.currentMenu = currentMenu;
+            SubMenuAnimation.newMenu = newMenu;
 
             hideAnimation.setOnFinished(event -> {
                 newMenu.setOpacity(0);
@@ -75,4 +82,21 @@ public class MenuBox extends Pane {
 
     }
 
+    public static void escapeEvent() {
+        if (ft != null) ft.stop();
+        ft = new FadeTransition(Duration.seconds(2), menuBox);
+        if (!isVisible) {
+            menuBox.setVisible(true);
+            isVisible = true;
+            ft.setFromValue(menuBox.getOpacity());
+            ft.setToValue(1);
+            ft.play();
+        } else {
+            isVisible = false;
+            ft.setFromValue(menuBox.getOpacity());
+            ft.setToValue(0);
+            ft.setOnFinished(e -> menuBox.setVisible(false));
+            ft.play();
+        }
+    }
 }

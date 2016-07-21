@@ -1,20 +1,18 @@
 package nodes;
 
-import javafx.animation.FillTransition;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import main.Main;
 import rendering.snake.Position;
 
 public class Rect extends Rectangle {
 
-    private Color mainColor = Color.DEEPPINK;
+    private Color mainColor = Color.DARKSLATEBLUE;
 
-    FillTransition ft = new FillTransition(Duration.millis(50), this, mainColor, Color.WHITE);
+//    FillTransition ft = new FillTransition(Duration.millis(50), this, mainColor, Color.WHITE);
 
     {
-        ft.setOnFinished(event -> Main.getRoot().getChildren().remove(this));
+//        ft.setOnFinished(event -> Main.getRoot().getChildren().remove(this));
         setFill(Color.DARKSLATEBLUE);
     }
 
@@ -36,7 +34,8 @@ public class Rect extends Rectangle {
     }
 
     public void remove() {
-        ft.play();
+        Main.getRoot().getChildren().remove(this);
+//        ft.play();
     }
 
 }
