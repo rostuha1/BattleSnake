@@ -18,6 +18,7 @@ public class ComponentBuilder {
 
     public static final int ITEM_WIDTH = 300;
     public static final int ITEM_HEIGHT = 30;
+
     public static final double TRANSITION_DURATION = 0.5;
     public static final Color BUTTON_COLOR = Color.web("0x195519");
     public static final Color BUTTON_TEXT_COLOR = Color.web("0x58B858");

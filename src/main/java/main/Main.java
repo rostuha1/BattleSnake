@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 import menu.MainMenu;
 import rendering.GridRender;
 
-import java.awt.*;
-import java.nio.file.FileSystems;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class Main extends Application {
 
@@ -32,12 +32,13 @@ public class Main extends Application {
 
         primaryStage.setOnCloseRequest(event -> Timer.stop());
         primaryStage.setScene(scene);
+
         primaryStage.show();
 
         GridRender.getInstance().render();
 
-        Timer.start();
-        MainMenu.initMenu(scene);
+//        Timer.start();
+        MainMenu.initMenu(root);
         KeyboardEvents.initKeys(scene);
 
     }
