@@ -1,4 +1,4 @@
-package rendering.snake;
+package battlefield.snake;
 
 public class Position {
     int x;

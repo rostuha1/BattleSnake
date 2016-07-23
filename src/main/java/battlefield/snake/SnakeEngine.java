@@ -1,4 +1,4 @@
-package rendering.snake;
+package battlefield.snake;
 
 import javafx.scene.Scene;
 

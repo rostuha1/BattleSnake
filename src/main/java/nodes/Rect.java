@@ -1,22 +1,30 @@
 package nodes;
 
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import main.Main;
-import rendering.snake.Position;
+import battlefield.snake.Position;
 
 public class Rect extends Rectangle {
 
     private Color mainColor = Color.DARKSLATEBLUE;
 
-//    FillTransition ft = new FillTransition(Duration.millis(50), this, mainColor, Color.WHITE);
+    private static Pane parent;
 
     {
-//        ft.setOnFinished(event -> Main.getRoot().getChildren().remove(this));
         setFill(Color.DARKSLATEBLUE);
     }
 
+    static {
+        parent = Main.getSnakeField();
+    }
+
     private Position position;
+
+    public static void setParent(Pane parent) {
+        Rect.parent = parent;
+    }
 
     public Position getPos() {
         return position;
@@ -30,12 +38,10 @@ public class Rect extends Rectangle {
     }
 
     public void draw() {
-        Main.getRoot().getChildren().add(this);
+        parent.getChildren().add(this);
     }
-
     public void remove() {
-        Main.getRoot().getChildren().remove(this);
-//        ft.play();
+        parent.getChildren().remove(this);
     }
 
 }

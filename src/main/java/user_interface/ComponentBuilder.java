@@ -1,4 +1,4 @@
-package menu;
+package user_interface;
 
 import javafx.animation.Animation;
 import javafx.animation.FillTransition;

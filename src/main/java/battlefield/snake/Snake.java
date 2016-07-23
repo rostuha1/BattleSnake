@@ -1,33 +1,44 @@
-package rendering.snake;
+package battlefield.snake;
 
+import javafx.scene.layout.Pane;
 import main.Main;
 import nodes.Line;
 import nodes.Rect;
 
 import java.util.LinkedList;
 
-import static rendering.RenderField.PART;
-import static rendering.RenderField.SQUARE_NUMBER;
-import static rendering.RenderField.parts;
-import static rendering.RenderField.startPoint;
-import static rendering.snake.Direction.DOWN;
-import static rendering.snake.Direction.LEFT;
-import static rendering.snake.Direction.RIGHT;
-import static rendering.snake.Direction.UP;
+import static battlefield.RenderField.PART;
+import static battlefield.RenderField.SQUARE_NUMBER;
+import static battlefield.RenderField.parts;
+import static battlefield.RenderField.startPoint;
+import static battlefield.snake.Direction.DOWN;
+import static battlefield.snake.Direction.LEFT;
+import static battlefield.snake.Direction.RIGHT;
+import static battlefield.snake.Direction.UP;
 
 public class Snake {
 
     private int length = 2;
     private boolean isIncrease;
+    private static Pane parent;
 
     private Direction currentDirection = Direction.RIGHT;
     private Direction nextDirection = currentDirection;
 
-    private LinkedList<Rect> rects = new LinkedList<>();
+    private LinkedList<Rect> cells = new LinkedList<>();
 
     public final SnakeEngine engine = new KeyboardSnakeEngine();
 
+    static {
+        parent = Main.getSnakeField();
+    }
+
     public Snake() {
+
+//        for (int i = length; i > 0; i--) {
+//            cells.add(getRect(new Position(i, 1)));
+//        }
+
         Position p1 = new Position(6, 1);
         Position p2 = new Position(5, 1);
         Position p3 = new Position(4, 1);
@@ -35,20 +46,25 @@ public class Snake {
         Position p5 = new Position(2, 1);
         Position p6 = new Position(1, 1);
 
-        rects.add(getRect(p1));
-        rects.add(getRect(p2));
-        rects.add(getRect(p3));
-        rects.add(getRect(p4));
-        rects.add(getRect(p5));
-        rects.add(getRect(p6));
+        cells.add(getRect(p1));
+        cells.add(getRect(p2));
+        cells.add(getRect(p3));
+        cells.add(getRect(p4));
+        cells.add(getRect(p5));
+        cells.add(getRect(p6));
 
         engine.setConduct(this, Main.getRoot().getScene());
 
         init();
     }
 
+    public static void setParent(Pane parent) {
+        Snake.parent = parent;
+        Rect.setParent(parent);
+    }
+
     private void init() {
-        Main.getRoot().getChildren().addAll(rects);
+        parent.getChildren().addAll(cells);
     }
 
     public void setDirection(Direction nextDirection) {
@@ -81,11 +97,11 @@ public class Snake {
 
         if (nextDirection != getInverse(currentDirection)) currentDirection = nextDirection;
 
-        Position nextPosition = getNextPos(rects.getFirst().getPos(), currentDirection);
+        Position nextPosition = getNextPos(cells.getFirst().getPos(), currentDirection);
 
         Rect rect = getRect(nextPosition);
 
-        rects.addFirst(rect);
+        cells.addFirst(rect);
 
         removeTill();
         rect.draw();
@@ -127,8 +143,8 @@ public class Snake {
             return;
         }
 
-        rects.getLast().remove();
-        rects.removeLast();
+        cells.getLast().remove();
+        cells.removeLast();
     }
 
 }

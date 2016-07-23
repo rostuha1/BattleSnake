@@ -1,53 +1,51 @@
 package main;
 
+import battlefield.Grid;
+import battlefield.snake.Snake;
 import events.KeyboardEvents;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import menu.MainMenu;
-import rendering.GridRender;
-
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import user_interface.menus.MainMenu;
 
 public class Main extends Application {
 
-    public static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
     private static Pane root = new Pane();
-    private static Stage stage;
+    private static Pane snakeField = new Pane();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Scene scene = new Scene(root, screenSize.width, screenSize.height);
+        root.setPrefSize(Window.width, Window.height);
+        Scene scene = new Scene(root);
+        root.getChildren().add(snakeField);
 
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         primaryStage.setTitle("JavaFx Game. BattleSnake");
 
-        stage = primaryStage;
-
         primaryStage.setOnCloseRequest(event -> Timer.stop());
         primaryStage.setScene(scene);
 
-        primaryStage.show();
+        Grid.setParent(snakeField);
+        Snake.setParent(snakeField);
 
-        GridRender.getInstance().render();
-
+        Grid.draw();
         Timer.start();
         MainMenu.initMenu(root);
         KeyboardEvents.initKeys(scene);
+
+        primaryStage.show();
 
     }
 
     public static Pane getRoot() {
         return root;
     }
-    public static Stage getStage() {
-        return stage;
+    public static Pane getSnakeField() {
+        return snakeField;
     }
 
     public static void main(String[] args) {

@@ -1,7 +1,6 @@
-package rendering.snake;
+package battlefield.snake;
 
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 
 public class KeyboardSnakeEngine implements SnakeEngine {
 

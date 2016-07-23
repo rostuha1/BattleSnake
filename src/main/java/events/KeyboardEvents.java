@@ -2,9 +2,9 @@ package events;
 
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import menu.MenuBox;
-import rendering.snake.Direction;
-import rendering.snake.Snake;
+import user_interface.menus.MenuBox;
+import battlefield.snake.Direction;
+import battlefield.snake.Snake;
 
 public class KeyboardEvents {
 
