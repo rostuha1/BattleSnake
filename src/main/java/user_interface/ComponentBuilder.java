@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.FillTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -24,9 +25,18 @@ public class ComponentBuilder {
     public static final Color BUTTON_TEXT_COLOR = Color.web("0x58B858");
 
     public static Region create(Component component, String text) {
-        if (component == Component.LABEL) return getLabel(text);
-        else if (component == Component.FIELD) return getField(text);
-        else return getButton(text);
+        switch (component) {
+            case FIELD:
+                return getField(Component.FIELD, text);
+            case PASSWORD_FIELD:
+                return getField(Component.PASSWORD_FIELD, text);
+            case LABEL:
+                return getLabel(text);
+            case BUTTON:
+                return getButton(text);
+            default:
+                return new Region();
+        }
     }
 
     private static Region getLabel(String text) {
@@ -37,19 +47,29 @@ public class ComponentBuilder {
         return label;
     }
 
-    private static Region getField(String text) {
-        TextField textField = new TextField();
-        textField.setFocusTraversable(false);
-        textField.setPromptText(text);
-        textField.setStyle("-fx-background-color: #a9a9a9 , white , white; \n" +
+    private static TextField getField(Component component, String text) {
+        TextField field;
+        switch (component) {
+            case FIELD:
+                field = new TextField();
+                break;
+            case PASSWORD_FIELD:
+                field = new PasswordField();
+                break;
+            default:
+                field = new TextField();
+        }
+
+        field.setFocusTraversable(false);
+        field.setPromptText(text);
+        field.setStyle("-fx-background-color: #a9a9a9 , white , white; \n" +
                 "-fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1; " +
-                "-fx-font-size: 16;" +
-                "-fx-fill-height: 5");
+                "-fx-font-size: 16");
 
-        textField.setPrefWidth(300);
-        textField.setPrefHeight(1);
+        field.setPrefWidth(300);
+        field.setPrefHeight(1);
 
-        return textField;
+        return field;
     }
 
     private static Region getButton(String text) {

@@ -1,5 +1,5 @@
 package user_interface;
 
 public enum Component {
-    FIELD, LABEL, BUTTON
+    FIELD, PASSWORD_FIELD, LABEL, BUTTON
 }
