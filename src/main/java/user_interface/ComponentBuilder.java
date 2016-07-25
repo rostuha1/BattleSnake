@@ -53,13 +53,18 @@ public class ComponentBuilder {
     }
 
     private static Region getButton(String text) {
+        return getButton(text, 16, ITEM_WIDTH, ITEM_HEIGHT);
+    }
+
+    public static Region getButton(String text, double textSize, double width, double height) {
         StackPane stackPane = new StackPane();
-        Rectangle bg = new Rectangle(ITEM_WIDTH, ITEM_HEIGHT, BUTTON_COLOR);
+
+        Rectangle bg = new Rectangle(width, height, BUTTON_COLOR);
         bg.setOpacity(0.5);
 
         Text textButton = new Text(text);
         textButton.setFill(BUTTON_TEXT_COLOR);
-        textButton.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        textButton.setFont(Font.font("Arial", FontWeight.BOLD, textSize));
 
         stackPane.setAlignment(Pos.CENTER);
         stackPane.getChildren().addAll(bg, textButton);

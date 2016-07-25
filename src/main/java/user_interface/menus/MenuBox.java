@@ -3,8 +3,7 @@ package user_interface.menus;
 import javafx.animation.FadeTransition;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import main.Window;
-import user_interface.Animation.AnimatedCircles;
+import main.WindowSettings;
 import user_interface.Centering;
 
 public class MenuBox {
@@ -15,24 +14,19 @@ public class MenuBox {
     private static boolean pressLock;
 
     static {
-        pane.setPrefSize(Window.width, Window.height);
+        pane.setPrefSize(WindowSettings.width, WindowSettings.height);
     }
 
-    public static void init(Pane root, SubMenu subMenu) {
-        MenuBox.subMenu = subMenu;
+    public static void init(Pane root) {
+        MenuBox.subMenu = StartMenu.mainMenu;
 
-        AnimatedCircles.createSpawnNodes(pane);
+        SubMenuAnimation.load(pane);
 
-        isVisible = true;
-        pane.setVisible(true);
-        pane.setOpacity(1);
-        pane.setStyle("-fx-background-color: rgb(36, 42, 31)");
+        pane.setVisible(false);
         pane.getChildren().add(subMenu);
         Centering.centering(subMenu, pane);
 
         root.getChildren().add(pane);
-        SubMenuAnimation.load(pane);
-
     }
 
     public static void setSubMenu(SubMenu newMenu) {
@@ -43,6 +37,38 @@ public class MenuBox {
         SubMenuAnimation.start(subMenu, newMenu);
 
         subMenu = newMenu;
+    }
+
+    public static void show() {
+        isVisible = true;
+        pane.setVisible(true);
+    }
+
+    public static void hide() {
+        isVisible = false;
+        pane.setVisible(false);
+    }
+
+    public static void escapeEvent() {
+        if (ft != null) ft.stop();
+        ft = new FadeTransition(Duration.millis(SubMenuAnimation.ESCAPE_EFFECT_DURATION), pane);
+        if (!isVisible) {
+            pane.setVisible(true);
+            isVisible = true;
+            ft.setFromValue(pane.getOpacity());
+            ft.setToValue(1);
+            ft.play();
+        } else {
+            isVisible = false;
+            ft.setFromValue(pane.getOpacity());
+            ft.setToValue(0);
+            ft.setOnFinished(e -> pane.setVisible(false));
+            ft.play();
+        }
+    }
+
+    public static Pane getMenuBox() {
+        return pane;
     }
 
     private static class SubMenuAnimation {
@@ -67,8 +93,8 @@ public class MenuBox {
         public static void load(Pane pane) {
             SubMenuAnimation.pane = pane;
 
-            SubMenu mainMenu = MainMenu.getMainMenu();
-            SubMenu newMenu = MainMenu.getAuthorizationMenu();
+            SubMenu mainMenu = StartMenu.getMainMenu();
+            SubMenu newMenu = StartMenu.getAuthorizationMenu();
 
             pane.getChildren().addAll(mainMenu);
 
@@ -77,7 +103,7 @@ public class MenuBox {
 
             start(mainMenu, newMenu);
 
-            pane.getChildren().remove(newMenu);
+            pane.getChildren().removeAll(mainMenu, newMenu);
 
             hideAnimation.setNode(null);
             showAnimation.setNode(null);
@@ -102,25 +128,5 @@ public class MenuBox {
 
     }
 
-    public static void escapeEvent() {
-        if (ft != null) ft.stop();
-        ft = new FadeTransition(Duration.millis(SubMenuAnimation.ESCAPE_EFFECT_DURATION), pane);
-        if (!isVisible) {
-            pane.setVisible(true);
-            isVisible = true;
-            ft.setFromValue(pane.getOpacity());
-            ft.setToValue(1);
-            ft.play();
-        } else {
-            isVisible = false;
-            ft.setFromValue(pane.getOpacity());
-            ft.setToValue(0);
-            ft.setOnFinished(e -> pane.setVisible(false));
-            ft.play();
-        }
-    }
 
-    public static Pane getMenuBox() {
-        return pane;
-    }
 }

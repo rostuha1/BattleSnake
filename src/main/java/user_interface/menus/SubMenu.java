@@ -13,16 +13,23 @@ public class SubMenu extends VBox {
     public SubMenu(Region... items) {
         subMenuHeight = items.length * ComponentBuilder.ITEM_HEIGHT + (items.length - 1) * SPACING;
 
+//        DropShadow effect = new DropShadow();
+//        effect.setColor(Color.DARKBLUE);
+//        effect.setBlurType(BlurType.GAUSSIAN);
+//        effect.setRadius(10);
+//
+//        setEffect(effect);
+        setFillWidth(false);
         setAlignment(Pos.CENTER);
         setSpacing(SPACING);
         getChildren().addAll(items);
     }
 
-    public double getMenuWidth(){
+    public double getMenuWidth() {
         return ComponentBuilder.ITEM_WIDTH;
     }
 
-    public double getMenuHeight(){
+    public double getMenuHeight() {
         return subMenuHeight;
     }
 

@@ -10,8 +10,8 @@ import javafx.util.Duration;
 
 public class AnimatedCircles {
 
-    private static int spawnNodes = 200;
-    private static int circleSize = 5;
+    private static int spawnNodes = 1000;
+    private static int circleSize = 3;
 
     static Color[] colors = {
             new Color(0.2,0.5,0.8, 1.0),
@@ -30,7 +30,6 @@ public class AnimatedCircles {
         for (int i = 0; i < spawnNodes; i++) {
             spawnNode(pane);
         }
-
 
     }
 

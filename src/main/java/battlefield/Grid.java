@@ -3,6 +3,7 @@ package battlefield;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import main.Main;
+import main.WindowSettings;
 import nodes.Line;
 
 import java.util.ArrayList;
@@ -32,8 +33,8 @@ public class Grid {
         List<Node> nodes = new ArrayList<>();
 
         for (int i = 0 ; i < SQUARE_NUMBER + 1; i++) {
-            nodes.add(new Line(startPoint + parts[i], 0, startPoint + parts[i], Main.getRoot().getPrefHeight()));
-            nodes.add(new Line(startPoint, parts[i], startPoint + Main.getRoot().getPrefHeight(), parts[i]));
+            nodes.add(new Line(startPoint + parts[i], 0, startPoint + parts[i], WindowSettings.height));
+            nodes.add(new Line(startPoint, parts[i], startPoint + WindowSettings.height, parts[i]));
         }
 
         parent.getChildren().addAll(nodes);
