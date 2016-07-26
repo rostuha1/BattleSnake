@@ -46,7 +46,6 @@ public class Main extends Application {
         MenuBox.show();
 
 
-
 //        KeyboardEvents.initKeys(scene);
     }
 
