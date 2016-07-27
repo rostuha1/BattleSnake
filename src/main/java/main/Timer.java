@@ -20,7 +20,7 @@ public class Timer {
     }
 
     private static void step() {
-        snake.render();
+//        snake.render();
     }
 
     public static void start() {

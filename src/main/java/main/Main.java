@@ -18,7 +18,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         root.setPrefSize(WindowSettings.width, WindowSettings.height);
-//        root.getChildren().add(snakeField);
+        root.getChildren().add(snakeField);
 
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
@@ -37,6 +37,7 @@ public class Main extends Application {
 //        Grid.setParent(snakeField);
 //        Snake.setParent(snakeField);
 //        Grid.draw();
+//        Cells.draw(2, 1, Color.RED);
 //        Timer.start();
 
         root.setStyle("-fx-background-color: rgb(35, 40, 30)");
@@ -45,8 +46,6 @@ public class Main extends Application {
         MenuBox.init(root);
         MenuBox.show();
 
-
-//        KeyboardEvents.initKeys(scene);
     }
 
     public static Pane getRoot() {

@@ -2,8 +2,10 @@ package user_interface.menus;
 
 import javafx.animation.FadeTransition;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.WindowSettings;
+import org.controlsfx.control.Notifications;
 import user_interface.Centering;
 
 public class MenuBox {
@@ -93,6 +95,8 @@ public class MenuBox {
         public static void load(Pane pane) {
             SubMenuAnimation.pane = pane;
 
+            Notifications.create().owner(new Stage()).showInformation();
+
             SubMenu mainMenu = StartMenu.getMainMenu();
             SubMenu newMenu = StartMenu.getAuthorizationMenu();
 
@@ -111,31 +115,6 @@ public class MenuBox {
             hideAnimation.setDuration(Duration.millis(EFFECT_DURATION));
             showAnimation.setDuration(Duration.millis(EFFECT_DURATION));
 
-//            try {
-//                Class.forName("org.controlsfx.control.Notifications");
-//            } catch (ClassNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//
-//            Class notificationsClass = Notifications.class;
-//            Constructor constructor = notificationsClass.getDeclaredConstructors()[0];
-//            constructor.setAccessible(true);
-//
-//            Platform.runLater(() -> {
-//                        Stage owner = new Stage();
-//                        StackPane root = new StackPane();
-//                        root.setStyle("-fx-background-color: TRANSPARENT");
-//                        Scene scene = new Scene(root, 0, 0);
-//                        scene.setFill(Color.TRANSPARENT);
-//                        owner.setScene(scene);
-//                        owner.setWidth(0);
-//                        owner.setHeight(0);
-//                        owner.toBack();
-//                        Notifications.create().title("").text("").showInformation();
-//                        owner.close();
-//                    }
-//            );
-
         }
 
         public static void start(SubMenu currentMenu, SubMenu newMenu) {
@@ -153,6 +132,5 @@ public class MenuBox {
         }
 
     }
-
 
 }
