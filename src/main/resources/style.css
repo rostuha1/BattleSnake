@@ -1,0 +1,11 @@
+.list-view .list-cell {
+    -fx-background-color: wheat;
+    -fx-border-color: black;
+}
+
+.list-view .list-cell:empty {
+    -fx-background-color: coral;
+    -fx-border-width: 0px;
+
+}
+
