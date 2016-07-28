@@ -1,10 +1,10 @@
 package nodes;
 
+import battlefield.snake.Position;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import main.Main;
-import battlefield.snake.Position;
 
 public class Rect extends Rectangle {
 
