@@ -11,7 +11,9 @@ public class SnakePlayer {
     private int rating;
     private String about;
 
-    public SnakePlayer() {
+    public SnakePlayer(String defaultImage) {
+        this.avatar = new Image("file:\\" + Paths.get("").toAbsolutePath() + "\\src\\main\\resources\\" + defaultImage);
+        this.name = "Гравця не вибрано";
     }
 
     public SnakePlayer(String avatarName, String name, int rating, String about) {
