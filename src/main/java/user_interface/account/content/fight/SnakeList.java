@@ -7,30 +7,25 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-import main.WindowSettings;
 import user_interface.account.MainMenu;
 
 public class SnakeList extends ListView<SnakePlayer> {
 
     private static final double AVATAR_SIZE = 60;
+    public static final double CELL_SIZE = AVATAR_SIZE + 20;
     private static final double WIDTH = MainMenu.CONTENT_WIDTH / 2;
-    private static final double HEIGHT = WindowSettings.height / 2 + 18;
-
-    {
-        ObservableList<SnakePlayer> list = FXCollections.observableArrayList();
-        list.addAll(new SnakePlayer("snake1.png", "ann", 1010, "Let's fight with me!"),
-                new SnakePlayer("snake2.png", "rost", 1500, "111"),
-                new SnakePlayer("snake3.png", "chuvak", 1000, "I am a loh :)"),
-                new SnakePlayer("snake3.png", "chuvak", 1000, "I am a loh :)"),
-                new SnakePlayer("snake3.png", "chuvak", 1000, "I am a loh :)"),
-                new SnakePlayer("snake3.png", "chuvak", 1000, "I am a loh :)"));
-        setPrefSize(WIDTH, HEIGHT);
-        setItems(list);
-    }
+    private static final double HEIGHT = CELL_SIZE * 5 + 2;
+    private ObservableList<SnakePlayer> list = FXCollections.observableArrayList();
 
     public SnakeList() {
+        list.addAll(new SnakePlayer("snake1.png", "ann", 1010, "Let's fight with me!"),
+                new SnakePlayer("snake2.png", "rost", 1500, "111"),
+                new SnakePlayer("snake3.png", "chuvak", 1000, "I am a super snake :)"));
+        if (list.size() < 5) setPrefSize(WIDTH, list.size() * CELL_SIZE + 2);
+        else setPrefSize(WIDTH, HEIGHT);
+        setItems(list);
 
-        setFixedCellSize(AVATAR_SIZE + 20);
+        setFixedCellSize(CELL_SIZE);
         setCellFactory(new Callback<ListView<SnakePlayer>, ListCell<SnakePlayer>>() {
             @Override
             public ListCell<SnakePlayer> call(ListView<SnakePlayer> param) {
@@ -51,5 +46,10 @@ public class SnakeList extends ListView<SnakePlayer> {
                 return cell;
             }
         });
+
+    }
+
+    public ObservableList<SnakePlayer> getList() {
+        return list;
     }
 }

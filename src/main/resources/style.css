@@ -1,10 +1,22 @@
+/*.button {*/
+    /*-fx-padding: 5 22 5 22;*/
+    /*-fx-border-color: #e2e2e2;*/
+    /*-fx-border-width: 2;*/
+    /*-fx-background-radius: 0;*/
+    /*-fx-background-color: #1d1d1d;*/
+    /*-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;*/
+    /*-fx-font-size: 11pt;*/
+    /*-fx-text-fill: #d8d8d8;*/
+    /*-fx-background-insets: 0 0 0 0, 0, 1, 2;*/
+/*}*/
+
 .list-view .list-cell {
-    -fx-background-color: wheat;
-    -fx-border-color: black;
+    -fx-background-color: rgb(209, 214, 144);
+    -fx-border-color: rgb(79, 83, 53);
 }
 
 .list-view .list-cell:empty {
-    -fx-background-color: coral;
+    -fx-background-color: transparent;
     -fx-border-width: 0px;
 
 }
