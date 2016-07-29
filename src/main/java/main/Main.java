@@ -7,9 +7,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import user_interface.Animation.AnimatedCircles;
-import user_interface.account.MainMenu;
-import user_interface.account.content.intelligence.Card;
-import user_interface.account.content.intelligence.CardsPane;
 import user_interface.account.content.intelligence.IntelligenceContent;
 
 import java.nio.file.Paths;
@@ -18,6 +15,7 @@ public class Main extends Application {
 
     private static Pane root = new Pane();
     private static Pane snakeField = new Pane();
+    private static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -33,6 +31,8 @@ public class Main extends Application {
 
         primaryStage.setOnCloseRequest(event -> Timer.stop());
         primaryStage.setScene(scene);
+
+        stage = primaryStage;
 
         gameInit();
 

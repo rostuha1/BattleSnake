@@ -1,11 +1,12 @@
 package user_interface.account.content.intelligence.CardElements;
 
 import javafx.geometry.Insets;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import user_interface.account.content.intelligence.MenuItem;
+import user_interface.account.content.intelligence.Role;
 
 import java.nio.file.Paths;
 
@@ -14,7 +15,7 @@ public class CardElement extends ImageView {
     private static Insets insets = new Insets(2);
     private static CardElement selectedElement = null;
 
-    private CardElementType cardElementType;
+    private Role role;
 
     {
         GridPane.setMargin(this, insets);
@@ -22,42 +23,37 @@ public class CardElement extends ImageView {
             if (selectedElement == this) {
                 selectedElement = null;
                 setEffect(null);
+                MenuItem.selectItem(role, false);
                 return;
             }
             if (selectedElement != null) selectedElement.setEffect(null);
             selectedElement = this;
             setEffect(new ColorAdjust(0, 0, -0.4, 0));
+            MenuItem.selectItem(role, true);
         });
     }
 
     public CardElement() {
-        setCardElementType(CardElementType.EMPTY);
+        setRole(Role.EMPTY);
     }
 
-    public CardElement(CardElementType cardElementType) {
-        setCardElementType(cardElementType);
+    public CardElement(Role role) {
+        setRole(role);
     }
 
-    public CardElementType getCardElementType() {
-        return cardElementType;
+    public Role getRole() {
+        return role;
     }
 
-    public void setCardElementType(CardElementType cardElementType) {
-        setImage(getElementImage(this.cardElementType = cardElementType));
+    public static CardElement getSelectedElement() {
+        return selectedElement;
+    }
+    public static void setSelectedElement(CardElement selectedElement) {
+        CardElement.selectedElement = selectedElement;
     }
 
-    private Image getElementImage(CardElementType cardElementType) {
-        String imagePath = Paths.get("").toAbsolutePath().toUri().normalize().toString() + "src/main/java/user_interface/account/content/intelligence/CardElements/images/";
-        switch (cardElementType) {
-            case EMPTY:
-                return new Image(imagePath + "empty.png");
-            case OWN_HEAD:
-                return new Image(imagePath + "own_head.png");
-            case ENEMY_HEAD:
-                return new Image(imagePath + "enemy_head.png");
-            default:
-                return null;
-        }
+    public void setRole(Role role) {
+        setImage(Role.getElementImage(this.role = role));
     }
 
 }

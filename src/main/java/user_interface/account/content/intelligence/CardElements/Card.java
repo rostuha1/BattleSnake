@@ -1,8 +1,7 @@
-package user_interface.account.content.intelligence;
+package user_interface.account.content.intelligence.CardElements;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
-import user_interface.account.content.intelligence.CardElements.CardElement;
 
 public class Card extends GridPane {
 
