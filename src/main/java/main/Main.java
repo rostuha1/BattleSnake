@@ -8,6 +8,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import user_interface.Animation.AnimatedCircles;
 import user_interface.account.MainMenu;
+import user_interface.account.content.intelligence.Card;
+import user_interface.account.content.intelligence.CardsPane;
+import user_interface.account.content.intelligence.IntelligenceContent;
 
 import java.nio.file.Paths;
 
@@ -47,8 +50,11 @@ public class Main extends Application {
 
         root.setStyle("-fx-background-color: rgb(35, 40, 30)");
         AnimatedCircles.createSpawnNodes(root);
-        root.getChildren().add(new MainMenu());
         root.getStylesheets().add(Paths.get("").toAbsolutePath().toUri().normalize().toString() + "src/main/resources/style.css");
+
+        root.getChildren().add(new IntelligenceContent());
+//        root.getChildren().add(new MainMenu());
+
 //        MenuBox.init(root);
 //        MenuBox.show();
 
