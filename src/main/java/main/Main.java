@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import user_interface.Animation.AnimatedCircles;
+import user_interface.account.MainMenu;
 import user_interface.account.content.intelligence.IntelligenceContent;
 
 import java.nio.file.Paths;
@@ -46,14 +47,12 @@ public class Main extends Application {
 //        Grid.draw();
 //        Cells.draw(2, 1, Color.RED);
 //        Timer.start();
-//        cells[1][1].draw(CellType.DEFAULT);
 
         root.setStyle("-fx-background-color: rgb(35, 40, 30)");
         AnimatedCircles.createSpawnNodes(root);
         root.getStylesheets().add(Paths.get("").toAbsolutePath().toUri().normalize().toString() + "src/main/resources/style.css");
 
-        root.getChildren().add(new IntelligenceContent());
-//        root.getChildren().add(new MainMenu());
+        root.getChildren().add(MainMenu.instance);
 
 //        MenuBox.init(root);
 //        MenuBox.show();
