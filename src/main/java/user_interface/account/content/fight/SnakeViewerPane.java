@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import main.WindowSettings;
 import user_interface.account.MainMenu;
 
@@ -18,7 +19,7 @@ public class SnakeViewerPane extends VBox {
     private static final double WIDTH = MainMenu.CONTENT_WIDTH / 2 + WIDTH_SPACING * 2;
     private static final double HEIGHT = WindowSettings.height / 1.5 + HEIGHT_SPACING * 2;
 
-    public SnakeViewerPane() {
+    {
         setMaxSize(WIDTH, HEIGHT);
 
         Label label = new Label("ВИБІР СУПРОТИВНИКІВ:");
@@ -42,8 +43,18 @@ public class SnakeViewerPane extends VBox {
         SnakeList snakeList = new SnakeList();
         Button btnSelect = new Button("ВИБРАТИ");
         btnSelect.setFont(new Font(17));
+        btnSelect.setOnAction(event -> onSelect(snakeList.getSelectionModel().getSelectedItem()));
         setAlignment(Pos.CENTER_RIGHT);
 
         getChildren().addAll(hBox, snakeList, btnSelect);
+    }
+
+    private void onSelect(SnakePlayer enemy) {
+        for (Slot slot : SlotsBox.slots) {
+            if (!slot.isOccupied()) {
+                slot.takeSlot(enemy);
+                break;
+            }
+        }
     }
 }
