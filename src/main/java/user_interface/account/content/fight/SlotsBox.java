@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class SlotsBox extends HBox {
 
-    public static ArrayList<Slot> slots = new ArrayList<>();
+    public static ArrayList<Slot> slots = new ArrayList<>(4);
 
     {
         double spacing = 5;
@@ -27,9 +27,9 @@ public class SlotsBox extends HBox {
     public SlotsBox(SnakePlayer thisSnake) {
 
         slots.add(new Slot(thisSnake));
-        slots.add(new Slot().setDeleteProperty());
-        slots.add(new Slot().setDeleteProperty());
-        slots.add(new Slot().setDeleteProperty());
+        slots.add(new Slot());
+        slots.add(new Slot());
+        slots.add(new Slot());
 
         Button startBattle = new Button("Почати бій");
         startBattle.setFont(new Font(17));
