@@ -1,4 +1,4 @@
-package user_interface.account.content.fight;
+package user_interface.account.content.fight.slots;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,6 +9,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import user_interface.account.content.fight.list.SnakeList;
+import user_interface.account.content.fight.list.SnakePlayer;
+import user_interface.account.content.fight.list.SnakeViewerPane;
 
 public class Slot extends HBox {
 
@@ -18,7 +21,6 @@ public class Slot extends HBox {
     private ImageView avatar = new ImageView();
     private Text description = new Text();
     private ContextMenu contextMenu = new ContextMenu();
-
 
     {
         avatar.setFitHeight(60);
@@ -34,16 +36,15 @@ public class Slot extends HBox {
         setStyle("-fx-border-width: 3px; -fx-border-color: rgb(120, 125, 75); " +
                 "-fx-background-color: rgb(140, 145, 95); -fx-border-radius: 0px 0px 10px 10px; -fx-background-radius: 0 0 10 10");
 
-        MenuItem deleteSlot = new MenuItem("Звільнити слот");
-        deleteSlot.setOnAction(event -> releaseSlot());
-        contextMenu.getItems().add(deleteSlot);
-
     }
 
     public Slot() {
         takeSlot(DEFAULT_PLAYER);
         isOccupied = false;
-        setDeleteProperty(false);
+        MenuItem deleteSlot = new MenuItem("Звільнити слот");
+        deleteSlot.setOnAction(event -> releaseSlot());
+        contextMenu.getItems().add(deleteSlot);
+        setOnContextMenuRequested(null);
     }
 
     public Slot(SnakePlayer player) {
@@ -62,20 +63,17 @@ public class Slot extends HBox {
         description.setText(player.getName() + "\n" + player.getRating());
         getChildren().addAll(avatar, description);
         isOccupied = true;
-        setDeleteProperty(true);
+        setOnContextMenuRequested(event -> contextMenu.show(this, Side.BOTTOM, 0, 10));
     }
 
     public void releaseSlot() {
         SnakeList.getInstance().getList().add(currentPlayer);
         SnakeList.getInstance().resize();
+        SnakeViewerPane.getInstance().show(SnakeViewerPane.getSnakeList().getItems());
         takeSlot(DEFAULT_PLAYER);
         isOccupied = false;
-        setDeleteProperty(false);
+        setOnContextMenuRequested(null);
     }
 
-    public void setDeleteProperty(boolean isOccupied) {
-        if (isOccupied) setOnContextMenuRequested(event -> contextMenu.show(this, Side.BOTTOM, 0, 10));
-        else setOnContextMenuRequested(event -> contextMenu.hide());
-    }
 
 }

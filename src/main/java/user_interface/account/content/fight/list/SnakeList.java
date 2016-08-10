@@ -1,4 +1,4 @@
-package user_interface.account.content.fight;
+package user_interface.account.content.fight.list;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
@@ -53,12 +53,15 @@ public class SnakeList extends ListView<SnakePlayer> {
     public void setList(ObservableList<SnakePlayer> list) {
         setItems(list);
         resize();
+//        SnakeViewerPane.getInstance().show(list);
     }
 
     public void resize() {
         ObservableList<SnakePlayer> list = getItems();
-        if (list.size() < 5) setPrefSize(WIDTH, list.size() * CELL_SIZE + 2);
+        if (list.isEmpty()) {}
+        else if (list.size() < 5) setPrefSize(WIDTH, list.size() * CELL_SIZE + 2);
         else setPrefSize(WIDTH, HEIGHT);
     }
+    
 
 }

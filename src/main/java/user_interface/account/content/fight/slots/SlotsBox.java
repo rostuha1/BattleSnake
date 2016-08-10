@@ -1,4 +1,4 @@
-package user_interface.account.content.fight;
+package user_interface.account.content.fight.slots;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -6,12 +6,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import main.WindowSettings;
 import user_interface.account.MainMenu;
+import user_interface.account.content.fight.list.SnakePlayer;
 
 import java.util.ArrayList;
 
 public class SlotsBox extends HBox {
 
-    public static ArrayList<Slot> slots = new ArrayList<>(4);
+    public static ArrayList<Slot> enemySlots = new ArrayList<>(4);
 
     {
         double spacing = 5;
@@ -26,16 +27,18 @@ public class SlotsBox extends HBox {
 
     public SlotsBox(SnakePlayer thisSnake) {
 
-        slots.add(new Slot(thisSnake));
-        slots.add(new Slot());
-        slots.add(new Slot());
-        slots.add(new Slot());
+        Slot mySlot = new Slot(thisSnake);
+        enemySlots.add(new Slot());
+        enemySlots.add(new Slot());
+        enemySlots.add(new Slot());
 
         Button startBattle = new Button("Почати бій");
         startBattle.setFont(new Font(17));
         startBattle.setPrefSize(getPrefWidth() / 9, WindowSettings.height * 0.067);
 
-        for (Slot slot: slots) {
+        getChildren().add(mySlot);
+
+        for (Slot slot: enemySlots) {
             getChildren().add(slot);
         }
         getChildren().add(startBattle);
