@@ -7,9 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import user_interface.account.content.intelligence.CardElements.CardElement;
-
-import java.nio.file.Paths;
+import user_interface.account.content.intelligence.cardElements.CardElement;
 
 public class MenuItem extends HBox {
 

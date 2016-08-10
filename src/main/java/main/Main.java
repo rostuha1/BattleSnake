@@ -1,14 +1,17 @@
 package main;
 
+import battlefield.Cells;
 import battlefield.Grid;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import user_interface.Animation.AnimatedCircles;
+import user_interface.animation.AnimatedCircles;
 import user_interface.account.MainMenu;
-import user_interface.account.content.intelligence.IntelligenceContent;
+import user_interface.menus.MenuBox;
 
 import java.nio.file.Paths;
 
@@ -42,20 +45,21 @@ public class Main extends Application {
     }
 
     public static void gameInit() {
-        Grid.setParent(snakeField);
+//        Grid.setParent(snakeField);
 //        Snake.setParent(snakeField);
 //        Grid.draw();
 //        Cells.draw(2, 1, Color.RED);
+//        Cells.draw(1, 1, Color.BROWN);
 //        Timer.start();
 
         root.setStyle("-fx-background-color: rgb(35, 40, 30)");
         AnimatedCircles.createSpawnNodes(root);
         root.getStylesheets().add(Paths.get("").toAbsolutePath().toUri().normalize().toString() + "src/main/resources/style.css");
 
-        root.getChildren().add(MainMenu.instance);
-
 //        MenuBox.init(root);
 //        MenuBox.show();
+
+        root.getChildren().add(MainMenu.instance);
 
     }
 

@@ -1,4 +1,4 @@
-package user_interface.Animation;
+package user_interface.animation;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

@@ -1,14 +1,11 @@
-package user_interface.account.content.intelligence.CardElements;
+package user_interface.account.content.intelligence.cardElements;
 
 import javafx.geometry.Insets;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import user_interface.account.content.intelligence.MenuItem;
 import user_interface.account.content.intelligence.Role;
-
-import java.nio.file.Paths;
 
 public class CardElement extends ImageView {
 

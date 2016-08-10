@@ -1,4 +1,4 @@
-package user_interface.account.content.intelligence.Menu;
+package user_interface.account.content.intelligence.menu;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;

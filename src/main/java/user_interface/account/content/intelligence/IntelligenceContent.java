@@ -5,8 +5,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import main.WindowSettings;
 import user_interface.account.MainMenu;
-import user_interface.account.content.intelligence.CardElements.CardsPane;
-import user_interface.account.content.intelligence.Menu.ElementsMenu;
+import user_interface.account.content.intelligence.cardElements.CardsPane;
+import user_interface.account.content.intelligence.menu.ElementsMenu;
 
 import java.nio.file.Paths;
 
