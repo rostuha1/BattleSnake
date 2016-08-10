@@ -1,4 +1,4 @@
-package user_interface.account.content.fight;
+package user_interface.account.content.fight.list;
 
 import javafx.scene.image.Image;
 
