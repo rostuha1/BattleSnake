@@ -22,7 +22,6 @@ public class AnimatedCircles {
     };
 
     public static void createSpawnNodes(Pane container){
-
         Pane pane = new Pane();
         pane.setPrefSize(container.getPrefWidth(), container.getPrefHeight());
         container.getChildren().add(pane);
@@ -30,7 +29,6 @@ public class AnimatedCircles {
         for (int i = 0; i < spawnNodes; i++) {
             spawnNode(pane);
         }
-
     }
 
     private static void spawnNode(Pane container) {
