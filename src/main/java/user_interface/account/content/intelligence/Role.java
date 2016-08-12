@@ -1,7 +1,6 @@
 package user_interface.account.content.intelligence;
 
 import javafx.beans.NamedArg;
-import javafx.scene.image.Image;
 
 public enum Role {
     OWN_HEAD, OWN_BODY, OWN_TAIL, ENEMY_HEAD, ENEMY_BODY, ENEMY_TAIL, BARRIER, EMPTY,
@@ -9,45 +8,54 @@ public enum Role {
     A_P_OWN_HEAD, A_P_OWN_BODY, A_P_OWN_TAIL, A_P_ENEMY_HEAD, A_P_ENEMY_BODY, A_P_ENEMY_TAIL, A_P_BARRIER, A_P_EMPTY,
     OR_OWN_HEAD, OR_OWN_BODY, OR_OWN_TAIL, OR_ENEMY_HEAD, OR_ENEMY_BODY, OR_ENEMY_TAIL, OR_BARRIER, OR_EMPTY;
 
+    public static final Role[] ownHeads = { OWN_HEAD, A_O_OWN_HEAD, A_P_OWN_HEAD, OR_OWN_HEAD };
+    public static final Role[] ownBodies = { OWN_BODY, A_O_OWN_BODY, A_P_OWN_BODY, OR_OWN_BODY };
+    public static final Role[] ownTails = { OWN_TAIL, A_O_OWN_TAIL, A_P_OWN_TAIL, OR_OWN_TAIL };
+    public static final Role[] enemyHeads = { ENEMY_HEAD, A_O_ENEMY_HEAD, A_P_ENEMY_HEAD, OR_ENEMY_HEAD };
+    public static final Role[] enemyBodies = { ENEMY_BODY, A_O_ENEMY_BODY, A_P_ENEMY_BODY, OR_ENEMY_BODY };
+    public static final Role[] enemyTails = { ENEMY_TAIL, A_O_ENEMY_TAIL, A_P_ENEMY_TAIL, OR_ENEMY_TAIL };
+    public static final Role[] barriers = { BARRIER, A_O_BARRIER, A_P_BARRIER, OR_BARRIER };
+    public static final Role[] empties = { EMPTY, A_O_EMPTY, A_P_EMPTY, OR_EMPTY };
+
     private static final String andOrangeDirectory = "and_orange/";
     private static final String andPinkDirectory = "and_pink/";
     private static final String orDirectory = "or/";
 
-    private static final Image ownHead = new Image(IntelligenceContent.cardElementImagesPath + "own_head.png");
-    private static final Image ownBody = new Image(IntelligenceContent.cardElementImagesPath + "own_body.png");
-    private static final Image ownTail = new Image(IntelligenceContent.cardElementImagesPath + "own_tail.png");
-    private static final Image enemyHead = new Image(IntelligenceContent.cardElementImagesPath + "enemy_head.png");
-    private static final Image enemyBody = new Image(IntelligenceContent.cardElementImagesPath + "enemy_body.png");
-    private static final Image enemyTail = new Image(IntelligenceContent.cardElementImagesPath + "enemy_tail.png");
-    private static final Image barrier = new Image(IntelligenceContent.cardElementImagesPath + "barrier.png");
-    private static final Image empty = new Image(IntelligenceContent.cardElementImagesPath + "empty.png");
+    private static final Image ownHead = new Image(IntelligenceContent.cardElementImagesPath + "own_head.png").setGroup(ownHeads);
+    private static final Image ownBody = new Image(IntelligenceContent.cardElementImagesPath + "own_body.png").setGroup(ownBodies);
+    private static final Image ownTail = new Image(IntelligenceContent.cardElementImagesPath + "own_tail.png").setGroup(ownTails);
+    private static final Image enemyHead = new Image(IntelligenceContent.cardElementImagesPath + "enemy_head.png").setGroup(enemyHeads);
+    private static final Image enemyBody = new Image(IntelligenceContent.cardElementImagesPath + "enemy_body.png").setGroup(enemyBodies);
+    private static final Image enemyTail = new Image(IntelligenceContent.cardElementImagesPath + "enemy_tail.png").setGroup(enemyTails);
+    private static final Image barrier = new Image(IntelligenceContent.cardElementImagesPath + "barrier.png").setGroup(barriers);
+    private static final Image empty = new Image(IntelligenceContent.cardElementImagesPath + "empty.png").setGroup(empties);
 
-    private static final Image aoOwnHead = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "own_head.png");
-    private static final Image aoOwnBody = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "own_body.png");
-    private static final Image aoOwnTail = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "own_tail.png");
-    private static final Image aoEnemyHead = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "enemy_head.png");
-    private static final Image aoEnemyBody = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "enemy_body.png");
-    private static final Image aoEnemyTail = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "enemy_tail.png");
-    private static final Image aoBarrier = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "barrier.png");
-    private static final Image aoEmpty = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "empty.png");
+    private static final Image aoOwnHead = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "own_head.png").setGroup(ownHeads);
+    private static final Image aoOwnBody = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "own_body.png").setGroup(ownBodies);
+    private static final Image aoOwnTail = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "own_tail.png").setGroup(ownTails);
+    private static final Image aoEnemyHead = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "enemy_head.png").setGroup(enemyHeads);
+    private static final Image aoEnemyBody = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "enemy_body.png").setGroup(enemyBodies);
+    private static final Image aoEnemyTail = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "enemy_tail.png").setGroup(enemyTails);
+    private static final Image aoBarrier = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "barrier.png").setGroup(barriers);
+    private static final Image aoEmpty = new Image(IntelligenceContent.cardElementImagesPath + andOrangeDirectory + "empty.png").setGroup(empties);
 
-    private static final Image apOwnHead = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "own_head.png");
-    private static final Image apOwnBody = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "own_body.png");
-    private static final Image apOwnTail = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "own_tail.png");
-    private static final Image apEnemyHead = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "enemy_head.png");
-    private static final Image apEnemyBody = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "enemy_body.png");
-    private static final Image apEnemyTail = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "enemy_tail.png");
-    private static final Image apBarrier = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "barrier.png");
-    private static final Image apEmpty = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "empty.png");
+    private static final Image apOwnHead = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "own_head.png").setGroup(ownHeads);
+    private static final Image apOwnBody = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "own_body.png").setGroup(ownBodies);
+    private static final Image apOwnTail = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "own_tail.png").setGroup(ownTails);
+    private static final Image apEnemyHead = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "enemy_head.png").setGroup(enemyHeads);
+    private static final Image apEnemyBody = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "enemy_body.png").setGroup(enemyBodies);
+    private static final Image apEnemyTail = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "enemy_tail.png").setGroup(enemyTails);
+    private static final Image apBarrier = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "barrier.png").setGroup(barriers);
+    private static final Image apEmpty = new Image(IntelligenceContent.cardElementImagesPath + andPinkDirectory + "empty.png").setGroup(empties);
 
-    private static final Image orOwnHead = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "own_head.png");
-    private static final Image orOwnBody = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "own_body.png");
-    private static final Image orOwnTail = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "own_tail.png");
-    private static final Image orEnemyHead = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "enemy_head.png");
-    private static final Image orEnemyBody = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "enemy_body.png");
-    private static final Image orEnemyTail = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "enemy_tail.png");
-    private static final Image orBarrier = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "barrier.png");
-    private static final Image orEmpty = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "empty.png");
+    private static final Image orOwnHead = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "own_head.png").setGroup(ownHeads);
+    private static final Image orOwnBody = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "own_body.png").setGroup(ownBodies);
+    private static final Image orOwnTail = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "own_tail.png").setGroup(ownTails);
+    private static final Image orEnemyHead = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "enemy_head.png").setGroup(enemyHeads);
+    private static final Image orEnemyBody = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "enemy_body.png").setGroup(enemyBodies);
+    private static final Image orEnemyTail = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "enemy_tail.png").setGroup(enemyTails);
+    private static final Image orBarrier = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "barrier.png").setGroup(barriers);
+    private static final Image orEmpty = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "empty.png").setGroup(empties);
 
 //    private static final Image[] def = { ownHead, ownBody, ownTail, enemyHead, enemyBody, enemyTail, barrier, empty };
 //    private static final Image[] ao = { aoOwnHead, aoOwnBody, aoOwnTail, aoEnemyHead, aoEnemyBody, aoEnemyTail, aoBarrier, aoEmpty };
@@ -96,11 +104,22 @@ public enum Role {
         }
     }
 
-//    private static class Image extends javafx.scene.image.Image{
-//
-//        public Image(@NamedArg("url") String url) {
-//            super(url);
-//        }
-//    }
+    public static class Image extends javafx.scene.image.Image{
+
+        public Image(@NamedArg("url") String url) {
+            super(url);
+        }
+
+        Role[] group;
+
+        public Image setGroup(Role[] group) {
+            this.group = group;
+            return this;
+        }
+
+        public Role[] getGroup() {
+            return group;
+        }
+    }
 
 }

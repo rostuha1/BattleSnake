@@ -1,36 +1,27 @@
 package user_interface.account.content.intelligence.menu_items;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import user_interface.account.content.intelligence.IntelligenceContent;
 import user_interface.account.content.intelligence.Role;
 import user_interface.account.content.intelligence.card_elements.CardElement;
 
 public class MenuItem extends HBox {
 
-    public static final MenuItem own_head = new MenuItem("Своя голова", Role.OWN_HEAD);
-    public static final MenuItem own_body = new MenuItem("Своє тіло", Role.OWN_BODY);
-    public static final MenuItem own_tail = new MenuItem("Свій хвіст", Role.OWN_TAIL);
-    public static final MenuItem enemy_head = new MenuItem("Голова ворога", Role.ENEMY_HEAD);
-    public static final MenuItem enemy_body = new MenuItem("Тіло ворога", Role.ENEMY_BODY);
-    public static final MenuItem enemy_tail = new MenuItem("Хвіст ворога", Role.ENEMY_TAIL);
-    public static final MenuItem barrier = new MenuItem("Бар'єр", Role.BARRIER);
-    public static final MenuItem empty = new MenuItem("Порожнє місце", Role.EMPTY);
+    public static final MenuItem own_head = new MenuItem("Своя голова", Role.ownHeads);
+    public static final MenuItem own_body = new MenuItem("Своє тіло", Role.ownBodies);
+    public static final MenuItem own_tail = new MenuItem("Свій хвіст", Role.ownTails);
+    public static final MenuItem enemy_head = new MenuItem("Голова ворога", Role.enemyHeads);
+    public static final MenuItem enemy_body = new MenuItem("Тіло ворога", Role.enemyBodies);
+    public static final MenuItem enemy_tail = new MenuItem("Хвіст ворога", Role.enemyTails);
+    public static final MenuItem barrier = new MenuItem("Бар'єр", Role.barriers);
+    public static final MenuItem empty = new MenuItem("Порожнє місце", Role.empties);
 
     private static MenuItem selectedItem = null;
-
-    private static Image defImage;
-    private static Image aoImage;
-    private static Image apImage;
-    private static Image orImage;
+    private static int currentRoleIndex = 0;
 
     private final ImageView imageView = new ImageView();
-    private Role role;
+    private Role[] roles;
 
     void defaultStyle(StyleType type) {
         switch (type) {
@@ -39,14 +30,14 @@ public class MenuItem extends HBox {
         }
     }
 
-    public MenuItem(String itemName, Role role) {
+    public MenuItem(String itemName, Role[] roles) {
         defaultStyle(StyleType.DEFAULT);
-        this.role = role;
+        this.roles = roles;
 
 //        setMaxSize(0, 0);
         setAlignment(Pos.CENTER_LEFT);
 
-        imageView.setImage(Role.getElementImage(role));
+        imageView.setImage(Role.getElementImage(roles[currentRoleIndex]));
         ItemText itemText = new ItemText(itemName);
 
         HBox.setMargin(itemText, Settings.hInsets);
@@ -74,8 +65,8 @@ public class MenuItem extends HBox {
     private void changeSelectedCardElement() {
         CardElement element = CardElement.getSelectedElement();
         if (element == null) return;
-        element.setRole(role);
-        element.setImage(Role.getElementImage(role));
+        element.setRole(roles[currentRoleIndex]);
+        element.setImage(Role.getElementImage(roles[currentRoleIndex]));
     }
 
     public static void selectItem(Role role, StyleType type) {
@@ -107,4 +98,18 @@ public class MenuItem extends HBox {
 
     }
 
+    public static void setRoleIndex(int currentRoleIndex) {
+        if (currentRoleIndex < 0 || currentRoleIndex > 4)
+            throw new IllegalArgumentException("Role Index Error");
+
+        MenuItem.currentRoleIndex = currentRoleIndex;
+        own_head.imageView.setImage(Role.getElementImage(own_head.roles[currentRoleIndex]));
+        own_body.imageView.setImage(Role.getElementImage(own_body.roles[currentRoleIndex]));
+        own_tail.imageView.setImage(Role.getElementImage(own_tail.roles[currentRoleIndex]));
+        enemy_head.imageView.setImage(Role.getElementImage(enemy_head.roles[currentRoleIndex]));
+        enemy_body.imageView.setImage(Role.getElementImage(enemy_body.roles[currentRoleIndex]));
+        enemy_tail.imageView.setImage(Role.getElementImage(enemy_tail.roles[currentRoleIndex]));
+        barrier.imageView.setImage(Role.getElementImage(barrier.roles[currentRoleIndex]));
+        empty.imageView.setImage(Role.getElementImage(empty.roles[currentRoleIndex]));
+    }
 }
