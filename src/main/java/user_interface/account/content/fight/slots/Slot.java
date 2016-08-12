@@ -6,6 +6,9 @@ import javafx.geometry.Side;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -33,8 +36,9 @@ public class Slot extends HBox {
         setMinSize(220, 75);
         setMaxSize(220, 75);
         setPadding(new Insets(0, 15, 0, 0));
+//        setBackground(new Background(new BackgroundFill(DEFAULT_PLAYER.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
         setStyle("-fx-border-width: 3px; -fx-border-color: rgb(120, 125, 75); " +
-                "-fx-background-color: rgb(140, 145, 95); -fx-border-radius: 0px 0px 10px 10px; -fx-background-radius: 0 0 10 10");
+                "-fx-background-color: rgb(140, 145, 95) ; -fx-border-radius: 0px 0px 10px 10px; -fx-background-radius: 0 0 10 10");
 
     }
 
@@ -63,6 +67,7 @@ public class Slot extends HBox {
         description.setText(player.getName() + "\n" + player.getRating());
         getChildren().addAll(avatar, description);
         isOccupied = true;
+        setBackground(new Background(new BackgroundFill(player.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
         setOnContextMenuRequested(event -> contextMenu.show(this, Side.BOTTOM, 0, 10));
     }
 
