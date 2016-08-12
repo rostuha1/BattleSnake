@@ -3,6 +3,7 @@ package user_interface.account.content.intelligence.menu;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import user_interface.account.content.intelligence.menu_items.AndItem;
+import user_interface.account.content.intelligence.menu_items.OrItem;
 
 import static user_interface.account.content.intelligence.menu_items.MenuItem.barrier;
 import static user_interface.account.content.intelligence.menu_items.MenuItem.empty;
@@ -26,7 +27,8 @@ public class ElementsMenu extends VBox {
         getChildren().add(enemy_body);
         getChildren().add(enemy_tail);
         getChildren().add(barrier);
-        getChildren().add(new AndItem());
+        getChildren().add(AndItem.instance);
+        getChildren().add(OrItem.instance);
         getChildren().add(empty);
     }
 

@@ -6,6 +6,7 @@ import main.WindowSettings;
 import user_interface.account.content.ContentType;
 import user_interface.account.content.fight.FightContent;
 import user_interface.account.content.intelligence.IntelligenceContent;
+import user_interface.account.content.my_snake.MySnakeContent;
 import user_interface.animation.TransitionAnimation;
 
 public class MainMenu extends BorderPane {
@@ -16,6 +17,7 @@ public class MainMenu extends BorderPane {
 
     private final FightContent fightContent = new FightContent();
     private final IntelligenceContent intelligenceContent = new IntelligenceContent();
+    private final MySnakeContent mySnakeContent = new MySnakeContent();
 
     private static Pane currentContent = null;
 
@@ -47,6 +49,9 @@ public class MainMenu extends BorderPane {
                 break;
             case INTELLIGENCE_CONTENT:
                 newContent = intelligenceContent;
+                break;
+            case MY_SNAKE_CONTENT:
+                newContent = mySnakeContent;
                 break;
         }
 

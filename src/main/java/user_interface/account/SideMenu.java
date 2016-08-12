@@ -32,6 +32,7 @@ public class SideMenu extends ToolBar {
     {
         fight.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.FIGHT_CONTENT));
         intelligence.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.INTELLIGENCE_CONTENT));
+        mySnake.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.MY_SNAKE_CONTENT));
 
         setOrientation(Orientation.VERTICAL);
         setMinWidth(MainMenu.SIDE_MENU_WIDTH);

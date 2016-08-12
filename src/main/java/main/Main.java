@@ -2,6 +2,7 @@ package main;
 
 import battlefield.Cells;
 import battlefield.Grid;
+import client_server.User;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import user_interface.account.content.fight.list.SnakePlayer;
 import user_interface.animation.AnimatedCircles;
 import user_interface.account.MainMenu;
 import user_interface.menus.MenuBox;
@@ -20,6 +22,7 @@ public class Main extends Application {
     private static Pane root = new Pane();
     private static Pane snakeField = new Pane();
     private static Stage stage;
+    public static final User user = new User();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -51,6 +54,8 @@ public class Main extends Application {
 //        Cells.draw(2, 1, Color.RED);
 //        Cells.draw(1, 1, Color.BROWN);
 //        Timer.start();
+
+        user.setSnake(new SnakePlayer("snake1.png", "Ann", 1200, Color.WHEAT, "Let's play!"));
 
         root.setStyle("-fx-background-color: rgb(35, 40, 30)");
         AnimatedCircles.createSpawnNodes(root);
