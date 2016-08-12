@@ -1,19 +1,15 @@
 package main;
 
-import battlefield.Cells;
-import battlefield.Grid;
 import client_server.User;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import user_interface.account.MainMenu;
 import user_interface.account.content.fight.list.SnakePlayer;
 import user_interface.animation.AnimatedCircles;
-import user_interface.account.MainMenu;
-import user_interface.menus.MenuBox;
 
 import java.nio.file.Paths;
 

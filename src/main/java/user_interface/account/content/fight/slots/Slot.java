@@ -6,10 +6,8 @@ import javafx.geometry.Side;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import user_interface.account.content.fight.list.SnakeList;
@@ -36,9 +34,10 @@ public class Slot extends HBox {
         setMinSize(220, 75);
         setMaxSize(220, 75);
         setPadding(new Insets(0, 15, 0, 0));
-//        setBackground(new Background(new BackgroundFill(DEFAULT_PLAYER.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
-        setStyle("-fx-border-width: 3px; -fx-border-color: rgb(120, 125, 75); " +
-                "-fx-background-color: rgb(140, 145, 95) ; -fx-border-radius: 0px 0px 10px 10px; -fx-background-radius: 0 0 10 10");
+        setBackground(new Background(new BackgroundFill(DEFAULT_PLAYER.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
+        setBorder(new Border(new BorderStroke(Color.rgb(120, 125, 75), BorderStrokeStyle.SOLID, new CornerRadii(0, 0, 10, 10, false), new BorderWidths(3), null)));
+//        setStyle("-fx-border-width: 3px; -fx-border-color: ); " +
+//                "-fx-background-color: rgb(140, 145, 95) ; -fx-border-radius: 0px 0px 10px 10px; -fx-background-radius: 0 0 10 10");
 
     }
 
@@ -49,10 +48,10 @@ public class Slot extends HBox {
         deleteSlot.setOnAction(event -> releaseSlot());
         contextMenu.getItems().add(deleteSlot);
         setOnContextMenuRequested(null);
+
     }
 
     public Slot(SnakePlayer player) {
-        this.currentPlayer = player;
         takeSlot(player);
     }
 
