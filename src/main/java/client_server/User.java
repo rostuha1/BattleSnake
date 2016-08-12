@@ -1,5 +1,6 @@
 package client_server;
 
+import user_interface.account.content.fight.list.SnakePlayer;
 import user_interface.account.content.intelligence.card_elements.Card;
 
 public class User {
@@ -7,6 +8,7 @@ public class User {
     private int id;
     private String login;
     private String password;
+    private SnakePlayer snake;
     private Card[] cards;
 
     public User() {}
@@ -16,10 +18,11 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, String login, String password, Card[] cards) {
+    public User(int id, String login, String password, SnakePlayer snake, Card[] cards) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.snake = snake;
         this.cards = cards;
     }
 
@@ -45,6 +48,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public SnakePlayer getSnake() {
+        return snake;
+    }
+
+    public void setSnake(SnakePlayer snake) {
+        this.snake = snake;
     }
 
     public Card[] getCards()

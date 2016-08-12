@@ -1,6 +1,8 @@
 package user_interface.account.content.fight.list;
 
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 import java.nio.file.Paths;
 
@@ -9,22 +11,29 @@ public class SnakePlayer {
     private Image avatar;
     private String name;
     private int rating;
+    private Paint color;
     private String about;
 
     public SnakePlayer(String defaultImage) {
         this.avatar = new Image("file:\\" + Paths.get("").toAbsolutePath() + "\\src\\main\\resources\\" + defaultImage);
         this.name = "Гравця не вибрано";
+        this.color = Color.rgb(140, 145, 95);
     }
 
-    public SnakePlayer(String avatarName, String name, int rating, String about) {
+    public SnakePlayer(String avatarName, String name, int rating, Paint color, String about) {
         this.avatar = new Image("file:\\" + Paths.get("").toAbsolutePath() + "\\src\\main\\resources\\" + avatarName);
         this.name = name;
         this.rating = rating;
+        this.color = color;
         this.about = about;
     }
 
     public Image getAvatar() {
         return avatar;
+    }
+
+    public void setAvatar(Image avatar) {
+        this.avatar = avatar;
     }
 
     public void setAvatar(String avatarName) {
@@ -45,6 +54,14 @@ public class SnakePlayer {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public Paint getColor() {
+        return color;
+    }
+
+    public void setColor(Paint color) {
+        this.color = color;
     }
 
     public String getAbout() {

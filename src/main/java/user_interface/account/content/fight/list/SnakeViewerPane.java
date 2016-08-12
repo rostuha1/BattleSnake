@@ -10,6 +10,7 @@ import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import main.WindowSettings;
 import user_interface.account.MainMenu;
@@ -70,9 +71,9 @@ public class SnakeViewerPane extends VBox {
         search.setMaxHeight(20);
 
         ObservableList<SnakePlayer> list = FXCollections.observableArrayList();
-        list.addAll(new SnakePlayer("snake1.png", "ann", 1010, "Let's fight with me!"),
-                new SnakePlayer("snake2.png", "mike", 1500, "111"),
-                new SnakePlayer("snake3.png", "john", 1000, "I am a super snake :)"));
+        list.addAll(new SnakePlayer("snake1.png", "ann", 1010, Color.CORAL, "Let's fight with me!"),
+                new SnakePlayer("snake2.png", "mike", 1500,  Color.AQUA, "111"),
+                new SnakePlayer("snake3.png", "john", 1000,  Color.LIGHTGREEN, "I am a super snake :)"));
 
         snakeList.setList(list);
 
@@ -85,8 +86,6 @@ public class SnakeViewerPane extends VBox {
                 show(snakeList.getList());
             }
         });
-
-
 
         message.setText("ГРАВЦІВ НЕМАЄ");
         message.setStyle("-fx-text-fill: rgb(140, 145, 95); -fx-font-size: 26;");
