@@ -5,7 +5,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import main.WindowSettings;
 import user_interface.account.MainMenu;
-import user_interface.account.content.intelligence.cardElements.CardsPane;
+import user_interface.account.content.intelligence.card_elements.CardsPane;
 import user_interface.account.content.intelligence.menu.ElementsMenu;
 
 import java.nio.file.Paths;
@@ -17,8 +17,7 @@ public class IntelligenceContent extends BorderPane {
 
     {
         setPrefSize(MainMenu.CONTENT_WIDTH, WindowSettings.height);
-        Content content = new Content();
-        setCenter(content);
+        setCenter(new Content());
     }
 
     private class Content extends HBox {

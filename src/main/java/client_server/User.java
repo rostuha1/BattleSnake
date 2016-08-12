@@ -1,6 +1,6 @@
 package client_server;
 
-import user_interface.account.content.intelligence.cardElements.Card;
+import user_interface.account.content.intelligence.card_elements.Card;
 
 public class User {
 

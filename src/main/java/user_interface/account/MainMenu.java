@@ -14,7 +14,6 @@ public class MainMenu extends BorderPane {
     public static final double CONTENT_WIDTH = WindowSettings.width - SIDE_MENU_WIDTH;
     public static final MainMenu instance = new MainMenu();
 
-    private final SideMenu sideMenu = new SideMenu();
     private final FightContent fightContent = new FightContent();
     private final IntelligenceContent intelligenceContent = new IntelligenceContent();
 
@@ -25,7 +24,7 @@ public class MainMenu extends BorderPane {
     }
 
     private MainMenu() {
-        setRight(sideMenu);
+        setRight(new SideMenu());
     }
 
     public static Pane getCurrentContent() {
@@ -51,11 +50,8 @@ public class MainMenu extends BorderPane {
                 break;
         }
 
-        if (currentContent == newContent) return;
-
-        TransitionAnimation.start(this, currentContent, newContent);
-
-        currentContent = newContent;
+        if (TransitionAnimation.start(this, currentContent, newContent))
+            currentContent = newContent;
 
     }
 

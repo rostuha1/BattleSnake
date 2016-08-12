@@ -30,7 +30,6 @@ public class SideMenu extends ToolBar {
     }
 
     {
-
         fight.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.FIGHT_CONTENT));
         intelligence.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.INTELLIGENCE_CONTENT));
 

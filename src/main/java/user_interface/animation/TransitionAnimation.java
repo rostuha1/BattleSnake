@@ -55,7 +55,7 @@ public class TransitionAnimation {
     }
 
     public static boolean start(Pane parent, Pane currentMenu, Pane newMenu) {
-        if (pressLock) return false;
+        if (currentMenu == newMenu || pressLock) return false;
         pressLock = true;
 
         hideAnimation.setNode(currentMenu);

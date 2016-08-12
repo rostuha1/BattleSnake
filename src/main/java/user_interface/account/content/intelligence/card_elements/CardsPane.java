@@ -1,4 +1,4 @@
-package user_interface.account.content.intelligence.cardElements;
+package user_interface.account.content.intelligence.card_elements;
 
 import javafx.scene.layout.GridPane;
 

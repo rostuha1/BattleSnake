@@ -1,11 +1,12 @@
-package user_interface.account.content.intelligence.cardElements;
+package user_interface.account.content.intelligence.card_elements;
 
 import javafx.geometry.Insets;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import user_interface.account.content.intelligence.MenuItem;
+import user_interface.account.content.intelligence.menu_items.MenuItem;
 import user_interface.account.content.intelligence.Role;
+import user_interface.account.content.intelligence.menu_items.StyleType;
 
 public class CardElement extends ImageView {
 
@@ -20,13 +21,13 @@ public class CardElement extends ImageView {
             if (selectedElement == this) {
                 selectedElement = null;
                 setEffect(null);
-                MenuItem.selectItem(role, false);
+                MenuItem.selectItem(role, StyleType.DEFAULT);
                 return;
             }
             if (selectedElement != null) selectedElement.setEffect(null);
             selectedElement = this;
             setEffect(new ColorAdjust(0, 0, -0.4, 0));
-            MenuItem.selectItem(role, true);
+            MenuItem.selectItem(role, StyleType.PRESSED);
         });
     }
 
