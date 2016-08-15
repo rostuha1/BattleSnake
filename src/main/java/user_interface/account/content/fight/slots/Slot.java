@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import user_interface.account.content.fight.list.SnakeList;
-import user_interface.account.content.fight.list.SnakePlayer;
+import client_server.SnakePlayer;
 import user_interface.account.content.fight.list.SnakeViewerPane;
 
 public class Slot extends HBox {
@@ -31,9 +31,9 @@ public class Slot extends HBox {
 
         setSpacing(15);
         setAlignment(Pos.CENTER_LEFT);
-        setMinSize(220, 75);
-        setMaxSize(220, 75);
-        setPadding(new Insets(0, 15, 0, 0));
+        setMinSize(225, 75);
+        setMaxSize(225, 75);
+        setPadding(new Insets(0, 0, 0, 10));
         setBackground(new Background(new BackgroundFill(DEFAULT_PLAYER.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
         setBorder(new Border(new BorderStroke(Color.rgb(120, 125, 75), BorderStrokeStyle.SOLID, new CornerRadii(0, 0, 10, 10, false), new BorderWidths(3), null)));
 //        setStyle("-fx-border-width: 3px; -fx-border-color: ); " +

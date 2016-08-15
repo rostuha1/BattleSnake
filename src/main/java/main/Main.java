@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import user_interface.account.MainMenu;
-import user_interface.account.content.fight.list.SnakePlayer;
+import client_server.SnakePlayer;
 import user_interface.animation.AnimatedCircles;
 
 import java.nio.file.Paths;
