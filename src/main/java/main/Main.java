@@ -18,6 +18,8 @@ public class Main extends Application {
     private static Pane root = new Pane();
     private static Pane snakeField = new Pane();
     private static Stage stage;
+    private static Scene scene;
+
     public static final User user = new User();
 
     @Override
@@ -26,7 +28,7 @@ public class Main extends Application {
         root.setPrefSize(WindowSettings.width, WindowSettings.height);
         root.getChildren().add(snakeField);
 
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
 
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
@@ -66,6 +68,10 @@ public class Main extends Application {
 
     public static Pane getRoot() {
         return root;
+    }
+
+    public static Scene getScene() {
+        return scene;
     }
 
     public static Pane getSnakeField() {
