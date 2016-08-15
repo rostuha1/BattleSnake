@@ -20,6 +20,23 @@
     -fx-border-width: 0px;
 }
 
+.text-area {
+    -fx-border-color: rgb(62, 82, 37);
+    -fx-font-size: 15;
+    -fx-background-color: rgb(201, 231, 133);
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
 
 
 
