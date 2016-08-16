@@ -21,11 +21,12 @@ public class SideMenu extends ToolBar {
     private static final Region fight = ComponentBuilder.getButton("БІЙ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
     private static final Region mySnake = ComponentBuilder.getButton("МОЯ ЗМІЯ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
     private static final Region intelligence = ComponentBuilder.getButton("ІНТЕЛЕКТ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
-    private static final Region developers = ComponentBuilder.getButton("РОЗРОБНИКИ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
+    private static final Region rules = ComponentBuilder.getButton("ПРАВИЛА ГРИ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
+    private static final Region developers = ComponentBuilder.getButton("ПРО ПРОГРАМУ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
     private static final Region exit = ComponentBuilder.getButton("ВИХІД", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
 
     public SideMenu() {
-        super(fight, mySnake, intelligence, developers, exit);
+        super(fight, mySnake, intelligence, rules, developers, exit);
         exit.setOnMouseClicked(event -> System.exit(0));
     }
 
@@ -33,12 +34,15 @@ public class SideMenu extends ToolBar {
         fight.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.FIGHT_CONTENT));
         intelligence.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.INTELLIGENCE_CONTENT));
         mySnake.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.MY_SNAKE_CONTENT));
+        rules.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.RULES_CONTENT));
+        developers.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.DEVELOPERS_CONTENT));
 
         setOrientation(Orientation.VERTICAL);
         setMinWidth(MainMenu.SIDE_MENU_WIDTH);
 //        BorderPane.setMargin(this, insets);
 
         setStyle("-fx-background-color: rgb(159, 188, 94)");
+
 
 //        DropShadow effect = new DropShadow();
 //        effect.setColor(Color.BLUE);

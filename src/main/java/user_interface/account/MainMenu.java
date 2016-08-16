@@ -4,9 +4,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.WindowSettings;
 import user_interface.account.content.ContentType;
+import user_interface.account.content.developers.DevelopersContent;
 import user_interface.account.content.fight.FightContent;
 import user_interface.account.content.intelligence.IntelligenceContent;
 import user_interface.account.content.my_snake.MySnakeContent;
+import user_interface.account.content.rules.RulesContent;
 import user_interface.animation.TransitionAnimation;
 
 public class MainMenu extends BorderPane {
@@ -18,6 +20,8 @@ public class MainMenu extends BorderPane {
     private final FightContent fightContent = new FightContent();
     private final IntelligenceContent intelligenceContent = new IntelligenceContent();
     private final MySnakeContent mySnakeContent = new MySnakeContent();
+    private final RulesContent rulesContent = new RulesContent();
+    private final DevelopersContent developersContent = new DevelopersContent();
 
     private static Pane currentContent = null;
 
@@ -27,6 +31,7 @@ public class MainMenu extends BorderPane {
 
     private MainMenu() {
         setRight(new SideMenu());
+        setCenter(new DevelopersContent());
     }
 
     public static Pane getCurrentContent() {
@@ -52,6 +57,12 @@ public class MainMenu extends BorderPane {
                 break;
             case MY_SNAKE_CONTENT:
                 newContent = mySnakeContent;
+                break;
+            case RULES_CONTENT:
+                newContent = rulesContent;
+                break;
+            case DEVELOPERS_CONTENT:
+                newContent = developersContent;
                 break;
         }
 
