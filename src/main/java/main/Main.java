@@ -1,19 +1,15 @@
 package main;
 
-import battlefield.Cells;
-import battlefield.Grid;
 import client_server.User;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import user_interface.account.content.fight.list.SnakePlayer;
-import user_interface.animation.AnimatedCircles;
 import user_interface.account.MainMenu;
-import user_interface.menus.MenuBox;
+import client_server.SnakePlayer;
+import user_interface.animation.AnimatedCircles;
 
 import java.nio.file.Paths;
 
@@ -22,6 +18,8 @@ public class Main extends Application {
     private static Pane root = new Pane();
     private static Pane snakeField = new Pane();
     private static Stage stage;
+    private static Scene scene;
+
     public static final User user = new User();
 
     @Override
@@ -30,7 +28,7 @@ public class Main extends Application {
         root.setPrefSize(WindowSettings.width, WindowSettings.height);
         root.getChildren().add(snakeField);
 
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
 
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
@@ -70,6 +68,10 @@ public class Main extends Application {
 
     public static Pane getRoot() {
         return root;
+    }
+
+    public static Scene getScene() {
+        return scene;
     }
 
     public static Pane getSnakeField() {

@@ -1,5 +1,6 @@
 package user_interface.account.content.fight.list;
 
+import client_server.SnakePlayer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -63,7 +64,8 @@ public class SnakeViewerPane extends VBox {
         textField.setFocusTraversable(false);
 
         Button btnFind = new Button("Шукати");
-        btnFind.setOnAction(event -> {});
+        btnFind.setOnAction(event -> {
+        });
 
         search.getChildren().addAll(label, textField, btnFind);
         search.setSpacing(10);
@@ -71,9 +73,9 @@ public class SnakeViewerPane extends VBox {
         search.setMaxHeight(20);
 
         ObservableList<SnakePlayer> list = FXCollections.observableArrayList();
-        list.addAll(new SnakePlayer("snake1.png", "ann", 1010, Color.CORAL, "Let's fight with me!"),
-                new SnakePlayer("snake2.png", "mike", 1500,  Color.AQUA, "111"),
-                new SnakePlayer("snake3.png", "john", 1000,  Color.LIGHTGREEN, "I am a super snake :)"));
+        list.addAll(new SnakePlayer("snake2.png", "mike", 1500, Color.AQUA, "111"),
+                new SnakePlayer("snake3.png", "john", 1000, Color.LIGHTGREEN, "I am a super snake :)"),
+                new SnakePlayer("snake4.png", "jack", 1010, Color.CORAL, "Let's fight with me!"));
 
         snakeList.setList(list);
 

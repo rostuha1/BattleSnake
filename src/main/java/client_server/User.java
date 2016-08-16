@@ -1,6 +1,5 @@
 package client_server;
 
-import user_interface.account.content.fight.list.SnakePlayer;
 import user_interface.account.content.intelligence.card_elements.Card;
 
 public class User {
