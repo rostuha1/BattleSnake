@@ -1,10 +1,13 @@
-package user_interface.account.content.intelligence.menu_items;
+package user_interface.account.content.intelligence.menu_items.items;
 
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import user_interface.account.content.intelligence.Role;
 import user_interface.account.content.intelligence.card_elements.CardElement;
+import user_interface.account.content.intelligence.menu_items.ItemText;
+import user_interface.account.content.intelligence.menu_items.Settings;
+import user_interface.account.content.intelligence.menu_items.StyleType;
 
 public class MenuItem extends HBox {
 

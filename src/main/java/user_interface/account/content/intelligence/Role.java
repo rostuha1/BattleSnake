@@ -6,20 +6,23 @@ public enum Role {
     OWN_HEAD, OWN_BODY, OWN_TAIL, ENEMY_HEAD, ENEMY_BODY, ENEMY_TAIL, BARRIER, EMPTY,
     A_O_OWN_HEAD, A_O_OWN_BODY, A_O_OWN_TAIL, A_O_ENEMY_HEAD, A_O_ENEMY_BODY, A_O_ENEMY_TAIL, A_O_BARRIER, A_O_EMPTY,
     A_P_OWN_HEAD, A_P_OWN_BODY, A_P_OWN_TAIL, A_P_ENEMY_HEAD, A_P_ENEMY_BODY, A_P_ENEMY_TAIL, A_P_BARRIER, A_P_EMPTY,
-    OR_OWN_HEAD, OR_OWN_BODY, OR_OWN_TAIL, OR_ENEMY_HEAD, OR_ENEMY_BODY, OR_ENEMY_TAIL, OR_BARRIER, OR_EMPTY;
+    OR_OWN_HEAD, OR_OWN_BODY, OR_OWN_TAIL, OR_ENEMY_HEAD, OR_ENEMY_BODY, OR_ENEMY_TAIL, OR_BARRIER, OR_EMPTY,
+    EXCEPT_OWN_HEAD, EXCEPT_OWN_BODY, EXCEPT_OWN_TAIL, EXCEPT_ENEMY_HEAD, EXCEPT_ENEMY_BODY, EXCEPT_ENEMY_TAIL, EXCEPT_BARRIER, EXCEPT_EMPTY,
+    EXCEPT;
 
-    public static final Role[] ownHeads = { OWN_HEAD, A_O_OWN_HEAD, A_P_OWN_HEAD, OR_OWN_HEAD };
-    public static final Role[] ownBodies = { OWN_BODY, A_O_OWN_BODY, A_P_OWN_BODY, OR_OWN_BODY };
-    public static final Role[] ownTails = { OWN_TAIL, A_O_OWN_TAIL, A_P_OWN_TAIL, OR_OWN_TAIL };
-    public static final Role[] enemyHeads = { ENEMY_HEAD, A_O_ENEMY_HEAD, A_P_ENEMY_HEAD, OR_ENEMY_HEAD };
-    public static final Role[] enemyBodies = { ENEMY_BODY, A_O_ENEMY_BODY, A_P_ENEMY_BODY, OR_ENEMY_BODY };
-    public static final Role[] enemyTails = { ENEMY_TAIL, A_O_ENEMY_TAIL, A_P_ENEMY_TAIL, OR_ENEMY_TAIL };
-    public static final Role[] barriers = { BARRIER, A_O_BARRIER, A_P_BARRIER, OR_BARRIER };
-    public static final Role[] empties = { EMPTY, A_O_EMPTY, A_P_EMPTY, OR_EMPTY };
+    public static final Role[] ownHeads = { OWN_HEAD, A_O_OWN_HEAD, A_P_OWN_HEAD, OR_OWN_HEAD, EXCEPT_OWN_HEAD };
+    public static final Role[] ownBodies = { OWN_BODY, A_O_OWN_BODY, A_P_OWN_BODY, OR_OWN_BODY, EXCEPT_OWN_BODY };
+    public static final Role[] ownTails = { OWN_TAIL, A_O_OWN_TAIL, A_P_OWN_TAIL, OR_OWN_TAIL, EXCEPT_OWN_TAIL };
+    public static final Role[] enemyHeads = { ENEMY_HEAD, A_O_ENEMY_HEAD, A_P_ENEMY_HEAD, OR_ENEMY_HEAD, EXCEPT_ENEMY_HEAD };
+    public static final Role[] enemyBodies = { ENEMY_BODY, A_O_ENEMY_BODY, A_P_ENEMY_BODY, OR_ENEMY_BODY, EXCEPT_ENEMY_BODY };
+    public static final Role[] enemyTails = { ENEMY_TAIL, A_O_ENEMY_TAIL, A_P_ENEMY_TAIL, OR_ENEMY_TAIL, EXCEPT_ENEMY_TAIL };
+    public static final Role[] barriers = { BARRIER, A_O_BARRIER, A_P_BARRIER, OR_BARRIER, EXCEPT_BARRIER };
+    public static final Role[] empties = { EMPTY, A_O_EMPTY, A_P_EMPTY, OR_EMPTY, EXCEPT_EMPTY };
 
     private static final String andOrangeDirectory = "and_orange/";
     private static final String andPinkDirectory = "and_pink/";
     private static final String orDirectory = "or/";
+    private static final String exceptDirectory = "except/";
 
     private static final Image ownHead = new Image(IntelligenceContent.cardElementImagesPath + "own_head.png").setGroup(ownHeads);
     private static final Image ownBody = new Image(IntelligenceContent.cardElementImagesPath + "own_body.png").setGroup(ownBodies);
@@ -57,10 +60,16 @@ public enum Role {
     private static final Image orBarrier = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "barrier.png").setGroup(barriers);
     private static final Image orEmpty = new Image(IntelligenceContent.cardElementImagesPath + orDirectory + "empty.png").setGroup(empties);
 
-//    private static final Image[] def = { ownHead, ownBody, ownTail, enemyHead, enemyBody, enemyTail, barrier, empty };
-//    private static final Image[] ao = { aoOwnHead, aoOwnBody, aoOwnTail, aoEnemyHead, aoEnemyBody, aoEnemyTail, aoBarrier, aoEmpty };
-//    private static final Image[] ap = { apOwnHead, apOwnBody, apOwnTail, apEnemyHead, apEnemyBody, apEnemyTail, apBarrier, apEmpty };
-//    private static final Image[] or = { orOwnHead, orOwnBody, orOwnTail, orEnemyHead, orEnemyBody, orEnemyTail, orBarrier, orEmpty };
+    private static final Image exceptOwnHead = new Image(IntelligenceContent.cardElementImagesPath + exceptDirectory + "own_head.png").setGroup(ownHeads);
+    private static final Image exceptOwnBody = new Image(IntelligenceContent.cardElementImagesPath + exceptDirectory + "own_body.png").setGroup(ownBodies);
+    private static final Image exceptOwnTail = new Image(IntelligenceContent.cardElementImagesPath + exceptDirectory + "own_tail.png").setGroup(ownTails);
+    private static final Image exceptEnemyHead = new Image(IntelligenceContent.cardElementImagesPath + exceptDirectory + "enemy_head.png").setGroup(enemyHeads);
+    private static final Image exceptEnemyBody = new Image(IntelligenceContent.cardElementImagesPath + exceptDirectory + "enemy_body.png").setGroup(enemyBodies);
+    private static final Image exceptEnemyTail = new Image(IntelligenceContent.cardElementImagesPath + exceptDirectory + "enemy_tail.png").setGroup(enemyTails);
+    private static final Image exceptBarrier = new Image(IntelligenceContent.cardElementImagesPath + exceptDirectory + "barrier.png").setGroup(barriers);
+    private static final Image exceptEmpty = new Image(IntelligenceContent.cardElementImagesPath + exceptDirectory + "empty.png").setGroup(empties);
+
+    private static final Image except = new Image(IntelligenceContent.cardElementImagesPath + "except.png");
 
     public static Image getElementImage(Role role) {
         switch (role) {
@@ -100,26 +109,37 @@ public enum Role {
             case OR_BARRIER: return orBarrier;
             case OR_EMPTY: return orEmpty;
 
+            case EXCEPT_OWN_HEAD: return exceptOwnHead;
+            case EXCEPT_OWN_BODY: return exceptOwnBody;
+            case EXCEPT_OWN_TAIL: return exceptOwnTail;
+            case EXCEPT_ENEMY_HEAD: return exceptEnemyHead;
+            case EXCEPT_ENEMY_BODY: return exceptEnemyBody;
+            case EXCEPT_ENEMY_TAIL: return exceptEnemyTail;
+            case EXCEPT_BARRIER: return exceptBarrier;
+            case EXCEPT_EMPTY: return exceptEmpty;
+
+            case EXCEPT: return except;
+
             default: return null;
         }
     }
 
     public static class Image extends javafx.scene.image.Image{
 
+        Role[] group;
+
         public Image(@NamedArg("url") String url) {
             super(url);
         }
-
-        Role[] group;
 
         public Image setGroup(Role[] group) {
             this.group = group;
             return this;
         }
-
         public Role[] getGroup() {
             return group;
         }
+
     }
 
 }

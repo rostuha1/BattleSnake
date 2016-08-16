@@ -4,7 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import user_interface.account.content.intelligence.menu_items.MenuItem;
+import user_interface.account.content.intelligence.menu_items.items.MenuItem;
 import user_interface.account.content.intelligence.Role;
 import user_interface.account.content.intelligence.menu_items.StyleType;
 
@@ -17,18 +17,7 @@ public class CardElement extends ImageView {
 
     {
         GridPane.setMargin(this, insets);
-        setOnMouseClicked(event -> {
-            if (selectedElement == this) {
-                selectedElement = null;
-                setEffect(null);
-                MenuItem.selectItem(role, StyleType.DEFAULT);
-                return;
-            }
-            if (selectedElement != null) selectedElement.setEffect(null);
-            selectedElement = this;
-            setEffect(new ColorAdjust(0, 0, -0.4, 0));
-            MenuItem.selectItem(role, StyleType.PRESSED);
-        });
+        setOnMouseClicked(event -> click());
     }
 
     public CardElement() {
@@ -52,6 +41,23 @@ public class CardElement extends ImageView {
 
     public void setRole(Role role) {
         setImage(Role.getElementImage(this.role = role));
+    }
+
+    private void click() {
+        if (selectedElement == this) switchOff(); else switchOn();
+    }
+
+    private void switchOff() {
+        selectedElement = null;
+        setEffect(null);
+        MenuItem.selectItem(role, StyleType.DEFAULT);
+    }
+
+    private void switchOn() {
+        if (selectedElement != null) selectedElement.setEffect(null);
+        selectedElement = this;
+        setEffect(new ColorAdjust(0, 0, -0.4, 0));
+        MenuItem.selectItem(role, StyleType.PRESSED);
     }
 
 }

@@ -1,35 +1,26 @@
-package user_interface.account.content.intelligence.menu_items;
+package user_interface.account.content.intelligence.menu_items.items;
 
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+import user_interface.account.content.intelligence.menu_items.ItemText;
+import user_interface.account.content.intelligence.menu_items.Settings;
 
 import static user_interface.account.content.intelligence.Role.OR_OWN_BODY;
 import static user_interface.account.content.intelligence.Role.getElementImage;
 
-public class OrItem extends HBox {
+public class OrItem extends Item {
 
-    private static final ImageView imageView = new ImageView(getElementImage(OR_OWN_BODY));
-    private static final ItemText itemText = new ItemText("OR");
-
-    private static boolean isPressed;
+    private static ImageView imageView = new ImageView(getElementImage(OR_OWN_BODY));
+    private static ItemText itemText = new ItemText("OR");
+    boolean isPressed;
 
     public static final OrItem instance = new OrItem();
 
-    {
-        setStyle(Settings.defaultStyle);
-
-        HBox.setMargin(imageView, Settings.hInsets);
-        HBox.setMargin(itemText, Settings.hInsets);
-
+    private OrItem() {
+        super(imageView, itemText);
         imageView.setOnMouseClicked(event -> click());
-
-        getChildren().add(imageView);
-        getChildren().add(itemText);
     }
 
-    private OrItem() {}
-
-    private void click() {
+    public void click() {
         if (isPressed) {
             switchOff();
             releaseEvent();
@@ -37,16 +28,15 @@ public class OrItem extends HBox {
         }
 
         switchOn();
-
         clickEvent();
     }
 
     private void releaseEvent() {
         MenuItem.setRoleIndex(0);
     }
-
     private void clickEvent() {
         AndItem.instance.switchOff();
+        ExceptItem.instance.switchOff();
         MenuItem.setRoleIndex(3);
     }
 
@@ -54,8 +44,7 @@ public class OrItem extends HBox {
         isPressed = false;
         imageView.setEffect(null);
     }
-
-    private void switchOn() {
+    public void switchOn() {
         isPressed = true;
         imageView.setEffect(Settings.itemEffect);
     }

@@ -1,11 +1,13 @@
-package user_interface.account.content.intelligence.menu_items;
+package user_interface.account.content.intelligence.menu_items.items;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import user_interface.account.content.intelligence.menu_items.ItemText;
+import user_interface.account.content.intelligence.menu_items.Settings;
 
 import static user_interface.account.content.intelligence.Role.*;
 
-public class AndItem extends HBox {
+public class AndItem extends Item {
 
     private static final ImageView orange = new ImageView(getElementImage(A_O_EMPTY));
     private static final ImageView pink = new ImageView(getElementImage(A_P_EMPTY));
@@ -15,31 +17,20 @@ public class AndItem extends HBox {
 
     public static final AndItem instance = new AndItem();
 
-    {
-        HBox.setMargin(itemText, Settings.hInsets);
-        HBox.setMargin(orange, Settings.hInsets);
-        HBox.setMargin(pink, Settings.hInsets);
-
-        setStyle(Settings.defaultStyle);
-
+    private AndItem() {
+        super(orange, pink, itemText);
         orange.setOnMouseClicked(event -> click(orange));
         pink.setOnMouseClicked(event -> click(pink));
-
-        getChildren().add(orange);
-        getChildren().add(pink);
-        getChildren().add(itemText);
     }
 
-    private AndItem() {}
-
-    private void click(ImageView view) {
-        if (selectedItem == view) {
+    public void click(ImageView newImageView) {
+        if (selectedItem == newImageView) {
             switchOff();
             releaseEvent();
             return;
         }
 
-        switchOn(view);
+        switchOn(newImageView);
 
         clickEvent();
     }
@@ -47,9 +38,9 @@ public class AndItem extends HBox {
     private void releaseEvent() {
         MenuItem.setRoleIndex(0);
     }
-
     private void clickEvent() {
         OrItem.instance.switchOff();
+        ExceptItem.instance.switchOff();
         if (selectedItem == orange) MenuItem.setRoleIndex(1);
         if (selectedItem == pink) MenuItem.setRoleIndex(2);
     }
@@ -60,8 +51,7 @@ public class AndItem extends HBox {
         selectedItem.setEffect(null);
         selectedItem = null;
     }
-
-    private void switchOn(ImageView newImageView) {
+    public void switchOn(ImageView newImageView) {
         if (selectedItem != null) selectedItem.setEffect(null);
         selectedItem = newImageView;
         newImageView.setEffect(Settings.itemEffect);
