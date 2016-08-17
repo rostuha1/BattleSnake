@@ -2,25 +2,25 @@ package user_interface.account.content.intelligence.menu;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
-import user_interface.account.content.intelligence.menu_items.items.AndItem;
-import user_interface.account.content.intelligence.menu_items.items.ExceptItem;
-import user_interface.account.content.intelligence.menu_items.items.OrItem;
+import user_interface.account.content.intelligence.menu.menu_items.Settings;
+import user_interface.account.content.intelligence.menu.menu_items.items.AndItem;
+import user_interface.account.content.intelligence.menu.menu_items.items.ExceptItem;
+import user_interface.account.content.intelligence.menu.menu_items.items.OrItem;
 
-import static user_interface.account.content.intelligence.menu_items.items.MenuItem.barrier;
-import static user_interface.account.content.intelligence.menu_items.items.MenuItem.empty;
-import static user_interface.account.content.intelligence.menu_items.items.MenuItem.enemy_body;
-import static user_interface.account.content.intelligence.menu_items.items.MenuItem.enemy_head;
-import static user_interface.account.content.intelligence.menu_items.items.MenuItem.enemy_tail;
-import static user_interface.account.content.intelligence.menu_items.items.MenuItem.own_body;
-import static user_interface.account.content.intelligence.menu_items.items.MenuItem.own_head;
-import static user_interface.account.content.intelligence.menu_items.items.MenuItem.own_tail;
+import static user_interface.account.content.intelligence.menu.menu_items.items.MenuItem.barrier;
+import static user_interface.account.content.intelligence.menu.menu_items.items.MenuItem.empty;
+import static user_interface.account.content.intelligence.menu.menu_items.items.MenuItem.enemy_body;
+import static user_interface.account.content.intelligence.menu.menu_items.items.MenuItem.enemy_head;
+import static user_interface.account.content.intelligence.menu.menu_items.items.MenuItem.enemy_tail;
+import static user_interface.account.content.intelligence.menu.menu_items.items.MenuItem.own_body;
+import static user_interface.account.content.intelligence.menu.menu_items.items.MenuItem.own_head;
+import static user_interface.account.content.intelligence.menu.menu_items.items.MenuItem.own_tail;
 
 public class ElementsMenu extends VBox {
 
     {
         setAlignment(Pos.TOP_LEFT);
-//        setStyle("-fx-background-color: #31af00");
-        setSpacing(10);
+        setSpacing(Settings.menuSpacing);
         getChildren().add(own_head);
         getChildren().add(own_body);
         getChildren().add(own_tail);

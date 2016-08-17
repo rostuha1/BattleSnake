@@ -2,6 +2,9 @@ package user_interface.account.content.intelligence;
 
 import javafx.beans.NamedArg;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public enum Role {
     OWN_HEAD, OWN_BODY, OWN_TAIL, ENEMY_HEAD, ENEMY_BODY, ENEMY_TAIL, BARRIER, EMPTY,
     A_O_OWN_HEAD, A_O_OWN_BODY, A_O_OWN_TAIL, A_O_ENEMY_HEAD, A_O_ENEMY_BODY, A_O_ENEMY_TAIL, A_O_BARRIER, A_O_EMPTY,
@@ -18,6 +21,8 @@ public enum Role {
     public static final Role[] enemyTails = { ENEMY_TAIL, A_O_ENEMY_TAIL, A_P_ENEMY_TAIL, OR_ENEMY_TAIL, EXCEPT_ENEMY_TAIL };
     public static final Role[] barriers = { BARRIER, A_O_BARRIER, A_P_BARRIER, OR_BARRIER, EXCEPT_BARRIER };
     public static final Role[] empties = { EMPTY, A_O_EMPTY, A_P_EMPTY, OR_EMPTY, EXCEPT_EMPTY };
+
+    public static final ArrayList<Role[]> rolesArrayList = new ArrayList<>(8);
 
     private static final String andOrangeDirectory = "and_orange/";
     private static final String andPinkDirectory = "and_pink/";
@@ -71,6 +76,32 @@ public enum Role {
 
     private static final Image except = new Image(IntelligenceContent.cardElementImagesPath + "except.png");
 
+    public static final Role[] simpleElements = new Role[8];
+    public static final Role[] aoElements = new Role[8];
+    public static final Role[] apElements = new Role[8];
+    public static final Role[] orElements = new Role[8];
+    public static final Role[] exceptElements = new Role[8];
+
+    static {
+        rolesArrayList.add(ownHeads);
+        rolesArrayList.add(ownBodies);
+        rolesArrayList.add(ownTails);
+        rolesArrayList.add(enemyHeads);
+        rolesArrayList.add(enemyBodies);
+        rolesArrayList.add(enemyTails);
+        rolesArrayList.add(barriers);
+        rolesArrayList.add(empties);
+
+        for (int i = 0; i < 8; i++) {
+            simpleElements[i] = rolesArrayList.get(i)[0];
+            aoElements[i] = rolesArrayList.get(i)[1];
+            apElements[i] = rolesArrayList.get(i)[2];
+            orElements[i] = rolesArrayList.get(i)[3];
+            exceptElements[i] = rolesArrayList.get(i)[4];
+        }
+
+    }
+
     public static Image getElementImage(Role role) {
         switch (role) {
             case OWN_HEAD: return ownHead;
@@ -122,6 +153,47 @@ public enum Role {
 
             default: return null;
         }
+    }
+
+    public static boolean isSimpleElement(Role role) {
+        return Arrays.binarySearch(simpleElements, role) >= 0;
+    }
+    public static boolean isAOElement(Role role) {
+        return Arrays.binarySearch(aoElements, role) >= 0;
+    }
+    public static boolean isAPElement(Role role) {
+        return Arrays.binarySearch(apElements, role) >= 0;
+    }
+    public static boolean isOrElement(Role role) {
+        return Arrays.binarySearch(orElements, role) >= 0;
+    }
+    public static boolean isExceptElement(Role role) {
+        return Arrays.binarySearch(exceptElements, role) >= 0;
+    }
+
+    public static boolean isOwnHead(Role role) {
+        return Arrays.binarySearch(ownHeads, role) >= 0;
+    }
+    public static boolean isOwnBody(Role role) {
+        return Arrays.binarySearch(ownBodies, role) >= 0;
+    }
+    public static boolean isOwnTail(Role role) {
+        return Arrays.binarySearch(ownTails, role) >= 0;
+    }
+    public static boolean isEnemyHead(Role role) {
+        return Arrays.binarySearch(enemyHeads, role) >= 0;
+    }
+    public static boolean isEnemyBody(Role role) {
+        return Arrays.binarySearch(enemyBodies, role) >= 0;
+    }
+    public static boolean isEnemyTail(Role role) {
+        return Arrays.binarySearch(enemyTails, role) >= 0;
+    }
+    public static boolean isBarrier(Role role) {
+        return Arrays.binarySearch(barriers, role) >= 0;
+    }
+    public static boolean isEmpty(Role role) {
+        return Arrays.binarySearch(empties, role) >= 0;
     }
 
     public static class Image extends javafx.scene.image.Image{

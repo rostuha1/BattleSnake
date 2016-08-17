@@ -22,7 +22,6 @@ public class IntelligenceContent extends BorderPane {
 
     private class Content extends HBox {
         {
-//            setStyle("-fx-background-color: white");
             setFillHeight(false);
             setMaxSize(0, 0);
             setAlignment(Pos.CENTER);

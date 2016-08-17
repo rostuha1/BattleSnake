@@ -2,10 +2,9 @@ package user_interface.account.content.intelligence.card_elements;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
+import user_interface.account.content.intelligence.menu.menu_items.Settings;
 
 public class Card extends GridPane {
-
-    private static Insets insets = new Insets(5);
 
     private CardElement[][] elements = new CardElement[7][7];
 
@@ -67,8 +66,11 @@ public class Card extends GridPane {
             }
         }
 
-        GridPane.setMargin(this, insets);
+        GridPane.setMargin(this, Settings.gridInsets);
 
     }
 
+    public CardElement[][] getElements() {
+        return elements;
+    }
 }

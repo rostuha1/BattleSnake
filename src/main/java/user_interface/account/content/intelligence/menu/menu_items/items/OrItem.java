@@ -1,8 +1,8 @@
-package user_interface.account.content.intelligence.menu_items.items;
+package user_interface.account.content.intelligence.menu.menu_items.items;
 
 import javafx.scene.image.ImageView;
-import user_interface.account.content.intelligence.menu_items.ItemText;
-import user_interface.account.content.intelligence.menu_items.Settings;
+import user_interface.account.content.intelligence.menu.menu_items.ItemText;
+import user_interface.account.content.intelligence.menu.menu_items.Settings;
 
 import static user_interface.account.content.intelligence.Role.OR_OWN_BODY;
 import static user_interface.account.content.intelligence.Role.getElementImage;
