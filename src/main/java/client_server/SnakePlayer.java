@@ -20,6 +20,14 @@ public class SnakePlayer {
         this.color = Color.rgb(140, 145, 95);
     }
 
+    public SnakePlayer(Image avatar, String name, int rating, Color color, String about) {
+        this.avatar = avatar;
+        this.name = name;
+        this.rating = rating;
+        this.color = color;
+        this.about = about;
+    }
+
     public SnakePlayer(String avatarName, String name, int rating, Color color, String about) {
         this.avatar = new Image("file:\\" + Paths.get("").toAbsolutePath() + "\\src\\main\\resources\\" + avatarName);
         this.name = name;
