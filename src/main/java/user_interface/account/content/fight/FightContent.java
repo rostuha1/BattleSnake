@@ -9,9 +9,11 @@ import user_interface.account.content.fight.slots.SlotsBox;
 
 public class FightContent extends BorderPane {
 
+    public SlotsBox slotsBox = new SlotsBox(Main.user.getSnake());
+
     public FightContent() {
         setPrefSize(MainMenu.CONTENT_WIDTH, WindowSettings.height);
-        setTop(new SlotsBox(Main.user.getSnake()));
+        setTop(slotsBox);
         setCenter(SnakeViewerPane.getInstance());
     }
 }

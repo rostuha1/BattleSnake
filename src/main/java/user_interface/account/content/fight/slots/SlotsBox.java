@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class SlotsBox extends HBox {
 
+    public Slot mySlot;
     public static ArrayList<Slot> enemySlots = new ArrayList<>(4);
 
     {
@@ -27,7 +28,7 @@ public class SlotsBox extends HBox {
 
     public SlotsBox(SnakePlayer thisSnake) {
 
-        Slot mySlot = new Slot(thisSnake);
+        mySlot = new Slot(thisSnake);
         enemySlots.add(new Slot());
         enemySlots.add(new Slot());
         enemySlots.add(new Slot());

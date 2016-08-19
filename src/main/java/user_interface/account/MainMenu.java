@@ -2,6 +2,7 @@ package user_interface.account;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import main.Main;
 import main.WindowSettings;
 import user_interface.account.content.ContentType;
 import user_interface.account.content.developers.DevelopersContent;
@@ -51,6 +52,7 @@ public class MainMenu extends BorderPane {
         switch (contentType) {
             case FIGHT_CONTENT:
                 newContent = fightContent;
+                fightContent.slotsBox.mySlot.updateSlot(Main.user.getSnake());
                 break;
             case INTELLIGENCE_CONTENT:
                 newContent = intelligenceContent;
