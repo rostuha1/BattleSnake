@@ -1,12 +1,13 @@
 package user_interface.account.content.intelligence.card_elements;
 
-import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
-import user_interface.account.content.intelligence.menu.menu_items.Settings;
+import user_interface.account.content.intelligence.Settings;
 
 public class Card extends GridPane {
 
     private CardElement[][] elements = new CardElement[7][7];
+
+    private CardDirection direction = CardDirection.FORWARD;
 
     {
 
@@ -72,5 +73,17 @@ public class Card extends GridPane {
 
     public CardElement[][] getElements() {
         return elements;
+    }
+
+    public void setElements(CardElement[][] elements) {
+        this.elements = elements;
+    }
+
+    public CardDirection getDirection() {
+        return direction;
+    }
+
+    public void setDirection(CardDirection direction) {
+        this.direction = direction;
     }
 }

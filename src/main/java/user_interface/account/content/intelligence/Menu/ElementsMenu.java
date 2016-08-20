@@ -2,7 +2,7 @@ package user_interface.account.content.intelligence.menu;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
-import user_interface.account.content.intelligence.menu.menu_items.Settings;
+import user_interface.account.content.intelligence.Settings;
 import user_interface.account.content.intelligence.menu.menu_items.items.AndItem;
 import user_interface.account.content.intelligence.menu.menu_items.items.ExceptItem;
 import user_interface.account.content.intelligence.menu.menu_items.items.OrItem;

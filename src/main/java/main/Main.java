@@ -1,5 +1,6 @@
 package main;
 
+import client_server.SnakePlayer;
 import client_server.User;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -8,7 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import user_interface.account.MainMenu;
-import client_server.SnakePlayer;
 import user_interface.animation.AnimatedCircles;
 
 import java.nio.file.Paths;
@@ -63,6 +63,7 @@ public class Main extends Application {
 //        MenuBox.show();
 
         root.getChildren().add(MainMenu.instance);
+//        root.getChildren().add(new PickPane());
 
     }
 

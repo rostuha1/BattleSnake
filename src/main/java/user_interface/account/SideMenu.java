@@ -3,10 +3,10 @@ package user_interface.account;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ToolBar;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 import user_interface.ComponentBuilder;
 import user_interface.account.content.ContentType;
+import user_interface.account.content.intelligence.Settings;
 
 public class SideMenu extends ToolBar {
 
@@ -14,16 +14,15 @@ public class SideMenu extends ToolBar {
     private static final double BUTTON_WIDTH = MainMenu.SIDE_MENU_WIDTH;
     private static final double BUTTON_HEIGHT = 50;
 
-    private static final double SPACING = 10;
-    private static final double padding = 10;
-    private static final Insets insets = new Insets(padding);
+    private static final double PADDING = 10;
+    private static final double BUTTON_OPACITY = 0.6;
 
-    private static final Region fight = ComponentBuilder.getButton("БІЙ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
-    private static final Region mySnake = ComponentBuilder.getButton("МОЯ ЗМІЯ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
-    private static final Region intelligence = ComponentBuilder.getButton("ІНТЕЛЕКТ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
-    private static final Region rules = ComponentBuilder.getButton("ПРАВИЛА ГРИ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
-    private static final Region developers = ComponentBuilder.getButton("ПРО ПРОГРАМУ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
-    private static final Region exit = ComponentBuilder.getButton("ВИХІД", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT);
+    private static final Region fight = ComponentBuilder.getButton("БІЙ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_OPACITY);
+    private static final Region mySnake = ComponentBuilder.getButton("МОЯ ЗМІЯ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_OPACITY);
+    private static final Region intelligence = ComponentBuilder.getButton("ІНТЕЛЕКТ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_OPACITY);
+    private static final Region rules = ComponentBuilder.getButton("ПРАВИЛА ГРИ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_OPACITY);
+    private static final Region developers = ComponentBuilder.getButton("ПРО ПРОГРАМУ", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_OPACITY);
+    private static final Region exit = ComponentBuilder.getButton("ВИХІД", TEXT_SIZE, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_OPACITY);
 
     public SideMenu() {
         super(fight, mySnake, intelligence, rules, developers, exit);
@@ -31,18 +30,16 @@ public class SideMenu extends ToolBar {
     }
 
     {
+        setOrientation(Orientation.VERTICAL);
+        setMinWidth(MainMenu.SIDE_MENU_WIDTH);
+
         fight.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.FIGHT_CONTENT));
         intelligence.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.INTELLIGENCE_CONTENT));
         mySnake.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.MY_SNAKE_CONTENT));
         rules.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.RULES_CONTENT));
         developers.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.DEVELOPERS_CONTENT));
 
-        setOrientation(Orientation.VERTICAL);
-        setMinWidth(MainMenu.SIDE_MENU_WIDTH);
-//        BorderPane.setMargin(this, insets);
-
-        setStyle("-fx-background-color: rgb(159, 188, 94)");
-
+        setStyle(Settings.sideMenuBackground);
 
 //        DropShadow effect = new DropShadow();
 //        effect.setColor(Color.BLUE);

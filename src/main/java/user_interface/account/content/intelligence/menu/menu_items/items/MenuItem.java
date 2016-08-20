@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import user_interface.account.content.intelligence.Role;
 import user_interface.account.content.intelligence.card_elements.CardElement;
 import user_interface.account.content.intelligence.menu.menu_items.ItemText;
-import user_interface.account.content.intelligence.menu.menu_items.Settings;
+import user_interface.account.content.intelligence.Settings;
 import user_interface.account.content.intelligence.menu.menu_items.StyleType;
 
 public class MenuItem extends Item {
@@ -100,6 +100,7 @@ public class MenuItem extends Item {
     }
 
     public static void setRoleIndex(int currentRoleIndex) {
+
         if (currentRoleIndex < 0 || currentRoleIndex > 4)
             throw new IllegalArgumentException("Role Index Error");
 

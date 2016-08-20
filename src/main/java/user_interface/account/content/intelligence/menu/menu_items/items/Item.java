@@ -2,7 +2,7 @@ package user_interface.account.content.intelligence.menu.menu_items.items;
 
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import user_interface.account.content.intelligence.menu.menu_items.Settings;
+import user_interface.account.content.intelligence.Settings;
 
 import java.util.List;
 

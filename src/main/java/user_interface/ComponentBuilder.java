@@ -21,8 +21,8 @@ public class ComponentBuilder {
     public static final int ITEM_HEIGHT = 30;
 
     public static final double TRANSITION_DURATION = 0.5;
-    public static final Color BUTTON_COLOR = Color.web("0x195519");
-    public static final Color BUTTON_TEXT_COLOR = Color.web("0x58B858");
+    public static final Color BUTTON_COLOR = Color.web("0x2A7A2A");
+    public static final Color BUTTON_TEXT_COLOR = Color.web("0x73D123");
 
     public static Region create(Component component, String text) {
         switch (component) {
@@ -76,11 +76,15 @@ public class ComponentBuilder {
         return getButton(text, 16, ITEM_WIDTH, ITEM_HEIGHT);
     }
 
-    public static Region getButton(String text, double textSize, double width, double height) {
+    public static  Region getButton(String text, double textSize, double width, double height) {
+        return getButton(text, textSize, width, height , 1);
+    }
+
+    public static Region getButton(String text, double textSize, double width, double height, double opacity) {
         StackPane stackPane = new StackPane();
 
         Rectangle bg = new Rectangle(width, height, BUTTON_COLOR);
-        bg.setOpacity(0.5);
+        bg.setOpacity(opacity);
 
         Text textButton = new Text(text);
         textButton.setFill(BUTTON_TEXT_COLOR);

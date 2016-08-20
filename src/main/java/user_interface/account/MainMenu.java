@@ -32,7 +32,6 @@ public class MainMenu extends BorderPane {
 
     private MainMenu() {
         setRight(new SideMenu());
-        setCenter(new DevelopersContent());
     }
 
     public static Pane getCurrentContent() {

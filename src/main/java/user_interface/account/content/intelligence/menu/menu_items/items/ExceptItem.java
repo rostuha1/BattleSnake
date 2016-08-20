@@ -2,7 +2,7 @@ package user_interface.account.content.intelligence.menu.menu_items.items;
 
 import javafx.scene.image.ImageView;
 import user_interface.account.content.intelligence.menu.menu_items.ItemText;
-import user_interface.account.content.intelligence.menu.menu_items.Settings;
+import user_interface.account.content.intelligence.Settings;
 
 import static user_interface.account.content.intelligence.Role.EXCEPT;
 import static user_interface.account.content.intelligence.Role.getElementImage;

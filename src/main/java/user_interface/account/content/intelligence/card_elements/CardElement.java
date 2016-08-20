@@ -3,14 +3,10 @@ package user_interface.account.content.intelligence.card_elements;
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import user_interface.account.MainMenu;
-import user_interface.account.content.intelligence.menu.menu_items.Settings;
-import user_interface.account.content.intelligence.menu.menu_items.items.AndItem;
-import user_interface.account.content.intelligence.menu.menu_items.items.ExceptItem;
+import user_interface.account.content.intelligence.Settings;
 import user_interface.account.content.intelligence.menu.menu_items.items.MenuItem;
 import user_interface.account.content.intelligence.Role;
 import user_interface.account.content.intelligence.menu.menu_items.StyleType;
-import user_interface.account.content.intelligence.menu.menu_items.items.OrItem;
 
 public class CardElement extends ImageView {
 
