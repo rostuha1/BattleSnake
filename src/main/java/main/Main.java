@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import user_interface.account.MainMenu;
 import user_interface.animation.AnimatedCircles;
+import user_interface.menus.MenuBox;
 
 import java.nio.file.Paths;
 
@@ -63,7 +64,6 @@ public class Main extends Application {
 //        MenuBox.show();
 
         root.getChildren().add(MainMenu.instance);
-//        root.getChildren().add(new PickPane());
 
     }
 

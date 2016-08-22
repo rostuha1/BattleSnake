@@ -4,28 +4,29 @@ import client_server.ServerResponse;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import messages.Messenger;
 import user_interface.Component;
 import user_interface.ComponentBuilder;
 
-import static messages.MessageType.SUCCESSFUL_AUTHORIZATION;
-import static messages.MessageType.SUCCESSFUL_REGISTRATION;
-import static messages.MessageType.UNAVAILABLE_SERVER;
-import static messages.MessageType.UNSUCCESSFUL_AUTHORIZATION;
-import static messages.MessageType.UNSUCCESSFUL_REGISTRATION;
+import static messages.MessageType.*;
 
 public class StartMenu {
+
+    private static final double BUTTON_OPACITY = 0.5;
+    private static final Color BUTTON_COLOR = Color.web("0x195519");
+    private static final Color TEXT_COLOR = Color.web("0x58B858");
+
+    private static final ServerResponse response = new ServerResponse();
 
     public static final SubMenu mainMenu = getMainMenu();
     public static final SubMenu authorizationMenu = getAuthorizationMenu();
     public static final SubMenu registrationMenu = getRegistrationMenu();
 
-    private static ServerResponse response = new ServerResponse();
-
     public static SubMenu getMainMenu() {
-        Region authorization = ComponentBuilder.create(Component.BUTTON, "АВТОРИЗАЦІЯ");
-        Region registration = ComponentBuilder.create(Component.BUTTON, "РЕЄСТРАЦІЯ");
-        Region exitGame = ComponentBuilder.create(Component.BUTTON, "ВИХІД");
+        Region authorization = ComponentBuilder.getButton("АВТОРИЗАЦІЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
+        Region registration = ComponentBuilder.getButton("РЕЄСТРАЦІЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
+        Region exitGame = ComponentBuilder.getButton("ВИХІД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
         authorization.setOnMouseClicked(event -> MenuBox.setSubMenu(authorizationMenu));
         registration.setOnMouseClicked(event -> MenuBox.setSubMenu(registrationMenu));
@@ -37,8 +38,8 @@ public class StartMenu {
         Region auth = ComponentBuilder.create(Component.LABEL, "АВТОРИЗАЦІЯ");
         TextField login = (TextField) ComponentBuilder.create(Component.FIELD, "Ваш логін");
         PasswordField password = (PasswordField) ComponentBuilder.create(Component.PASSWORD_FIELD, "Ваш пароль");
-        Region confirmAuthorization = ComponentBuilder.create(Component.BUTTON, "ВХІД");
-        Region optionsBack = ComponentBuilder.create(Component.BUTTON, "НАЗАД");
+        Region confirmAuthorization = ComponentBuilder.getButton("ВХІД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
+        Region optionsBack = ComponentBuilder.getButton("НАЗАД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
         confirmAuthorization.setOnMouseClicked(event -> {
             switch (response.authorizationResponse(login.getText(), password.getText())){
@@ -55,8 +56,8 @@ public class StartMenu {
         Region reg = ComponentBuilder.create(Component.LABEL, "РЕЄСТРАЦІЯ");
         TextField login = (TextField) ComponentBuilder.create(Component.FIELD, "Ваш логін");
         PasswordField password = (PasswordField) ComponentBuilder.create(Component.PASSWORD_FIELD, "Ваш пароль");
-        Region confirmRegistration = ComponentBuilder.create(Component.BUTTON, "ЗАРЕЄСТРУВАТИСЯ");
-        Region optionsBack = ComponentBuilder.create(Component.BUTTON, "НАЗАД");
+        Region confirmRegistration = ComponentBuilder.getButton("ЗАРЕЄСТРУВАТИСЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
+        Region optionsBack = ComponentBuilder.getButton("НАЗАД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
         confirmRegistration.setOnMouseClicked(event -> {
             switch (response.registrationResponse(login.getText(), password.getText())){

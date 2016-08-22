@@ -1,13 +1,11 @@
 package user_interface.animation;
 
-import com.sun.istack.internal.Nullable;
 import javafx.animation.FadeTransition;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-import user_interface.account.MainMenu;
 import user_interface.menus.StartMenu;
 import user_interface.menus.SubMenu;
 

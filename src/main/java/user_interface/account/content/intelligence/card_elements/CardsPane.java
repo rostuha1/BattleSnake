@@ -1,7 +1,12 @@
 package user_interface.account.content.intelligence.card_elements;
 
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import user_interface.account.content.intelligence.Role;
+import user_interface.account.content.intelligence.Settings;
 
 public class CardsPane extends GridPane{
 

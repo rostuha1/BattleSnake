@@ -8,17 +8,11 @@ import user_interface.ComponentBuilder;
 
 public class SubMenu extends VBox {
     private static final int SPACING = 15;
-    public int subMenuHeight;
+    public double subMenuHeight;
 
     public SubMenu(Region... items) {
         subMenuHeight = items.length * ComponentBuilder.ITEM_HEIGHT + (items.length - 1) * SPACING;
 
-//        DropShadow effect = new DropShadow();
-//        effect.setColor(Color.DARKBLUE);
-//        effect.setBlurType(BlurType.GAUSSIAN);
-//        effect.setRadius(10);
-//
-//        setEffect(effect);
         setFillWidth(false);
         setAlignment(Pos.CENTER);
         setSpacing(SPACING);

@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -17,10 +18,11 @@ import javafx.util.Duration;
 
 public class ComponentBuilder {
 
-    public static final int ITEM_WIDTH = 300;
-    public static final int ITEM_HEIGHT = 30;
+    public static final double ITEM_WIDTH = 300;
+    public static final double ITEM_HEIGHT = 30;
 
     public static final double TRANSITION_DURATION = 0.5;
+    public static final double TEXT_SIZE = 16;
     public static final Color BUTTON_COLOR = Color.web("0x2A7A2A");
     public static final Color BUTTON_TEXT_COLOR = Color.web("0x73D123");
 
@@ -64,7 +66,7 @@ public class ComponentBuilder {
         field.setPromptText(text);
         field.setStyle("-fx-background-color: #a9a9a9 , white , white; \n" +
                 "-fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1; " +
-                "-fx-font-size: 16");
+                "-fx-font-size: " + String.valueOf(TEXT_SIZE));
 
         field.setPrefWidth(300);
         field.setPrefHeight(1);
@@ -72,22 +74,26 @@ public class ComponentBuilder {
         return field;
     }
 
-    private static Region getButton(String text) {
-        return getButton(text, 16, ITEM_WIDTH, ITEM_HEIGHT);
+    public static Region getButton(String text) {
+        return getButton(text, TEXT_SIZE, ITEM_WIDTH, ITEM_HEIGHT, 1);
     }
 
-    public static  Region getButton(String text, double textSize, double width, double height) {
-        return getButton(text, textSize, width, height , 1);
+    public static Region getButton(String text, double buttonOpacity, Color textColor, Color buttonColor) {
+        return getButton(text, TEXT_SIZE, ITEM_WIDTH, ITEM_HEIGHT, buttonOpacity, textColor, buttonColor);
     }
 
     public static Region getButton(String text, double textSize, double width, double height, double opacity) {
+        return getButton(text, textSize, width, height , opacity, BUTTON_TEXT_COLOR, BUTTON_COLOR);
+    }
+
+    public static Region getButton(String text, double textSize, double width, double height, double opacity, Color textColor, Color buttonColor) {
         StackPane stackPane = new StackPane();
 
-        Rectangle bg = new Rectangle(width, height, BUTTON_COLOR);
+        Rectangle bg = new Rectangle(width, height, buttonColor);
         bg.setOpacity(opacity);
 
         Text textButton = new Text(text);
-        textButton.setFill(BUTTON_TEXT_COLOR);
+        textButton.setFill(textColor);
         textButton.setFont(Font.font("Arial", FontWeight.BOLD, textSize));
 
         stackPane.setAlignment(Pos.CENTER);
@@ -102,9 +108,11 @@ public class ComponentBuilder {
         });
         stackPane.setOnMouseExited(event -> {
             st.stop();
-            bg.setFill(BUTTON_COLOR);
+            bg.setFill(buttonColor);
         });
+
         return stackPane;
     }
+
 
 }

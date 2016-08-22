@@ -26,17 +26,6 @@ public class MenuItem extends Item {
     private boolean isEmptyRole;
     private Role[] roles;
 
-    void defaultStyle(StyleType type) {
-        switch (type) {
-            case DEFAULT:
-                setStyle(Settings.defaultStyle);
-                break;
-            case PRESSED:
-                setStyle(Settings.pressedStyle);
-                break;
-        }
-    }
-
     public MenuItem(String itemName, Role[] roles) {
         this.roles = roles;
         isEmptyRole = roles == Role.empties;
@@ -60,7 +49,6 @@ public class MenuItem extends Item {
             CardElement.setSelectedElement(null);
             return;
         }
-        if (selectedItem != null) selectedItem.setStyle(Settings.defaultStyle);
         selectedItem = this;
         changeSelectedCardElement();
         defaultStyle(StyleType.PRESSED);
@@ -79,18 +67,29 @@ public class MenuItem extends Item {
         }
     }
 
+    void defaultStyle(StyleType type) {
+        switch (type) {
+            case DEFAULT:
+                setBackground(Settings.defaultMenuItemBackground);
+                break;
+            case PRESSED:
+                setBackground(Settings.pressedMenuItemBackground);
+                break;
+        }
+    }
+
     public static void selectItem(Role role, StyleType type) {
         if (selectedItem != null) selectedItem.defaultStyle(StyleType.DEFAULT);
         MenuItem item = null;
 
-        if(Role.isOwnHead(role)) item = own_head; else
-        if(Role.isOwnBody(role)) item = own_body; else
-        if(Role.isOwnTail(role)) item = own_tail; else
-        if(Role.isEnemyHead(role)) item = enemy_head; else
-        if(Role.isEnemyBody(role)) item = enemy_body; else
-        if(Role.isEnemyTail(role)) item = enemy_tail; else
-        if(Role.isBarrier(role)) item = barrier; else
-        if(Role.isEmpty(role)) item = empty;
+        if (Role.isOwnHead(role)) item = own_head;
+        else if (Role.isOwnBody(role)) item = own_body;
+        else if (Role.isOwnTail(role)) item = own_tail;
+        else if (Role.isEnemyHead(role)) item = enemy_head;
+        else if (Role.isEnemyBody(role)) item = enemy_body;
+        else if (Role.isEnemyTail(role)) item = enemy_tail;
+        else if (Role.isBarrier(role)) item = barrier;
+        else if (Role.isEmpty(role)) item = empty;
 
         if (item != null) {
             item.defaultStyle(type);

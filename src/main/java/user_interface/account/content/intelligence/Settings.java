@@ -4,6 +4,10 @@ import javafx.geometry.Insets;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -21,10 +25,12 @@ public class Settings {
     public static final Effect itemEffect = new DropShadow(10,Color.AZURE);
     public static final Effect cardElementSwitchEffect = new ColorAdjust(0, 0, -0.4, 0);
 
-    public static final String defaultStyle = "-fx-border-color: #93af0f; -fx-border-width: 2px;";
-    public static final String backgroundColor = "-fx-background-color: #23af11";
-    public static final String pressedStyle = defaultStyle + backgroundColor;
+    public static final Background cardPaneBackground = new Background(new BackgroundFill(Color.web("0x73D123", 0.2), new CornerRadii(3), new Insets(-2)));
+    public static final Background defaultMenuItemBackground = new Background(new BackgroundFill(Color.web("0x73D123", 0.2), new CornerRadii(3), null));
+    public static final Background pressedMenuItemBackground = new Background(new BackgroundFill(Color.web("0x73D123", 0.5), new CornerRadii(3), null));
+
     public static final String sideMenuBackground =
             "-fx-background-image: url('" + projectPath + "/src/main/resources/side.jpg');" +
             "-fx-opacity: 0.6";
+
 }
