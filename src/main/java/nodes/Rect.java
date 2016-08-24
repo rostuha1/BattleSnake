@@ -1,6 +1,6 @@
 package nodes;
 
-import battlefield.snake.Position;
+import user_interface.account.battlefield.snake.Position;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -8,13 +8,7 @@ import main.Main;
 
 public class Rect extends Rectangle {
 
-    private Color mainColor = Color.DARKSLATEBLUE;
-
-    private static Pane parent;
-
-    {
-        setFill(Color.DARKSLATEBLUE);
-    }
+    private static Pane parent = Main.getSnakeField();
 
     static {
         parent = Main.getSnakeField();
@@ -26,15 +20,15 @@ public class Rect extends Rectangle {
         Rect.parent = parent;
     }
 
+    public Rect(double x, double y, double width, double height) {
+        super(x, y, width, height);
+    }
+
     public Position getPos() {
         return position;
     }
     public void setPos(int posX, int posY) {
         this.position = new Position(posX, posY);
-    }
-
-    public Rect(double x, double y, double width, double height) {
-        super(x, y, width, height);
     }
 
     public void draw() {

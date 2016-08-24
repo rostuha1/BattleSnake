@@ -1,13 +1,13 @@
-package battlefield;
+package user_interface.account.battlefield;
 
 import javafx.scene.paint.Paint;
 import nodes.Line;
 import nodes.Rect;
 
-import static battlefield.RenderField.PART;
-import static battlefield.RenderField.SQUARE_NUMBER;
-import static battlefield.RenderField.parts;
-import static battlefield.RenderField.startPoint;
+import static user_interface.account.battlefield.RenderField.PART;
+import static user_interface.account.battlefield.RenderField.SQUARE_NUMBER;
+import static user_interface.account.battlefield.RenderField.parts;
+import static user_interface.account.battlefield.RenderField.startPoint;
 
 public class Cells {
 
@@ -23,11 +23,21 @@ public class Cells {
 
     public static void draw(int posX, int posY, Paint color) {
         Rect r = rects[posX - 1][posY - 1];
+        draw(r, color);
+    }
+    public static void draw(Rect r, Paint color) {
         r.setFill(color);
         r.draw();
     }
 
-    private static Rect getRect(int posX, int posY) {
+    public static void drawByDefault(int posX, int posY) {
+        rects[posX - 1][posY - 1].remove();
+    }
+    public static void drawByDefault(Rect r) {
+        r.remove();
+    }
+
+    public static Rect getRect(int posX, int posY) {
         if (posX < 0 || posX > SQUARE_NUMBER + 1 || posY < 0 || posY > SQUARE_NUMBER + 1)
             throw new IllegalArgumentException("Enter valid arguments");
 

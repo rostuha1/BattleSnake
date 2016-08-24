@@ -1,6 +1,6 @@
 package events;
 
-import battlefield.snake.Snake;
+import user_interface.account.battlefield.snake.Snake;
 import javafx.scene.Scene;
 
 public class KeyboardEvents {

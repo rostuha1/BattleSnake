@@ -1,4 +1,4 @@
-package battlefield;
+package user_interface.account.battlefield;
 
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -9,24 +9,16 @@ import nodes.Line;
 import java.util.ArrayList;
 import java.util.List;
 
-import static battlefield.RenderField.SQUARE_NUMBER;
-import static battlefield.RenderField.parts;
-import static battlefield.RenderField.startPoint;
+import static user_interface.account.battlefield.RenderField.SQUARE_NUMBER;
+import static user_interface.account.battlefield.RenderField.parts;
+import static user_interface.account.battlefield.RenderField.startPoint;
 
 
 public class Grid {
 
-    private static Pane parent;
+    private static Pane parent = Main.getSnakeField();
 
     private Grid() {}
-
-    static {
-        parent = Main.getSnakeField();
-    }
-
-    public static void setParent(Pane parent) {
-        Grid.parent = parent;
-    }
 
     public static void draw() {
 

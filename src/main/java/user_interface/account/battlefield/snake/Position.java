@@ -1,4 +1,4 @@
-package battlefield.snake;
+package user_interface.account.battlefield.snake;
 
 public class Position {
     int x;
