@@ -21,6 +21,7 @@ public class ElementsMenu extends VBox {
     {
         setAlignment(Pos.TOP_LEFT);
         setSpacing(Settings.menuSpacing);
+
         getChildren().add(own_head);
         getChildren().add(own_body);
         getChildren().add(own_tail);

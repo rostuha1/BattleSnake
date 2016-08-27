@@ -5,18 +5,18 @@ import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import user_interface.account.content.fight.list.SnakeList;
-import client_server.SnakePlayer;
+import user_interface.account.content.fight.list.SnakePlayerList;
+import client_server.I_O.SnakePlayer;
 import user_interface.account.content.fight.list.SnakeViewerPane;
 
 public class Slot extends HBox {
 
-    private final SnakePlayer DEFAULT_PLAYER = new SnakePlayer("default-snake.png");
     private SnakePlayer currentPlayer = null;
     private boolean isOccupied = false;
     private ImageView avatar = new ImageView();
@@ -34,7 +34,7 @@ public class Slot extends HBox {
         setMinSize(225, 75);
         setMaxSize(225, 75);
         setPadding(new Insets(0, 0, 0, 10));
-        setBackground(new Background(new BackgroundFill(DEFAULT_PLAYER.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
+        setBackground(new Background(new BackgroundFill(SnakePlayer.DEFAULT_SNAKE_PLAYER.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
         setBorder(new Border(new BorderStroke(Color.rgb(120, 125, 75), BorderStrokeStyle.SOLID, new CornerRadii(0, 0, 10, 10, false), new BorderWidths(3), null)));
 //        setStyle("-fx-border-width: 3px; -fx-border-color: ); " +
 //                "-fx-background-color: rgb(140, 145, 95) ; -fx-border-radius: 0px 0px 10px 10px; -fx-background-radius: 0 0 10 10");
@@ -42,13 +42,12 @@ public class Slot extends HBox {
     }
 
     public Slot() {
-        takeSlot(DEFAULT_PLAYER);
+        takeSlot(SnakePlayer.DEFAULT_SNAKE_PLAYER);
         isOccupied = false;
         MenuItem deleteSlot = new MenuItem("Звільнити слот");
         deleteSlot.setOnAction(event -> releaseSlot());
         contextMenu.getItems().add(deleteSlot);
         setOnContextMenuRequested(null);
-
     }
 
     public Slot(SnakePlayer player) {
@@ -71,10 +70,10 @@ public class Slot extends HBox {
     }
 
     public void releaseSlot() {
-        SnakeList.getInstance().getList().add(currentPlayer);
-        SnakeList.getInstance().resize();
-        SnakeViewerPane.getInstance().show(SnakeViewerPane.getSnakeList().getItems());
-        takeSlot(DEFAULT_PLAYER);
+        SnakePlayerList.getInstance().getList().add(currentPlayer);
+        SnakePlayerList.getInstance().resize();
+        SnakeViewerPane.getInstance().show(SnakeViewerPane.getSnakePlayerList().getItems());
+        takeSlot(SnakePlayer.DEFAULT_SNAKE_PLAYER);
         isOccupied = false;
         setOnContextMenuRequested(null);
     }
@@ -85,5 +84,14 @@ public class Slot extends HBox {
         setBackground(new Background(new BackgroundFill(player.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
     }
 
+    public Image getAvatar() {
+        return avatar.getImage();
+    }
+    public ImageView getAvatarViev() {
+        return avatar;
+    }
 
+    public SnakePlayer getCurrentPlayer() {
+        return currentPlayer;
+    }
 }

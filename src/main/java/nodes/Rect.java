@@ -1,5 +1,6 @@
 package nodes;
 
+import main.SnakePane;
 import user_interface.account.battlefield.snake.Position;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -8,10 +9,10 @@ import main.Main;
 
 public class Rect extends Rectangle {
 
-    private static Pane parent = Main.getSnakeField();
+    private static Pane parent = SnakePane.instance;
 
     static {
-        parent = Main.getSnakeField();
+        parent = SnakePane.instance;
     }
 
     private Position position;

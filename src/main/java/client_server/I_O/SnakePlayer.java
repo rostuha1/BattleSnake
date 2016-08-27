@@ -1,10 +1,9 @@
-package client_server;
+package client_server.I_O;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-
-import java.nio.file.Paths;
+import user_interface.account.battlefield.snake.Snake;
+import user_interface.account.content.intelligence.Settings;
 
 public class SnakePlayer {
 
@@ -13,9 +12,15 @@ public class SnakePlayer {
     private int rating;
     private Color color;
     private String about;
+    private Snake snake;
 
-    public SnakePlayer(String defaultImage) {
-        this.avatar = new Image("file:\\" + Paths.get("").toAbsolutePath() + "\\src\\main\\resources\\" + defaultImage);
+    private static final String imagesPath = Settings.projectPath + "/src/main/resources/";
+    public static final Image DEFAULT_AVATAR = new Image(imagesPath + "default-snake.png");
+
+    public static final SnakePlayer DEFAULT_SNAKE_PLAYER = new SnakePlayer();
+
+    private SnakePlayer() {
+        this.avatar = DEFAULT_AVATAR;
         this.name = "Гравця не вибрано";
         this.color = Color.rgb(140, 145, 95);
     }
@@ -28,12 +33,13 @@ public class SnakePlayer {
         this.about = about;
     }
 
-    public SnakePlayer(String avatarName, String name, int rating, Color color, String about) {
-        this.avatar = new Image("file:\\" + Paths.get("").toAbsolutePath() + "\\src\\main\\resources\\" + avatarName);
+    public SnakePlayer(String avatarName, String name, int rating, String about, Snake snake) {
+        this.avatar = new Image(imagesPath + avatarName);
         this.name = name;
         this.rating = rating;
-        this.color = color;
         this.about = about;
+        this.color = snake.getColor();
+        this.snake = snake;
     }
 
     public Image getAvatar() {
@@ -78,6 +84,14 @@ public class SnakePlayer {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public Snake getSnake() {
+        return snake;
+    }
+
+    public void setSnake(Snake snake) {
+        this.snake = snake;
     }
 
     @Override

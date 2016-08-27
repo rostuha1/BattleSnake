@@ -1,12 +1,13 @@
 package user_interface.account;
 
+import client_server.I_O.User;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import main.Main;
 import main.WindowSettings;
 import user_interface.account.content.ContentType;
 import user_interface.account.content.developers.DevelopersContent;
 import user_interface.account.content.fight.FightContent;
+import user_interface.account.content.fight.slots.SlotsBox;
 import user_interface.account.content.intelligence.IntelligenceContent;
 import user_interface.account.content.my_snake.MySnakeContent;
 import user_interface.account.content.rules.RulesContent;
@@ -16,7 +17,7 @@ public class MainMenu extends BorderPane {
 
     public static final double SIDE_MENU_WIDTH = WindowSettings.width / 4.5;
     public static final double CONTENT_WIDTH = WindowSettings.width - SIDE_MENU_WIDTH;
-    public static final MainMenu instance = new MainMenu();
+    private static Pane currentContent = null;
 
     private final FightContent fightContent = new FightContent();
     private final IntelligenceContent intelligenceContent = new IntelligenceContent();
@@ -24,7 +25,7 @@ public class MainMenu extends BorderPane {
     private final RulesContent rulesContent = new RulesContent();
     private final DevelopersContent developersContent = new DevelopersContent();
 
-    private static Pane currentContent = null;
+    public static final MainMenu instance = new MainMenu();
 
     {
         setPrefSize(WindowSettings.width, WindowSettings.height);
@@ -51,7 +52,7 @@ public class MainMenu extends BorderPane {
         switch (contentType) {
             case FIGHT_CONTENT:
                 newContent = fightContent;
-                fightContent.slotsBox.mySlot.updateSlot(Main.user.getSnake());
+                SlotsBox.instance.mySlot.updateSlot(User.getInstance().getSnakePlayer());
                 break;
             case INTELLIGENCE_CONTENT:
                 newContent = intelligenceContent;

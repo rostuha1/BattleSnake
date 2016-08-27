@@ -1,42 +1,32 @@
 package main;
 
-import client_server.SnakePlayer;
-import client_server.User;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import user_interface.account.MainMenu;
-import user_interface.account.battlefield.Cells;
-import user_interface.account.battlefield.Grid;
+import user_interface.account.battlefield.menu.SnakesPane;
 import user_interface.account.battlefield.snake.Direction;
 import user_interface.account.battlefield.snake.Snake;
 import user_interface.account.content.intelligence.Settings;
 import user_interface.animation.AnimatedCircles;
-import user_interface.menus.MenuBox;
-
-import java.nio.file.Paths;
 
 public class Main extends Application {
 
     private static Pane root = new Pane();
-    private static Pane snakeField = new Pane();
     private static Stage stage;
     private static Scene scene;
-
-    public static final User user = new User();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         root.setPrefSize(WindowSettings.width, WindowSettings.height);
-        root.getChildren().add(snakeField);
-
         scene = new Scene(root);
 
-        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(WindowSettings.fullscreen);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         primaryStage.setTitle("JavaFx Game. BattleSnake");
 
@@ -51,28 +41,62 @@ public class Main extends Application {
     }
 
     public static void gameInit() {
-        user.setSnake(new SnakePlayer("snake1.png", "Ann", 1200, Color.WHEAT, "Let's play!"));
 
         root.setStyle("-fx-background-color: rgb(35, 40, 30)");
         AnimatedCircles.createSpawnNodes(root);
         root.getStylesheets().add(Settings.projectPath + "src/main/resources/style.css");
 
-        Grid.draw();
-
-        snakeDemo();
+//        snakeDemo();
 
 //        MenuBox.init(root);
 //        MenuBox.show();
 
-//        root.getChildren().add(MainMenu.instance);
+//        SlotsBox box = SlotsBox.instance;
+        root.getChildren().add(SnakePane.instance);
+        root.getChildren().add(MainMenu.instance);
+        SnakesPane.init();
+
 
     }
 
     private static void snakeDemo() {
         Snake snake = new Snake(Color.BLUE, Direction.RIGHT);
-        snake.goForward();
-        snake.turnRight();
-        snake.turnLeft();
+        new Thread(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ignored) {
+            }
+
+            Platform.runLater(() -> {
+                snake.goForward();
+                snake.highlightSnake(true);
+            });
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ignored) {
+            }
+
+            Platform.runLater(snake::turnRight);
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ignored) {
+            }
+
+            Platform.runLater(() -> {
+                snake.turnLeft();
+                snake.highlightSnake(false);
+            });
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ignored) {
+            }
+
+            Platform.runLater(snake::goForward);
+
+        }).start();
     }
 
     public static Pane getRoot() {
@@ -81,10 +105,6 @@ public class Main extends Application {
 
     public static Scene getScene() {
         return scene;
-    }
-
-    public static Pane getSnakeField() {
-        return snakeField;
     }
 
     public static void main(String[] args) {

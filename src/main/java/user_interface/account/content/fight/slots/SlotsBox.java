@@ -1,21 +1,28 @@
 package user_interface.account.content.fight.slots;
 
+import client_server.I_O.User;
+import events.KeyboardEvents;
+import events.Mode;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import main.SnakePane;
 import main.WindowSettings;
 import user_interface.account.MainMenu;
-import client_server.SnakePlayer;
+import user_interface.account.battlefield.menu.SnakesPane;
+import user_interface.animation.TransitionAnimation;
 
 import java.util.ArrayList;
 
 public class SlotsBox extends HBox {
 
-    public Slot mySlot;
-    public static ArrayList<Slot> enemySlots = new ArrayList<>(4);
+    public static final Slot mySlot = new Slot(User.getInstance().getSnakePlayer());
+    public static final ArrayList<Slot> enemySlots = new ArrayList<>(3);
 
-    {
+    public static SlotsBox instance = new SlotsBox();
+
+    private SlotsBox() {
         double spacing = 5;
         double width = MainMenu.CONTENT_WIDTH - 2 * spacing;
         double height = WindowSettings.height * 0.1;
@@ -24,25 +31,27 @@ public class SlotsBox extends HBox {
         setAlignment(Pos.CENTER);
         setTranslateX(spacing);
         setSpacing(spacing);
-    }
 
-    public SlotsBox(SnakePlayer thisSnake) {
-
-        mySlot = new Slot(thisSnake);
         enemySlots.add(new Slot());
         enemySlots.add(new Slot());
         enemySlots.add(new Slot());
-
-        Button startBattle = new Button("Почати бій");
-        startBattle.setFont(new Font(17));
-        startBattle.setPrefSize(getPrefWidth() / 9.5, WindowSettings.height * 0.067);
 
         getChildren().add(mySlot);
+        enemySlots.forEach(slot -> getChildren().add(slot));
 
-        for (Slot slot: enemySlots) {
-            getChildren().add(slot);
-        }
+        Button startBattle = new Button("Почати бій");
+
+        startBattle.setFont(Font.font(17));
+        startBattle.setPrefSize(getPrefWidth() / 9.5, WindowSettings.height * 0.067);
+        startBattle.setOnMouseClicked(event -> startBattle());
+
         getChildren().add(startBattle);
+    }
+
+    private void startBattle() {
+        SnakesPane.update();
+        KeyboardEvents.setMode(Mode.BATTLEFIELD_MODE);
+        TransitionAnimation.start(MainMenu.instance, SnakePane.instance);
     }
 
 }

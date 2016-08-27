@@ -1,11 +1,6 @@
 package user_interface.account.content.intelligence.card_elements;
 
-import javafx.geometry.Insets;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import user_interface.account.content.intelligence.Settings;
 
 public class Card extends GridPane {
@@ -15,6 +10,9 @@ public class Card extends GridPane {
     private CardDirection direction = CardDirection.FORWARD;
 
     {
+
+        //ToDo. Must be removed. And must be initialized by using method "setElements"
+
         elements[0][0] = new CardElement();
         elements[0][1] = new CardElement();
         elements[0][2] = new CardElement();

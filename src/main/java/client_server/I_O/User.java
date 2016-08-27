@@ -1,5 +1,6 @@
-package client_server;
+package client_server.I_O;
 
+import client_server.I_O.Receiver.Receiver;
 import user_interface.account.content.intelligence.card_elements.Card;
 
 public class User {
@@ -7,21 +8,28 @@ public class User {
     private int id;
     private String login;
     private String password;
-    private SnakePlayer snake;
-    private Card[] cards;
+    private SnakePlayer snakePlayer;
+    private Card[][] cards; // 3 * 3
+
+    private static User instance = Receiver.instance.receiveUser(); // ToDo. Must be downloaded from server
 
     public User() {}
 
     public User(String login, String password) {
+        // ToDo. To remove
+
         this.login = login;
         this.password = password;
     }
 
-    public User(int id, String login, String password, SnakePlayer snake, Card[] cards) {
+    public User(int id, String login, String password, SnakePlayer snakePlayer, Card[][] cards) {
+
+        // ToDo. To remove
+
         this.id = id;
         this.login = login;
         this.password = password;
-        this.snake = snake;
+        this.snakePlayer = snakePlayer;
         this.cards = cards;
     }
 
@@ -49,20 +57,24 @@ public class User {
         this.password = password;
     }
 
-    public SnakePlayer getSnake() {
-        return snake;
+    public SnakePlayer getSnakePlayer() {
+        return snakePlayer;
     }
 
-    public void setSnake(SnakePlayer snake) {
-        this.snake = snake;
+    public void setSnakePlayer(SnakePlayer snakePlayer) {
+        this.snakePlayer = snakePlayer;
     }
 
-    public Card[] getCards()
+    public Card[][] getCards()
     {
         return cards;
     }
 
-    public void setCards(Card[] cards) {
+    public void setCards(Card[][] cards) {
         this.cards = cards;
+    }
+
+    public static User getInstance() {
+        return instance;
     }
 }

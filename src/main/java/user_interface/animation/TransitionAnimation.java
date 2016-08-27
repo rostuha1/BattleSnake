@@ -1,11 +1,15 @@
 package user_interface.animation;
 
+import events.AdditionalOnFinishEvent;
 import javafx.animation.FadeTransition;
+import javafx.event.Event;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import main.Main;
 import org.controlsfx.control.Notifications;
+import user_interface.account.battlefield.Grid;
 import user_interface.menus.StartMenu;
 import user_interface.menus.SubMenu;
 
@@ -74,6 +78,70 @@ public class TransitionAnimation {
         hideAnimation.play();
 
         return true;
+    }
+
+    public static void start(Pane hidePane, Pane showPane) {
+
+        if (pressLock) return;
+        pressLock = true;
+
+        FadeTransition showAnimation = new FadeTransition(Duration.millis(EFFECT_DURATION));
+        FadeTransition hideAnimation = new FadeTransition(Duration.millis(EFFECT_DURATION));
+
+        hideAnimation.setNode(hidePane);
+        showAnimation.setNode(showPane);
+
+        showAnimation.setFromValue(0);
+        showAnimation.setToValue(1);
+        hideAnimation.setFromValue(1);
+        hideAnimation.setToValue(0);
+
+        hidePane.setMouseTransparent(true);
+        showPane.setMouseTransparent(false);
+
+        showAnimation.setOnFinished(event -> pressLock = false);
+
+        hideAnimation.setOnFinished(event -> {
+            showPane.setOpacity(0);
+            showAnimation.play();
+        });
+
+        hideAnimation.play();
+
+    }
+    public static void start(Pane hidePane, Pane showPane, AdditionalOnFinishEvent additionalOnFinishEvent) {
+
+        if (additionalOnFinishEvent == null) start(hidePane, showPane);
+
+        if (pressLock) return;
+        pressLock = true;
+
+        FadeTransition showAnimation = new FadeTransition(Duration.millis(EFFECT_DURATION));
+        FadeTransition hideAnimation = new FadeTransition(Duration.millis(EFFECT_DURATION));
+
+        hideAnimation.setNode(hidePane);
+        showAnimation.setNode(showPane);
+
+        showAnimation.setFromValue(0);
+        showAnimation.setToValue(1);
+        hideAnimation.setFromValue(1);
+        hideAnimation.setToValue(0);
+
+        hidePane.setMouseTransparent(true);
+        showPane.setMouseTransparent(false);
+
+        showAnimation.setOnFinished(event -> {
+            pressLock = false;
+            additionalOnFinishEvent.doEvent();
+        });
+
+        hideAnimation.setOnFinished(event -> {
+            showPane.setOpacity(0);
+            showAnimation.play();
+        });
+
+        hideAnimation.play();
+
     }
 
 }

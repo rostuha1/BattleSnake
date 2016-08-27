@@ -1,5 +1,6 @@
 package client_server;
 
+import client_server.I_O.User;
 import messages.MessageType;
 
 import java.util.ArrayList;

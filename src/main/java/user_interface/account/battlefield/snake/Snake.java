@@ -1,19 +1,21 @@
 package user_interface.account.battlefield.snake;
 
-import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import main.Main;
+import main.SnakePane;
 import nodes.Rect;
 import user_interface.account.battlefield.Cells;
+import user_interface.account.content.intelligence.Settings;
 
 import java.util.LinkedList;
 
 public class Snake implements SnakeEngine {
 
-    private static Pane parent = Main.getSnakeField();
+    private static Pane parent = SnakePane.instance;
+    private static Snake selectedSnake = null;
 
-    private int length;
+    private int length = 0;
     private boolean isIncrease;
     private Color snakeColor;
 
@@ -21,12 +23,13 @@ public class Snake implements SnakeEngine {
     private Direction nextDirection = null;
 
     private LinkedList<Rect> cells;
+    private boolean isHighlight = false;
 
-    public Snake(Color color, Direction initDirection) {
+    public Snake(Color snakeColor, Direction initDirection) {
 
-//        ToDo -> to Delete
+//        ToDo -> to remove
 
-        setColor(color);
+        this.snakeColor = snakeColor;
 
         Position p1 = new Position(6, 1);
         Position p2 = new Position(5, 1);
@@ -47,12 +50,13 @@ public class Snake implements SnakeEngine {
         length = linkedList.size();
         init(linkedList);
     }
+
     public Snake(Position[] positions, Color color, Direction initDirection) {
         setColor(color);
 
         LinkedList<Rect> linkedList = new LinkedList<>();
 
-        for (Position pos: positions)
+        for (Position pos : positions)
             linkedList.add(getRect(pos, snakeColor));
 
         currentDirection = initDirection;
@@ -114,12 +118,12 @@ public class Snake implements SnakeEngine {
     }
 
     private void removeTill() {
-
         if (isIncrease) {
             isIncrease = false;
             return;
         }
 
+        cells.getLast().setEffect(null);
         cells.getLast().remove();
         cells.removeLast();
     }
@@ -129,6 +133,7 @@ public class Snake implements SnakeEngine {
 
         Rect rect = getRect(nextPosition, snakeColor);
 
+        if (isHighlight) rect.setEffect(Settings.itemEffect);
         cells.addFirst(rect);
         Cells.draw(rect, snakeColor);
         removeTill();
@@ -180,7 +185,33 @@ public class Snake implements SnakeEngine {
         }
     }
 
+    public Snake getSelectedSnake() {
+        return selectedSnake;
+    }
+
+    public boolean isHighlight() {
+        return isHighlight;
+    }
+
+    public Color getColor() {
+        return snakeColor;
+    }
+
     public void setColor(Color color) {
         this.snakeColor = color;
     }
+
+    public void highlightSnake(boolean flag) {
+        if (flag) {
+            selectedSnake = this;
+            isHighlight = true;
+            cells.forEach(rect -> rect.setEffect(Settings.itemEffect));
+            return;
+        }
+
+        isHighlight = false;
+        cells.forEach(rect -> rect.setEffect(null));
+        selectedSnake = null;
+    }
+
 }

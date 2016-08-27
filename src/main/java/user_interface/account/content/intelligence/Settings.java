@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 
 public class Settings {
     public static final double menuSpacing = 10;
+    public static final double controlMenuSpacing = 10;
 
     public static final String projectPath = Paths.get("").toAbsolutePath().toUri().normalize().toString();
 

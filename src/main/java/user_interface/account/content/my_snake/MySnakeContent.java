@@ -1,6 +1,7 @@
 package user_interface.account.content.my_snake;
 
-import client_server.SnakePlayer;
+import client_server.I_O.SnakePlayer;
+import client_server.I_O.User;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -22,29 +23,29 @@ import static user_interface.account.MainMenu.CONTENT_WIDTH;
 
 public class MySnakeContent extends HBox {
 
-    private SnakePlayer snake = Main.user.getSnake();
+    private SnakePlayer snakePlayer = User.getInstance().getSnakePlayer();
 
     private final double IMAGE_SIZE = 200;
     private final double HEIGHT = WindowSettings.height / 2;
     private final double WIDTH = CONTENT_WIDTH * 0.6;
     private final double IMAGE_SPACING = 15;
 
-    private double red = snake.getColor().getRed() * 255;
-    private double green = snake.getColor().getGreen() * 255;
-    private double blue = snake.getColor().getBlue() * 255;
+    private double red = snakePlayer.getColor().getRed() * 255;
+    private double green = snakePlayer.getColor().getGreen() * 255;
+    private double blue = snakePlayer.getColor().getBlue() * 255;
 
     private Label lblName = getLabel("Ім'я: ");
     private Label lblRating = getLabel("Рейтинг: ");
     private Label lblColor = getLabel("Колір: ");
     private Label lblAbout = getLabel("Паспорт: ");
-    private Label rating = getLabel(String.valueOf(snake.getRating()));
+    private Label rating = getLabel(String.valueOf(snakePlayer.getRating()));
 
     private GridPane snakeInformation = new GridPane();
     private StackPane snakeAvatar = new StackPane();
     private ImageView avatar = new ImageView();
-    private TextField name = getTextField(snake.getName());
-    private ColorPicker color = getColorPicker(snake.getColor());
-    private TextArea passport = getTextArea(snake.getAbout());
+    private TextField name = getTextField(snakePlayer.getName());
+    private ColorPicker color = getColorPicker(snakePlayer.getColor());
+    private TextArea passport = getTextArea(snakePlayer.getAbout());
     private Button save = getButton("Зберегти");
 
     private FileChooser fileChooser = new FileChooser();
@@ -54,7 +55,7 @@ public class MySnakeContent extends HBox {
         setStyle("-fx-border-color: rgb(62, 82, 37); -fx-border-width: 4px");
         setMaxSize(WIDTH, HEIGHT);
 
-        avatar.setImage(Main.user.getSnake().getAvatar());
+        avatar.setImage(User.getInstance().getSnakePlayer().getAvatar());
         avatar.setFitHeight(IMAGE_SIZE);
         avatar.setFitWidth(IMAGE_SIZE);
         avatar.setOnMouseClicked(event -> {
@@ -103,22 +104,25 @@ public class MySnakeContent extends HBox {
 
     }
 
-    public MySnakeContent() {
-    }
+    public MySnakeContent() {}
 
     private void save(Image avatar, String name, Color color, String about) {
-        if (avatar != null) Main.user.getSnake().setAvatar(avatar);
-        else this.avatar.setImage(Main.user.getSnake().getAvatar());
-        if (!name.isEmpty()) Main.user.getSnake().setName(name);
-        else this.name.setText(Main.user.getSnake().getName());
-        if (!about.isEmpty()) Main.user.getSnake().setAbout(about);
-        else this.passport.setText(Main.user.getSnake().getAbout());
+
+        if (avatar != null) User.getInstance().getSnakePlayer().setAvatar(avatar);
+        else this.avatar.setImage(User.getInstance().getSnakePlayer().getAvatar());
+
+        if (!name.isEmpty()) User.getInstance().getSnakePlayer().setName(name);
+        else this.name.setText(User.getInstance().getSnakePlayer().getName());
+
+        if (!about.isEmpty()) User.getInstance().getSnakePlayer().setAbout(about);
+        else this.passport.setText(User.getInstance().getSnakePlayer().getAbout());
+
         if (color != null) {
-            Main.user.getSnake().setColor(color);
+            User.getInstance().getSnakePlayer().setColor(color);
             snakeAvatar.setStyle("-fx-border-color: rgb(62, 82, 37); -fx-border-width: 2px; " +
                     "-fx-background-color: rgb(" + color.getRed() * 255 + ", " + color.getGreen() * 255 +
                     ", " + color.getBlue() * 255 + ");");
-        } else this.color.setValue(Main.user.getSnake().getColor());
+        } else this.color.setValue(User.getInstance().getSnakePlayer().getColor());
     }
 
     private Button getButton(String text) {
@@ -129,7 +133,7 @@ public class MySnakeContent extends HBox {
     }
 
     private TextArea getTextArea(String about) {
-        TextArea passport = new TextArea(snake.getAbout());
+        TextArea passport = new TextArea(snakePlayer.getAbout());
         passport.setMaxHeight(70);
         return passport;
     }

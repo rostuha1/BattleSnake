@@ -1,6 +1,6 @@
 package user_interface.account.content.fight.list;
 
-import client_server.SnakePlayer;
+import client_server.I_O.SnakePlayer;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -9,19 +9,19 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import user_interface.account.MainMenu;
 
-public class SnakeList extends ListView<SnakePlayer> {
+public class SnakePlayerList extends ListView<SnakePlayer> {
 
     private static final double AVATAR_SIZE = 60;
     public static final double CELL_SIZE = AVATAR_SIZE + 20;
     private static final double WIDTH = MainMenu.CONTENT_WIDTH / 2;
     private static final double HEIGHT = CELL_SIZE * 5 + 2;
-    private static final SnakeList instance = new SnakeList();
+    private static final SnakePlayerList instance = new SnakePlayerList();
 
-    public static SnakeList getInstance() {
+    public static SnakePlayerList getInstance() {
         return instance;
     }
 
-    private SnakeList() {
+    private SnakePlayerList() {
         setPrefSize(0, 0);
         setFixedCellSize(CELL_SIZE);
         setCellFactory(new Callback<ListView<SnakePlayer>, ListCell<SnakePlayer>>() {
@@ -59,10 +59,8 @@ public class SnakeList extends ListView<SnakePlayer> {
 
     public void resize() {
         ObservableList<SnakePlayer> list = getItems();
-        if (list.isEmpty()) {}
-        else if (list.size() < 5) setPrefSize(WIDTH, list.size() * CELL_SIZE + 2);
+        if (list.size() < 5) setPrefSize(WIDTH, list.size() * CELL_SIZE + 2);
         else setPrefSize(WIDTH, HEIGHT);
     }
-    
 
 }
