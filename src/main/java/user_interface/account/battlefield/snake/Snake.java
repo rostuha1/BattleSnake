@@ -48,7 +48,7 @@ public class Snake implements SnakeEngine {
 
         currentDirection = initDirection;
         length = linkedList.size();
-        init(linkedList);
+        cells = linkedList;
     }
 
     public Snake(Position[] positions, Color color, Direction initDirection) {
@@ -61,12 +61,16 @@ public class Snake implements SnakeEngine {
 
         currentDirection = initDirection;
         length = linkedList.size();
-        init(linkedList);
+        cells = linkedList;
+
     }
 
-    private void init(LinkedList<Rect> list) {
-        cells = list;
+    public void show() {
         parent.getChildren().addAll(cells);
+    }
+
+    public void hide() {
+        parent.getChildren().removeAll(cells);
     }
 
     public void setDirection(Direction nextDirection) {

@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 import main.Main;
 import main.SnakePane;
 import user_interface.account.MainMenu;
+import user_interface.account.battlefield.menu.SnakesPane;
 import user_interface.account.battlefield.snake.Snake;
 import javafx.scene.Scene;
 import user_interface.animation.TransitionAnimation;
@@ -33,7 +34,10 @@ public class KeyboardEvents {
     private static void battlefieldMode() {
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
-                TransitionAnimation.start(SnakePane.instance, MainMenu.instance, ()-> scene.setOnKeyPressed(null));
+                TransitionAnimation.start(SnakePane.instance, MainMenu.instance, ()-> {
+                    scene.setOnKeyPressed(null);
+                    SnakesPane.instance.hideSnakes();
+                });
             }
         });
     }

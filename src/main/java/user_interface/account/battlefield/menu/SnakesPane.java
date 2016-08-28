@@ -76,29 +76,14 @@ public class SnakesPane extends HBox {
 
     }
 
-    private void highlightSnake(Snake snake, ImageView imageView) {
-        if (selectedSnakeImage == imageView) {
-            selectedSnakeImage.setEffect(null);
-            selectedSnakeImage = null;
-            selectedSnake.highlightSnake(false);
-            selectedSnake = null;
-            return;
-        }
-
-        if (selectedSnakeImage != null) selectedSnakeImage.setEffect(null);
-        if (selectedSnake != null) selectedSnake.highlightSnake(false);
-
-        selectedSnakeImage = imageView;
-        selectedSnakeImage.setEffect(Settings.itemEffect);
-        selectedSnake = snake;
-        selectedSnake.highlightSnake(true);
-    }
-
     private static void setSnake(ImageView snake, Slot slot) {
         if (slot.getCurrentPlayer().getAvatar() == SnakePlayer.DEFAULT_AVATAR) {
             instance.getChildren().remove(snake);
+            Snake s = slot.getCurrentPlayer().getSnake();
+            if (s != null) s.hide();
             return;
         }
+        slot.getCurrentPlayer().getSnake().show();
         if (!instance.getChildren().contains(snake)) instance.getChildren().add(snake);
         new Thread(() -> snake.setImage(setSnakeBackground(slot.getAvatar(), slot.getCurrentPlayer().getColor()))).start();
         snakesNumber++;
@@ -119,6 +104,36 @@ public class SnakesPane extends HBox {
         }
 
         return result;
+    }
+
+    private void highlightSnake(Snake snake, ImageView imageView) {
+        if (selectedSnakeImage == imageView) {
+            selectedSnakeImage.setEffect(null);
+            selectedSnakeImage = null;
+            selectedSnake.highlightSnake(false);
+            selectedSnake = null;
+            return;
+        }
+
+        if (selectedSnakeImage != null) selectedSnakeImage.setEffect(null);
+        if (selectedSnake != null) selectedSnake.highlightSnake(false);
+
+        selectedSnakeImage = imageView;
+        selectedSnakeImage.setEffect(Settings.itemEffect);
+        selectedSnake = snake;
+        selectedSnake.highlightSnake(true);
+    }
+
+    public void hideSnakes() {
+        Snake s1 = firstSlot.getCurrentPlayer().getSnake();
+        Snake s2 = secondSlot.getCurrentPlayer().getSnake();
+        Snake s3 = thirdSlot.getCurrentPlayer().getSnake();
+        Snake s4 = fourthSlot.getCurrentPlayer().getSnake();
+
+        if (s1 != null) s1.hide();
+        if (s2 != null) s2.hide();
+        if (s3 != null) s3.hide();
+        if (s4 != null) s4.hide();
     }
 
 }
