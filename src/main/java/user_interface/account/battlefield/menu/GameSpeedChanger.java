@@ -57,7 +57,7 @@ public class GameSpeedChanger extends VBox {
             sliderValue.setText(String.format("%.2f", stepsPerSecond));
         });
 
-        sliderBox.setAlignment(Pos.CENTER);
+        sliderBox.setAlignment(Pos.TOP_CENTER);
         sliderBox.setSpacing(SLIDER_BOX_SPACING);
         sliderBox.getChildren().add(slider);
         sliderBox.getChildren().add(sliderValue);
