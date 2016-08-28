@@ -15,10 +15,6 @@ public class Receiver implements SnakeListReceiver, CardsReceiver, UserReceiver 
 
     public static final Receiver instance = new Receiver();
 
-//    ObservableList<SnakePlayer> list = receiveSnakeList();
-//    Card[][] cards = receiveCards();
-//    User user = receiveUser();
-
     private Receiver() {}
 
     @Override

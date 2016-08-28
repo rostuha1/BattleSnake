@@ -16,6 +16,7 @@ import user_interface.menus.SubMenu;
 public class TransitionAnimation {
 
     private static boolean pressLock;
+    private static boolean pressLock2;
 
     public static final int ESCAPE_EFFECT_DURATION = 500;
     static int EFFECT_DURATION = 300;
@@ -82,8 +83,8 @@ public class TransitionAnimation {
 
     public static void start(Pane hidePane, Pane showPane) {
 
-        if (pressLock) return;
-        pressLock = true;
+        if (pressLock2) return;
+        pressLock2 = true;
 
         FadeTransition showAnimation = new FadeTransition(Duration.millis(EFFECT_DURATION));
         FadeTransition hideAnimation = new FadeTransition(Duration.millis(EFFECT_DURATION));
@@ -99,7 +100,7 @@ public class TransitionAnimation {
         hidePane.setMouseTransparent(true);
         showPane.setMouseTransparent(false);
 
-        showAnimation.setOnFinished(event -> pressLock = false);
+        showAnimation.setOnFinished(event -> pressLock2 = false);
 
         hideAnimation.setOnFinished(event -> {
             showPane.setOpacity(0);
@@ -113,8 +114,8 @@ public class TransitionAnimation {
 
         if (additionalOnFinishEvent == null) start(hidePane, showPane);
 
-        if (pressLock) return;
-        pressLock = true;
+        if (pressLock2) return;
+        pressLock2 = true;
 
         FadeTransition showAnimation = new FadeTransition(Duration.millis(EFFECT_DURATION));
         FadeTransition hideAnimation = new FadeTransition(Duration.millis(EFFECT_DURATION));
@@ -131,7 +132,7 @@ public class TransitionAnimation {
         showPane.setMouseTransparent(false);
 
         showAnimation.setOnFinished(event -> {
-            pressLock = false;
+            pressLock2 = false;
             additionalOnFinishEvent.doEvent();
         });
 

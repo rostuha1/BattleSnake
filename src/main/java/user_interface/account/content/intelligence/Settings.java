@@ -23,7 +23,7 @@ public class Settings {
     public static final Insets hInsets = new Insets(10);
     public static final Insets gridInsets = new Insets(5);
 
-    public static final Effect itemEffect = new DropShadow(10,Color.AZURE);
+    public static final Effect itemEffect = new DropShadow(10, Color.AZURE);
     public static final Effect cardElementSwitchEffect = new ColorAdjust(0, 0, -0.4, 0);
 
     public static final Background cardPaneBackground = new Background(new BackgroundFill(Color.web("0x73D123", 0.2), new CornerRadii(3), new Insets(-2)));
@@ -32,6 +32,12 @@ public class Settings {
 
     public static final String sideMenuBackground =
             "-fx-background-image: url('" + projectPath + "/src/main/resources/side.jpg');" +
-            "-fx-opacity: 0.6";
+                    "-fx-opacity: 0.6";
+
+//        DropShadow effect = new DropShadow();
+//        effect.setColor(Color.BLUE);
+//        effect.setBlurType(BlurType.GAUSSIAN);
+//        effect.setRadius(5);
+//        setEffect(effect);
 
 }

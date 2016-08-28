@@ -1,20 +1,18 @@
 package events;
 
-import javafx.event.Event;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import main.Main;
 import main.SnakePane;
 import user_interface.account.MainMenu;
 import user_interface.account.battlefield.menu.SnakesPane;
 import user_interface.account.battlefield.snake.Snake;
-import javafx.scene.Scene;
 import user_interface.animation.TransitionAnimation;
 
 public class KeyboardEvents {
 
     public static Snake snake;
     private static Scene scene = Main.getScene();
-    private static boolean lock;
 
     public static void initKeys(Scene scene) {
         scene.setOnKeyPressed(event -> {
@@ -34,11 +32,15 @@ public class KeyboardEvents {
     private static void battlefieldMode() {
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
-                TransitionAnimation.start(SnakePane.instance, MainMenu.instance, ()-> {
-                    scene.setOnKeyPressed(null);
-                    SnakesPane.instance.hideSnakes();
-                });
+                backFromBattleField();
             }
+        });
+    }
+
+    public static void backFromBattleField() {
+        TransitionAnimation.start(SnakePane.instance, MainMenu.instance, ()-> {
+            scene.setOnKeyPressed(null);
+            SnakesPane.instance.hideSnakes();
         });
     }
 

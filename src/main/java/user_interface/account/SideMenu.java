@@ -26,26 +26,19 @@ public class SideMenu extends ToolBar {
 
     public SideMenu() {
         super(fight, mySnake, intelligence, rules, developers, exit);
-        exit.setOnMouseClicked(event -> System.exit(0));
     }
 
     {
         setOrientation(Orientation.VERTICAL);
         setMinWidth(MainMenu.SIDE_MENU_WIDTH);
+        setStyle(Settings.sideMenuBackground);
 
         fight.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.FIGHT_CONTENT));
         intelligence.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.INTELLIGENCE_CONTENT));
         mySnake.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.MY_SNAKE_CONTENT));
         rules.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.RULES_CONTENT));
         developers.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.DEVELOPERS_CONTENT));
-
-        setStyle(Settings.sideMenuBackground);
-
-//        DropShadow effect = new DropShadow();
-//        effect.setColor(Color.BLUE);
-//        effect.setBlurType(BlurType.GAUSSIAN);
-//        effect.setRadius(5);
-//        setEffect(effect);
+        exit.setOnMouseClicked(event -> System.exit(0));
     }
 
 }

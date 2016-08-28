@@ -56,7 +56,6 @@ public class Main extends Application {
         root.getChildren().add(MainMenu.instance);
         SnakesPane.init();
 
-
     }
 
     private static void snakeDemo() {

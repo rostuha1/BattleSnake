@@ -60,7 +60,7 @@ public class SnakesPane extends HBox {
             return;
         }
 
-        double imageSize = ControlMenu.SIDE_PLACE_WIDTH / snakesNumber - 40;
+        double imageSize = ControlMenu.SIDE_PLACE_WIDTH / 4 - 20;
 
         instance.firstSnake.setFitHeight(imageSize);
         instance.firstSnake.setFitWidth(imageSize);
@@ -72,7 +72,7 @@ public class SnakesPane extends HBox {
         instance.fourthSnake.setFitWidth(imageSize);
 
         if (!ControlMenu.instance.getChildren().contains(instance))
-            ControlMenu.instance.getChildren().add(instance);
+            ControlMenu.instance.setTop(instance);
 
     }
 
