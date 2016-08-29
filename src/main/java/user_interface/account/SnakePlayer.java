@@ -1,4 +1,4 @@
-package client_server.I_O;
+package user_interface.account;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;

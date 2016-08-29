@@ -1,6 +1,6 @@
 package user_interface.account.battlefield.menu;
 
-import client_server.I_O.SnakePlayer;
+import user_interface.account.SnakePlayer;
 import javafx.geometry.Pos;
 import javafx.scene.image.*;
 import javafx.scene.layout.HBox;

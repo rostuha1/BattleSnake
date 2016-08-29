@@ -1,24 +1,21 @@
-package client_server.I_O.Receiver;
+package main;
 
-import client_server.I_O.SnakePlayer;
-import client_server.I_O.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
+import user_interface.account.SnakePlayer;
+import user_interface.account.User;
 import user_interface.account.battlefield.snake.Direction;
 import user_interface.account.battlefield.snake.Position;
 import user_interface.account.battlefield.snake.Snake;
 import user_interface.account.content.intelligence.Role;
 import user_interface.account.content.intelligence.card_elements.Card;
 
-public class Receiver implements SnakeListReceiver, CardsReceiver, UserReceiver {
+public class Receiver {
 
-    public static final Receiver instance = new Receiver();
+    // ToDo. Remove this class and use Receiver from client_server I_O
 
-    private Receiver() {}
-
-    @Override
-    public ObservableList<SnakePlayer> receiveSnakeList() {
+    public static ObservableList<SnakePlayer> receiveSnakeList() {
 
         //ToDo. Must be downloaded from server
 
@@ -60,8 +57,7 @@ public class Receiver implements SnakeListReceiver, CardsReceiver, UserReceiver 
 
     }
 
-    @Override
-    public Card[][] receiveCards() {
+    public static Card[][] receiveCards() {
 
         // ToDo. Must be downloaded from server
 
@@ -121,8 +117,7 @@ public class Receiver implements SnakeListReceiver, CardsReceiver, UserReceiver 
         return cards;
     }
 
-    @Override
-    public User receiveUser() {
+    public static User receiveUser() {
 
         User user = new User();
 
@@ -138,4 +133,5 @@ public class Receiver implements SnakeListReceiver, CardsReceiver, UserReceiver 
 
         return user;
     }
+
 }

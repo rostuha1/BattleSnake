@@ -1,6 +1,5 @@
 package user_interface.account;
 
-import client_server.I_O.User;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.WindowSettings;

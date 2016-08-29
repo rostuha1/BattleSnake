@@ -7,8 +7,6 @@ public class Card extends GridPane {
 
     private CardElement[][] elements = new CardElement[7][7];
 
-    private CardDirection direction = CardDirection.FORWARD;
-
     {
 
         //ToDo. Must be removed. And must be initialized by using method "setElements"
@@ -77,15 +75,4 @@ public class Card extends GridPane {
         return elements;
     }
 
-    public void setElements(CardElement[][] elements) {
-        this.elements = elements;
-    }
-
-    public CardDirection getDirection() {
-        return direction;
-    }
-
-    public void setDirection(CardDirection direction) {
-        this.direction = direction;
-    }
 }

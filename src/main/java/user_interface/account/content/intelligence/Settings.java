@@ -32,7 +32,7 @@ public class Settings {
 
     public static final String sideMenuBackground =
             "-fx-background-image: url('" + projectPath + "/src/main/resources/side.jpg');" +
-                    "-fx-opacity: 0.6";
+            "-fx-opacity: 0.6";
 
 //        DropShadow effect = new DropShadow();
 //        effect.setColor(Color.BLUE);

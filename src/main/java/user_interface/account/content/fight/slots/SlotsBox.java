@@ -1,6 +1,6 @@
 package user_interface.account.content.fight.slots;
 
-import client_server.I_O.User;
+import user_interface.account.User;
 import events.KeyboardEvents;
 import events.Mode;
 import javafx.geometry.Pos;

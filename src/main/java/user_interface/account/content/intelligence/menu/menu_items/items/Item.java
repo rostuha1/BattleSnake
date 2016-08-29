@@ -1,6 +1,7 @@
 package user_interface.account.content.intelligence.menu.menu_items.items;
 
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.HBox;

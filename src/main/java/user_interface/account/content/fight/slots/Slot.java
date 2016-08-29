@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import user_interface.account.content.fight.list.SnakePlayerList;
-import client_server.I_O.SnakePlayer;
+import user_interface.account.SnakePlayer;
 import user_interface.account.content.fight.list.SnakeViewerPane;
 
 public class Slot extends HBox {

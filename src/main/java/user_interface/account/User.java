@@ -1,6 +1,6 @@
-package client_server.I_O;
+package user_interface.account;
 
-import client_server.I_O.Receiver.Receiver;
+import main.Receiver;
 import user_interface.account.content.intelligence.card_elements.Card;
 
 public class User {
@@ -11,7 +11,7 @@ public class User {
     private SnakePlayer snakePlayer;
     private Card[][] cards; // 3 * 3
 
-    private static User instance = Receiver.instance.receiveUser(); // ToDo. Must be downloaded from server
+    private static User instance = Receiver.receiveUser(); // ToDo. Must be downloaded from server
 
     public User() {}
 

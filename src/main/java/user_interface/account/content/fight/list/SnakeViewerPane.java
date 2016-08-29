@@ -1,7 +1,7 @@
 package user_interface.account.content.fight.list;
 
-import client_server.I_O.Receiver.Receiver;
-import client_server.I_O.SnakePlayer;
+import main.Receiver;
+import user_interface.account.SnakePlayer;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -102,7 +102,7 @@ public class SnakeViewerPane extends VBox {
     }
 
     private void setSnakePlayers() {
-        snakePlayerList.setList(Receiver.instance.receiveSnakeList());
+        snakePlayerList.setList(Receiver.receiveSnakeList());
     }
 
 

@@ -1,6 +1,6 @@
 package user_interface.account.content.fight.list;
 
-import client_server.I_O.SnakePlayer;
+import user_interface.account.SnakePlayer;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;

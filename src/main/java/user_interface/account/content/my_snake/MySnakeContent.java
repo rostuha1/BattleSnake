@@ -1,7 +1,7 @@
 package user_interface.account.content.my_snake;
 
-import client_server.I_O.SnakePlayer;
-import client_server.I_O.User;
+import user_interface.account.SnakePlayer;
+import user_interface.account.User;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
