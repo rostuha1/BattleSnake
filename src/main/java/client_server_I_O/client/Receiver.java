@@ -1,6 +1,7 @@
 package client_server_I_O.client;
 
 import client_server_I_O.classes.SnakesList;
+import client_server_I_O.classes.User;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -18,7 +19,7 @@ public class Receiver {
                 case 10: Manager.registration((Boolean) inputStream.readObject()); break;
                 case 11: Manager.authorization((Boolean) inputStream.readObject()); break;
                 case 12: Manager.postRegistrationProcess((Boolean) inputStream.readObject()); break;
-                case 13: Manager.postAuthorizationProcess((Boolean) inputStream.readObject()); break;
+                case 13: Manager.postAuthorizationProcess((User) inputStream.readObject()); break;
             }
 
         } catch (Exception e) {

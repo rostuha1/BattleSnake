@@ -1,6 +1,7 @@
 package client_server_I_O.client;
 
 import client_server_I_O.classes.SnakesList;
+import client_server_I_O.classes.User;
 
 public class Manager {
 
@@ -16,7 +17,8 @@ public class Manager {
         // successful or not
     }
 
-    public static void postAuthorizationProcess(Boolean flag) {
+    public static void postAuthorizationProcess(User user) {
+        if (user == null) {} // something went wrong
         // go to account
     }
 

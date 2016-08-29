@@ -2,10 +2,11 @@ package client_server_I_O.server;
 
 import client_server_I_O.classes.SnakesList;
 import client_server_I_O.classes.User;
-import client_server_I_O.I_O_KEYS;
 
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import static client_server_I_O.I_O_KEYS.*;
 
 public class Sender {
 
@@ -20,20 +21,16 @@ public class Sender {
         }
     }
 
-    public static void sendUser(User user, Socket socket) {
-        send(I_O_KEYS.USER.key, user, socket);
-    }
-
     public static void sendSnakesList (SnakesList list, Socket socket) {
-        send(I_O_KEYS.SNAKES_LIST.key, list, socket);
+        send(SNAKES_LIST.key, list, socket);
     }
 
     public static void registration (Boolean isSuccessful, Socket socket) {
-        send(I_O_KEYS.REGISTRATION.key, isSuccessful, socket);
+        send(POST_REGISTRATION.key, isSuccessful, socket);
     }
 
-    public static void authorization (Boolean isSuccessful, Socket socket) {
-        send(I_O_KEYS.AUTHORIZATION.key, isSuccessful, socket);
+    public static void authorization (User user, Socket socket) {
+        send(POST_AUTHORIZATION.key, user, socket);
     }
 
 }

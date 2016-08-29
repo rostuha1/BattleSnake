@@ -59,10 +59,12 @@ public class Sender {
 
     public static void registration(String login, String password, Socket socket) {
         singingInUp(I_O_KEYS.REGISTRATION, login, password, socket);
+        Receiver.receive(socket);
     }
 
     public static void authorization(String login, String password, Socket socket) {
         singingInUp(I_O_KEYS.AUTHORIZATION, login, password, socket);
+        Receiver.receive(socket);
     }
 
     private static void singingInUp(I_O_KEYS action, String login, String password, Socket socket) {
