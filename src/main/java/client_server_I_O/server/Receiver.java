@@ -4,12 +4,10 @@ import client_server_I_O.classes.Avatar;
 import client_server_I_O.classes.Snake;
 import client_server_I_O.classes.SnakePlayer;
 import client_server_I_O.classes.User;
-import javafx.scene.image.Image;
 import user_interface.account.content.intelligence.card_elements.Card;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.util.logging.Logger;
 
 public class Receiver {
 
