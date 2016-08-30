@@ -17,6 +17,7 @@ public class Sender {
 
     private static void send(byte key, long userId, Object o) {
         try {
+            if (socket != null && !socket.isClosed()) socket.close();
             socket = Connection.create();
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             outputStream.writeByte(key);

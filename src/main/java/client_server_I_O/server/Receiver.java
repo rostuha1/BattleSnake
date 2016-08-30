@@ -33,6 +33,9 @@ public class Receiver {
 
             Sender.successfulOperation(socket);
 
+            inputStream.close();
+            socket.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
