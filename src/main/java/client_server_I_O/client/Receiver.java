@@ -5,8 +5,11 @@ import client_server_I_O.classes.User;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.logging.Logger;
 
 public class Receiver {
+
+    private static Logger log = Logger.getLogger(Receiver.class.getName());
 
     public static void receive(Socket socket) {
         try {
@@ -16,10 +19,9 @@ public class Receiver {
 
             switch (key) {
                 case 9: Manager.saveSnakesList((SnakesList) inputStream.readObject()); break;
-                case 10: Manager.registration((Boolean) inputStream.readObject()); break;
-                case 11: Manager.authorization((Boolean) inputStream.readObject()); break;
                 case 12: Manager.postRegistrationProcess((Boolean) inputStream.readObject()); break;
                 case 13: Manager.postAuthorizationProcess((User) inputStream.readObject()); break;
+                case 14: log.info("_CLIENT_ successful operation\n"); break;
             }
 
         } catch (Exception e) {

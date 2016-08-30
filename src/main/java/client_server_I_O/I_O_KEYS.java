@@ -14,7 +14,8 @@ public enum I_O_KEYS {
     REGISTRATION((byte) 10),
     AUTHORIZATION((byte) 11),
     POST_REGISTRATION((byte) 12),
-    POST_AUTHORIZATION((byte) 13);
+    POST_AUTHORIZATION((byte) 13),
+    SUCCESSFUL_OPERATION((byte) 14);
 
     public final byte key;
 

@@ -1,11 +1,11 @@
 package client_server_I_O.client;
 
 import client_server_I_O.I_O_KEYS;
+import client_server_I_O.classes.Avatar;
 import client_server_I_O.classes.Snake;
 import client_server_I_O.classes.SnakePlayer;
 import client_server_I_O.classes.User;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import user_interface.account.content.intelligence.card_elements.Card;
 
 import java.io.ObjectOutputStream;
@@ -23,6 +23,7 @@ public class Sender {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Receiver.receive(socket);
     }
 
     public static void sendUser(long userId, User user, Socket socket) {
@@ -37,7 +38,7 @@ public class Sender {
         send(I_O_KEYS.SNAKE_PLAYER.key, userId, snakePlayer, socket);
     }
 
-    public static void sendAvatar(long userId, Image avatar, Socket socket) {
+    public static void sendAvatar(long userId, Avatar avatar, Socket socket) {
         send(I_O_KEYS.AVATAR.key, userId, avatar, socket);
     }
 
@@ -45,7 +46,7 @@ public class Sender {
         send(I_O_KEYS.NAME.key, userId, name, socket);
     }
 
-    public static void sendColor(long userId, Color color, Socket socket) {
+    public static void sendColor(long userId, String color, Socket socket) {
         send(I_O_KEYS.COLOR.key, userId, color, socket);
     }
 
@@ -59,12 +60,10 @@ public class Sender {
 
     public static void registration(String login, String password, Socket socket) {
         singingInUp(I_O_KEYS.REGISTRATION, login, password, socket);
-        Receiver.receive(socket);
     }
 
     public static void authorization(String login, String password, Socket socket) {
         singingInUp(I_O_KEYS.AUTHORIZATION, login, password, socket);
-        Receiver.receive(socket);
     }
 
     private static void singingInUp(I_O_KEYS action, String login, String password, Socket socket) {

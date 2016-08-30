@@ -9,20 +9,12 @@ public class Manager {
 
     }
 
-    public static void registration(Boolean flag) {
-        // successful or not
-    }
-
-    public static void authorization(Boolean flag) {
-        // successful or not
-    }
-
     public static void postAuthorizationProcess(User user) {
         if (user == null) {} // something went wrong
         // go to account
     }
 
     public static void postRegistrationProcess(Boolean flag) {
-        // some action
+
     }
 }

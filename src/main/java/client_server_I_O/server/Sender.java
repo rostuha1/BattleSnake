@@ -25,12 +25,16 @@ public class Sender {
         send(SNAKES_LIST.key, list, socket);
     }
 
-    public static void registration (Boolean isSuccessful, Socket socket) {
+    public static void sendRegistrationResponse(Boolean isSuccessful, Socket socket) {
         send(POST_REGISTRATION.key, isSuccessful, socket);
     }
 
-    public static void authorization (User user, Socket socket) {
+    public static void sendAuthorizationResponse(User user, Socket socket) {
         send(POST_AUTHORIZATION.key, user, socket);
+    }
+
+    public static void successfulOperation(Socket socket) {
+        send(SUCCESSFUL_OPERATION.key, null, socket);
     }
 
 }
