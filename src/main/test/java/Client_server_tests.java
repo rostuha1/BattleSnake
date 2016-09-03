@@ -49,13 +49,18 @@ public class Client_Server_tests {
                 try {
                     Receiver.receive(serverSocket.accept());
                 } catch (Exception e) {
+                    try {
+                        serverSocket.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                     log.info("_SERVER_stopped");
                 }
             }
         }).start();
     }
 
-    @After
+//    @After
     public void close() {
         try {
             isRun = false;
@@ -67,44 +72,37 @@ public class Client_Server_tests {
 
     @Test
     public void startClientRequests() {
+        log.info("_CLIENT_starting registration");
+        Sender.registration("login", "password");
 
-        try {
-            log.info("_CLIENT_starting registration");
-            Sender.registration("login", "password");
+        log.info("_CLIENT_starting authorization");
+        Sender.authorization("login", "password");
 
-            log.info("_CLIENT_starting authorization");
-            Sender.authorization("login", "password");
+        log.info("_CLIENT_sending avatar");
+        Avatar avatar = new Avatar();
+        avatar.setImageBytes(Converter.getBytesFromFile(Settings.projectPath + "src/main/resources/snake1.png"));
+        Sender.sendAvatar(10, avatar);
 
-            log.info("_CLIENT_sending avatar");
-            Avatar avatar = new Avatar();
-            avatar.setImageBytes(Converter.getBytesFromFile(Settings.projectPath + "src/main/resources/snake1.png"));
-            Sender.sendAvatar(10, avatar);
+        log.info("_CLIENT_sending color");
+        Sender.sendColor(userId, Color.ALICEBLUE.toString());
 
-            log.info("_CLIENT_sending color");
-            Sender.sendColor(userId, Color.ALICEBLUE.toString());
+        log.info("_CLIENT_sending snake name");
+        Sender.sendName(userId, "Big Snake");
 
-            log.info("_CLIENT_sending snake name");
-            Sender.sendName(userId, "Big Snake");
+        log.info("_CLIENT_sending snake about");
+        Sender.sendAbout(userId, "I'm stupid big snake");
 
-            log.info("_CLIENT_sending snake about");
-            Sender.sendAbout(userId, "I'm stupid big snake");
+        log.info("_CLIENT_sending snake snake");
+        Sender.sendSnake(userId, new Snake());
 
-            log.info("_CLIENT_sending snake snake");
-            Sender.sendSnake(userId, new Snake());
+        log.info("_CLIENT_sending snake about");
+        Sender.sendCards(userId, new Card[0][]);
 
-            log.info("_CLIENT_sending snake about");
-            Sender.sendCards(userId, new Card[0][]);
+        log.info("_CLIENT_sending snakePlayer");
+        Sender.sendSnakePlayer(userId, new SnakePlayer());
 
-            log.info("_CLIENT_sending snakePlayer");
-            Sender.sendSnakePlayer(userId, new SnakePlayer());
-
-            log.info("_CLIENT_sending snakePlayer");
-            Sender.sendUser(userId, new User());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        log.info("_CLIENT_sending snakePlayer");
+        Sender.sendUser(userId, new User());
     }
 
 }
