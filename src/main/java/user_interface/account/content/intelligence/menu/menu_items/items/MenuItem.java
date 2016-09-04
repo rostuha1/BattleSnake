@@ -49,6 +49,7 @@ public class MenuItem extends Item {
             CardElement.setSelectedElement(null);
             return;
         }
+        selectedItem.setBackground(Settings.defaultMenuItemBackground);
         selectedItem = this;
         changeSelectedCardElement();
         defaultStyle(StyleType.PRESSED);
