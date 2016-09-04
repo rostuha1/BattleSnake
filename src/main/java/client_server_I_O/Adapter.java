@@ -28,6 +28,9 @@ public class Adapter {
 //            accUser.setCards(servSnake.getCards());
         }
 
+
+
+
         return null;
 
     }

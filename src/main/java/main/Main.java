@@ -12,6 +12,8 @@ import user_interface.account.content.intelligence.Settings;
 import user_interface.animation.AnimatedCircles;
 import user_interface.menus.MenuBox;
 
+import java.net.ServerSocket;
+
 public class Main extends Application {
 
     private static Pane root = new Pane();
@@ -39,6 +41,10 @@ public class Main extends Application {
     }
 
     public static void gameInit() {
+
+//        ServerSocket serverSocket = new ServerSocket(12345);
+
+        new Thread().start();
 
         root.setStyle("-fx-background-color: rgb(35, 40, 30)");
         AnimatedCircles.createSpawnNodes(root);
