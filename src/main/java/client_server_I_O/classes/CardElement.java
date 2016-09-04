@@ -12,7 +12,7 @@ public class CardElement implements Serializable {
         return role;
     }
     public void setRole(int role) {
-        role = role;
+        this.role = role;
     }
 
 }
