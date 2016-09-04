@@ -8,12 +8,12 @@ public class Messenger {
     public static void showMessage(MessageType messageType) {
         switch (messageType) {
             case SUCCESSFUL_AUTHORIZATION: {
-                Notifications.create().text("Ви успішно авторизувалися!")
+                Notifications.create().text("Успішно авторизувалися")
                         .showInformation();
                 break;
             }
             case SUCCESSFUL_REGISTRATION: {
-                Notifications.create().text("Ви успішно зареєструвалися!")
+                Notifications.create().text("Успішна реєстрація")
                         .showInformation();
                 break;
             }
@@ -27,7 +27,7 @@ public class Messenger {
             case UNSUCCESSFUL_REGISTRATION: {
                 Notifications.create()
                         .title("Невдала реєстрація")
-                        .text("Такий логін вже зареєстровано!")
+                        .text("Перевірте правильність введених даних!")
                         .showError();
                 break;
             }

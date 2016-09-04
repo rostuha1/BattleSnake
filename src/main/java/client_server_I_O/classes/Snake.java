@@ -18,9 +18,7 @@ public class Snake implements Serializable {
     private String color;
     private String about;
 
-    public Snake() {
 
-    }
 
     public ArrayList<Block> getBody() {
         return body;
@@ -76,6 +74,14 @@ public class Snake implements Serializable {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+
+
+
+
+    public Snake() {
+
     }
 
 }

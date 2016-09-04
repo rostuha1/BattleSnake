@@ -1,5 +1,6 @@
 package client_server_I_O;
 
+import client_server_I_O.classes.Message;
 import client_server_I_O.classes.User;
 
 import java.io.IOException;
@@ -49,7 +50,7 @@ public class Client {
     }
 
     public static User getUser(String login, String password){
-        Message message = new Message("add", "user", login, password);
+        Message message = new Message("get", "user", login, password);
         sendMessage(message);
         message = readMessage();
         return (User) message.getUnit();

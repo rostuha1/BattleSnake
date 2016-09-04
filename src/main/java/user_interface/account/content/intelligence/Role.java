@@ -108,57 +108,11 @@ public enum Role {
 
     }
 
-    public static Role getRoleById(int id) {
-        switch (id) {
-            case 1: return OWN_HEAD;
-            case 2: return OWN_BODY;
-            case 3: return OWN_TAIL;
-            case 4: return ENEMY_HEAD;
-            case 5: return ENEMY_BODY;
-            case 6: return ENEMY_TAIL;
-            case 7: return BARRIER;
-            case 8: return EMPTY;
-
-            case 9: return A_O_OWN_HEAD;
-            case 10: return A_O_OWN_BODY;
-            case 11: return A_O_OWN_TAIL;
-            case 12: return A_O_ENEMY_HEAD;
-            case 13: return A_O_ENEMY_BODY;
-            case 14: return A_O_ENEMY_TAIL;
-            case 15: return A_O_BARRIER;
-            case 16: return A_O_EMPTY;
-
-            case 17: return A_P_OWN_HEAD;
-            case 18: return A_P_OWN_BODY;
-            case 19: return A_P_OWN_TAIL;
-            case 20: return A_P_ENEMY_HEAD;
-            case 21: return A_P_ENEMY_BODY;
-            case 22: return A_P_ENEMY_TAIL;
-            case 23: return A_P_BARRIER;
-            case 24: return A_P_EMPTY;
-
-            case 25: return OR_OWN_HEAD;
-            case 26: return OR_OWN_BODY;
-            case 27: return OR_OWN_TAIL;
-            case 28: return OR_ENEMY_HEAD;
-            case 29: return OR_ENEMY_BODY;
-            case 30: return OR_ENEMY_TAIL;
-            case 31: return OR_BARRIER;
-            case 32: return OR_EMPTY;
-
-            case 33: return EXCEPT_OWN_HEAD;
-            case 34: return EXCEPT_OWN_BODY;
-            case 35: return EXCEPT_OWN_TAIL;
-            case 36: return EXCEPT_ENEMY_HEAD;
-            case 37: return EXCEPT_ENEMY_BODY;
-            case 38: return EXCEPT_ENEMY_TAIL;
-            case 39: return EXCEPT_BARRIER;
-            case 40: return EXCEPT_EMPTY;
-
-            case 41: return EXCEPT;
-
-            default: return null;
+    public static Role getRoleByKey(int key) {
+        for (Role role : Role.values()) {
+            if (role.key == key) return role;
         }
+        return null;
     }
 
     public static Image getElementImage(Role role) {

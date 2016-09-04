@@ -42,20 +42,16 @@ public class Main extends Application {
 
     public static void gameInit() {
 
-//        ServerSocket serverSocket = new ServerSocket(12345);
-
-        new Thread().start();
-
         root.setStyle("-fx-background-color: rgb(35, 40, 30)");
         AnimatedCircles.createSpawnNodes(root);
         root.getStylesheets().add(Settings.projectPath + "src/main/resources/style.css");
 
-//        MenuBox.init(root);
-//        MenuBox.show();
+        MenuBox.init(root);
+        MenuBox.show();
 
-        root.getChildren().add(SnakePane.instance);
-        root.getChildren().add(MainMenu.instance);
-        SnakesPane.init();
+//        root.getChildren().add(SnakePane.instance);
+//        root.getChildren().add(MainMenu.instance);
+//        SnakesPane.init();
 
     }
 

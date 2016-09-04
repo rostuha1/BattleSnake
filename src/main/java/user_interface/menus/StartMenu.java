@@ -62,11 +62,10 @@ public class StartMenu {
 
     private static void authorization(String login, String password) {
 //        new Thread(() -> {
-            User user = new User();
-            user.setLogin(login);
-            user.setLogin(password);
 
-            System.out.println(Client.getUser(login, password));
+        User user = Client.getUser(login, password);
+
+        Messenger.showMessage(user != null ? SUCCESSFUL_REGISTRATION : UNSUCCESSFUL_REGISTRATION);
 //        }).start();
     }
 
@@ -76,7 +75,7 @@ public class StartMenu {
             user.setLogin(login);
             user.setLogin(password);
 
-            System.out.println(Client.addUser(user));
+            Messenger.showMessage(Client.addUser(user) ? SUCCESSFUL_REGISTRATION : UNSUCCESSFUL_REGISTRATION);
 //        }).start();
     }
 

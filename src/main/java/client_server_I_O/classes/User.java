@@ -2,14 +2,19 @@ package client_server_I_O.classes;
 
 import java.io.Serializable;
 
+/**
+ * Created by Анатолий on 25.07.2016.
+ */
 public class User implements Serializable {
     static final long serialVersionUID = 9213284845659098448L;
-
     private String login;
     private String password;
     private Snake snake;
 
-    public User() {}
+
+    public User() {
+
+    }
 
     public String getPassword() {
         return password;
