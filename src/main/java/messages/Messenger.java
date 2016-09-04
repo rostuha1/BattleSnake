@@ -1,6 +1,7 @@
 package messages;
 
 import javafx.geometry.Pos;
+import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
 public class Messenger {
@@ -8,12 +9,16 @@ public class Messenger {
     public static void showMessage(MessageType messageType) {
         switch (messageType) {
             case SUCCESSFUL_AUTHORIZATION: {
-                Notifications.create().text("Успішно авторизувалися")
+                Notifications.create()
+                        .text("Авторизація...")
+                        .hideAfter(Duration.seconds(1))
                         .showInformation();
                 break;
             }
             case SUCCESSFUL_REGISTRATION: {
-                Notifications.create().text("Успішна реєстрація")
+                Notifications.create()
+                        .text("Успішна реєстрація")
+                        .hideAfter(Duration.seconds(0.5))
                         .showInformation();
                 break;
             }
@@ -21,6 +26,7 @@ public class Messenger {
                 Notifications.create()
                         .title("Помилка авторизації")
                         .text("Перевірте правильність введених даних!")
+                        .hideAfter(Duration.seconds(0.5))
                         .showError();
                 break;
             }
@@ -28,12 +34,14 @@ public class Messenger {
                 Notifications.create()
                         .title("Невдала реєстрація")
                         .text("Перевірте правильність введених даних!")
+                        .hideAfter(Duration.seconds(0.5))
                         .showError();
                 break;
             }
             case UNAVAILABLE_SERVER: {
                 Notifications.create()
                         .text("Сервер недоступний :(").position(Pos.BOTTOM_LEFT)
+                        .hideAfter(Duration.seconds(0.5))
                         .showError();
                 break;
             }

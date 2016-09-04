@@ -2,6 +2,8 @@ package client_server_I_O;
 
 import client_server_I_O.classes.Message;
 import client_server_I_O.classes.User;
+import messages.MessageType;
+import messages.Messenger;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,7 +22,7 @@ public class Client {
         try {
             socket = new Socket(ADDRESS, PORT);
         }catch (IOException e){
-            System.out.println("server connect error");
+            Messenger.showMessage(MessageType.UNAVAILABLE_SERVER);
         }
     }
 

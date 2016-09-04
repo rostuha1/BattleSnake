@@ -16,7 +16,6 @@ import java.io.Serializable;
  */
 public class Card implements Serializable {
 
-
     CardElement[][] elements = new CardElement[7][7];
 
     public Card() {

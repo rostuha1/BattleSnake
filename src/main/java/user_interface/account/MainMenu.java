@@ -51,7 +51,7 @@ public class MainMenu extends BorderPane {
         switch (contentType) {
             case FIGHT_CONTENT:
                 newContent = fightContent;
-                SlotsBox.instance.mySlot.updateSlot(User.getInstance().getSnakePlayer());
+                SlotsBox.mySlot.updateSlot(User.getInstance().getSnakePlayer());
                 break;
             case INTELLIGENCE_CONTENT:
                 newContent = intelligenceContent;

@@ -11,7 +11,6 @@ public class User implements Serializable {
     private String password;
     private Snake snake;
 
-
     public User() {
 
     }

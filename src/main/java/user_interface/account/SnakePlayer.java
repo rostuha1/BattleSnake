@@ -17,12 +17,14 @@ public class SnakePlayer {
     private static final String imagesPath = Settings.projectPath + "/src/main/resources/";
     public static final Image DEFAULT_AVATAR = new Image(imagesPath + "default-snake.png");
 
-    public static final SnakePlayer DEFAULT_SNAKE_PLAYER = new SnakePlayer();
+    public static final SnakePlayer DEFAULT_SNAKE_PLAYER = new SnakePlayer(true);
 
-    public SnakePlayer() {
-        this.avatar = DEFAULT_AVATAR;
-        this.name = "Гравця не вибрано";
-        this.color = Color.rgb(140, 145, 95);
+    public SnakePlayer(boolean initByDefault) {
+        if (initByDefault) {
+            this.avatar = DEFAULT_AVATAR;
+            this.name = "Гравця не вибрано";
+            this.color = Color.rgb(140, 145, 95);
+        }
     }
 
     public SnakePlayer(Image avatar, String name, int rating, Color color, String about) {

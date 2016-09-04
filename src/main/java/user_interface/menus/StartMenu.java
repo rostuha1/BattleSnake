@@ -2,13 +2,19 @@ package user_interface.menus;
 
 import client_server_I_O.Client;
 import client_server_I_O.classes.User;
+import javafx.application.Platform;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import main.Main;
+import main.SnakePane;
 import messages.Messenger;
 import user_interface.Component;
 import user_interface.ComponentBuilder;
+import user_interface.account.MainMenu;
+import user_interface.account.battlefield.menu.SnakesPane;
+import user_interface.animation.TransitionAnimation;
 
 import static messages.MessageType.*;
 
@@ -61,22 +67,38 @@ public class StartMenu {
     }
 
     private static void authorization(String login, String password) {
-//        new Thread(() -> {
+        new Thread(() -> {
+            User user = Client.getUser(login, password);
 
-        User user = Client.getUser(login, password);
-
-        Messenger.showMessage(user != null ? SUCCESSFUL_REGISTRATION : UNSUCCESSFUL_REGISTRATION);
-//        }).start();
+            if (user != null) {
+                Platform.runLater(() -> Messenger.showMessage(SUCCESSFUL_AUTHORIZATION));
+                try { Thread.sleep(2000); } catch (InterruptedException ignored) {}
+                Platform.runLater(StartMenu::goToAccount);
+            } else
+                Platform.runLater(() -> Messenger.showMessage(UNSUCCESSFUL_REGISTRATION));
+        }).start();
     }
 
     private static void registration(String login, String password) {
-//        new Thread(() -> {
+        new Thread(() -> {
             User user = new User();
             user.setLogin(login);
-            user.setLogin(password);
+            user.setPassword(password);
 
-            Messenger.showMessage(Client.addUser(user) ? SUCCESSFUL_REGISTRATION : UNSUCCESSFUL_REGISTRATION);
-//        }).start();
+            if (Client.addUser(user)) {
+                Platform.runLater(() -> Messenger.showMessage(SUCCESSFUL_REGISTRATION));
+                try { Thread.sleep(500); } catch (InterruptedException ignored) {}
+                Platform.runLater(() -> MenuBox.setSubMenu(StartMenu.authorizationMenu));
+            } else
+                Platform.runLater(() -> Messenger.showMessage(UNSUCCESSFUL_REGISTRATION));
+        }).start();
+    }
+
+    private static void goToAccount() {
+        MenuBox.hide();
+        Main.getRoot().getChildren().add(SnakePane.instance);
+        Main.getRoot().getChildren().add(MainMenu.instance);
+        SnakesPane.init();
     }
 
 }

@@ -49,10 +49,6 @@ public class Main extends Application {
         MenuBox.init(root);
         MenuBox.show();
 
-//        root.getChildren().add(SnakePane.instance);
-//        root.getChildren().add(MainMenu.instance);
-//        SnakesPane.init();
-
     }
 
     public static Pane getRoot() {
