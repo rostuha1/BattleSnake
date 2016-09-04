@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 public class CardElement implements Serializable {
 
-    public int Role;
+    public int role;
 
     public CardElement() {}
 
     public int getRole() {
-        return Role;
+        return role;
     }
     public void setRole(int role) {
-        Role = role;
+        role = role;
     }
 
 }

@@ -22,6 +22,7 @@ public class Slot extends HBox {
     private ImageView avatar = new ImageView();
     private Text description = new Text();
     private ContextMenu contextMenu = new ContextMenu();
+    private int index;
 
     {
         avatar.setFitHeight(60);
@@ -41,7 +42,8 @@ public class Slot extends HBox {
 
     }
 
-    public Slot() {
+    public Slot(int index) {
+        this.index = index;
         takeSlot(SnakePlayer.DEFAULT_SNAKE_PLAYER);
         isOccupied = false;
         MenuItem deleteSlot = new MenuItem("Звільнити слот");
@@ -50,7 +52,8 @@ public class Slot extends HBox {
         setOnContextMenuRequested(null);
     }
 
-    public Slot(SnakePlayer player) {
+    public Slot(SnakePlayer player, int index) {
+        this.index = index;
         takeSlot(player);
     }
 
@@ -93,5 +96,9 @@ public class Slot extends HBox {
 
     public SnakePlayer getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }

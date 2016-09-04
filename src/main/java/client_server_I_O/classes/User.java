@@ -2,49 +2,37 @@ package client_server_I_O.classes;
 
 import java.io.Serializable;
 
-public class User implements Serializable{
+public class User implements Serializable {
+    static final long serialVersionUID = 9213284845659098448L;
 
-    private long id;
     private String login;
     private String password;
-    private SnakePlayer snakePlayer;
-    private Card[][] cards; // 3 * 3
+    private Snake snake;
 
     public User() {}
 
-    public long getId() {
-        return id;
+    public String getPassword() {
+        return password;
     }
-    public void setId(long id) {
-        this.id = id;
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Snake getSnake() {
+        return snake;
+    }
+
+    public void setSnake(Snake snake) {
+        this.snake = snake;
     }
 
     public String getLogin() {
         return login;
     }
+
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public SnakePlayer getSnakePlayer() {
-        return snakePlayer;
-    }
-    public void setSnakePlayer(SnakePlayer snakePlayer) {
-        this.snakePlayer = snakePlayer;
-    }
-
-    public Card[][] getCards() {
-        return cards;
-    }
-    public void setCards(Card[][] cards) {
-        this.cards = cards;
     }
 
 }

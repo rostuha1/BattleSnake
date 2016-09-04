@@ -11,17 +11,19 @@ import java.util.HashMap;
 
 public class Client {
 
-    private Socket socket;
+    private static String ADDRESS = "127.0.0.1";
+    private static int PORT = 12345;
+    private static Socket socket;
 
-    public Client(String address, int port){
+    static {
         try {
-            socket = new Socket(address, port);
+            socket = new Socket(ADDRESS, PORT);
         }catch (IOException e){
             System.out.println("server connect error");
         }
     }
 
-    private void sendMessage(Message message) {
+    private static void sendMessage(Message message) {
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(message);
@@ -29,7 +31,7 @@ public class Client {
         } catch (IOException e) {}
     }
 
-    private Message readMessage() {
+    private static Message readMessage() {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             return (Message) inputStream.readObject();
@@ -39,43 +41,43 @@ public class Client {
         }
     }
 
-    public boolean addUser(User user){
+    public static boolean addUser(User user){
         Message message = new Message("add", user);
         sendMessage(message);
         message = readMessage();
         return (boolean) message.getUnit();
     }
 
-    public User getUser(String login, String password){
+    public static User getUser(String login, String password){
         Message message = new Message("add", "user", login, password);
         sendMessage(message);
         message = readMessage();
         return (User) message.getUnit();
     }
 
-    public ArrayList<User> getUsers(){
+    public static ArrayList<User> getUsers(){
         Message message = new Message("get", "users");
         sendMessage(message);
         message = readMessage();
         return (ArrayList<User>) message.getUnit();
     }
 
-    public HashMap<Integer, String> getGames(){
+    public static HashMap<Integer, String> getGames(){
         Message message = new Message("get", "games");
         sendMessage(message);
         message = readMessage();
         return (HashMap<Integer, String>) message.getUnit();
     }
 
-    public boolean updateUser(User user){
+    public static boolean updateUser(User user){
         Message message = new Message("update", user);
         sendMessage(message);
         message = readMessage();
         return (boolean) message.getUnit();
     }
 
-    public User startGame(String username1, String username2, String username3, String username4){
-            Message message = new Message("start", username1, username2, username3, username4);
+    public static User startGame(String username1, String username2, String username3, String username4){
+        Message message = new Message("start", username1, username2, username3, username4);
         sendMessage(message);
         message = readMessage();
         return (User) message.getUnit();

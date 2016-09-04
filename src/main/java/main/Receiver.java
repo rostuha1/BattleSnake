@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 import user_interface.account.SnakePlayer;
 import user_interface.account.User;
-import user_interface.account.battlefield.snake.Direction;
 import user_interface.account.battlefield.snake.Position;
 import user_interface.account.battlefield.snake.Snake;
 import user_interface.account.content.intelligence.Role;
@@ -17,40 +16,11 @@ public class Receiver {
 
     public static ObservableList<SnakePlayer> receiveSnakeList() {
 
-        //ToDo. Must be downloaded from server
-
-        Snake enemySnake1 = new Snake(new Position[]{
-                new Position(1, 3),
-                new Position(2, 3),
-                new Position(3, 3),
-                new Position(4, 3),
-                new Position(5, 3),
-                new Position(6, 3)
-        }, Color.AQUA, Direction.DOWN);
-
-        Snake enemySnake2 = new Snake(new Position[]{
-                new Position(1, 5),
-                new Position(2, 5),
-                new Position(3, 5),
-                new Position(4, 5),
-                new Position(5, 5),
-                new Position(6, 5)
-        }, Color.LIGHTGREEN, Direction.DOWN);
-
-        Snake enemySnake3 = new Snake(new Position[]{
-                new Position(1, 7),
-                new Position(2, 7),
-                new Position(3, 7),
-                new Position(4, 7),
-                new Position(5, 7),
-                new Position(6, 7)
-        }, Color.CORAL, Direction.DOWN);
-
         ObservableList<SnakePlayer> list = FXCollections.observableArrayList();
         list.addAll(
-                new SnakePlayer("snake2.png", "mike", 1500, "111", enemySnake1),
-                new SnakePlayer("snake3.png", "john", 1000, "I am a super snake :)", enemySnake2),
-                new SnakePlayer("snake4.png", "jack", 1010, "Let's fight with me!", enemySnake3)
+                new SnakePlayer("snake2.png", "mike", 1500, "111", new Snake(), Color.ALICEBLUE),
+                new SnakePlayer("snake3.png", "john", 1000, "I am a super snake :)", new Snake(), Color.BLUE),
+                new SnakePlayer("snake4.png", "jack", 1010, "Let's fight with me!",  new Snake(), Color.BURLYWOOD)
         );
 
         return list;
@@ -113,7 +83,6 @@ public class Receiver {
         card.getElements()[6][4].setRole(Role.OR_BARRIER);
         card.getElements()[6][5].setRole(Role.EXCEPT_BARRIER);
 
-
         return cards;
     }
 
@@ -121,12 +90,11 @@ public class Receiver {
 
         User user = new User();
 
-        Snake snake = new Snake(Color.WHEAT, Direction.RIGHT);
-        SnakePlayer snakePlayer = new SnakePlayer("snake1.png", "Ann", 1200, "Let's play!", snake);
+        Snake snake = new Snake();
+        SnakePlayer snakePlayer = new SnakePlayer("snake1.png", "Ann", 1200, "Let's play!", snake, Color.CYAN);
 
         user.setSnakePlayer(snakePlayer);
 
-        user.setId(1);
         user.setLogin("rostuha1");
         user.setPassword("12345");
         user.setCards(receiveCards());

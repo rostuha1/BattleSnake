@@ -5,7 +5,6 @@ import user_interface.account.content.intelligence.card_elements.Card;
 
 public class User {
 
-    private int id;
     private String login;
     private String password;
     private SnakePlayer snakePlayer;
@@ -20,25 +19,6 @@ public class User {
 
         this.login = login;
         this.password = password;
-    }
-
-    public User(int id, String login, String password, SnakePlayer snakePlayer, Card[][] cards) {
-
-        // ToDo. To remove
-
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.snakePlayer = snakePlayer;
-        this.cards = cards;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getLogin() {

@@ -19,7 +19,7 @@ public class SnakePlayer {
 
     public static final SnakePlayer DEFAULT_SNAKE_PLAYER = new SnakePlayer();
 
-    private SnakePlayer() {
+    public SnakePlayer() {
         this.avatar = DEFAULT_AVATAR;
         this.name = "Гравця не вибрано";
         this.color = Color.rgb(140, 145, 95);
@@ -33,12 +33,12 @@ public class SnakePlayer {
         this.about = about;
     }
 
-    public SnakePlayer(String avatarName, String name, int rating, String about, Snake snake) {
+    public SnakePlayer(String avatarName, String name, int rating, String about, Snake snake, Color color) {
         this.avatar = new Image(imagesPath + avatarName);
         this.name = name;
         this.rating = rating;
         this.about = about;
-        this.color = snake.getColor();
+        this.color = color;
         this.snake = snake;
     }
 

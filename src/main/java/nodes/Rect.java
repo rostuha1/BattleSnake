@@ -35,6 +35,10 @@ public class Rect extends Rectangle {
     public void draw() {
         parent.getChildren().add(this);
     }
+    public void draw(Color color) {
+        setFill(color);
+        parent.getChildren().add(this);
+    }
     public void remove() {
         parent.getChildren().remove(this);
     }

@@ -40,7 +40,7 @@ public class KeyboardEvents {
     public static void backFromBattleField() {
         TransitionAnimation.start(SnakePane.instance, MainMenu.instance, ()-> {
             scene.setOnKeyPressed(null);
-            SnakesPane.instance.hideSnakes();
+            Snake.clearField();
         });
     }
 

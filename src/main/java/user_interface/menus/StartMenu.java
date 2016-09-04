@@ -1,5 +1,7 @@
 package user_interface.menus;
 
+import client_server_I_O.Client;
+import client_server_I_O.classes.User;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -31,6 +33,7 @@ public class StartMenu {
 
         return new SubMenu(authorization, registration, exitGame);
     }
+
     public static SubMenu getAuthorizationMenu() {
         Region auth = ComponentBuilder.create(Component.LABEL, "АВТОРИЗАЦІЯ");
         TextField login = (TextField) ComponentBuilder.create(Component.FIELD, "Ваш логін");
@@ -39,9 +42,11 @@ public class StartMenu {
         Region optionsBack = ComponentBuilder.getButton("НАЗАД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
         optionsBack.setOnMouseClicked(event -> MenuBox.setSubMenu(mainMenu));
+        confirmAuthorization.setOnMouseClicked(event -> authorization(login.getText(), password.getText()));
 
         return new SubMenu(auth, login, password, confirmAuthorization, optionsBack);
     }
+
     public static SubMenu getRegistrationMenu() {
         Region reg = ComponentBuilder.create(Component.LABEL, "РЕЄСТРАЦІЯ");
         TextField login = (TextField) ComponentBuilder.create(Component.FIELD, "Ваш логін");
@@ -50,8 +55,29 @@ public class StartMenu {
         Region optionsBack = ComponentBuilder.getButton("НАЗАД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
         optionsBack.setOnMouseClicked(event -> MenuBox.setSubMenu(mainMenu));
+        confirmRegistration.setOnMouseClicked(event -> registration(login.getText(), password.getText()));
 
         return new SubMenu(reg, login, password, confirmRegistration, optionsBack);
+    }
+
+    private static void authorization(String login, String password) {
+//        new Thread(() -> {
+            User user = new User();
+            user.setLogin(login);
+            user.setLogin(password);
+
+            System.out.println(Client.getUser(login, password));
+//        }).start();
+    }
+
+    private static void registration(String login, String password) {
+//        new Thread(() -> {
+            User user = new User();
+            user.setLogin(login);
+            user.setLogin(password);
+
+            System.out.println(Client.addUser(user));
+//        }).start();
     }
 
 }
