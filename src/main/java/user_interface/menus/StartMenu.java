@@ -1,6 +1,5 @@
 package user_interface.menus;
 
-import client_server_I_O.Adapter;
 import client_server_I_O.Client;
 import client_server_I_O.classes.User;
 import javafx.application.Platform;
@@ -15,7 +14,7 @@ import user_interface.Component;
 import user_interface.ComponentBuilder;
 import user_interface.account.MainMenu;
 import user_interface.account.battlefield.menu.SnakesPane;
-import user_interface.animation.TransitionAnimation;
+import user_interface.account.content.intelligence.Settings;
 
 import static messages.MessageType.*;
 
@@ -34,9 +33,18 @@ public class StartMenu {
         Region registration = ComponentBuilder.getButton("РЕЄСТРАЦІЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
         Region exitGame = ComponentBuilder.getButton("ВИХІД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
-        authorization.setOnMouseClicked(event -> MenuBox.setSubMenu(authorizationMenu));
-        registration.setOnMouseClicked(event -> MenuBox.setSubMenu(registrationMenu));
-        exitGame.setOnMouseClicked(event -> System.exit(0));
+        authorization.setOnMouseClicked(event -> {
+            doButtonClickEffect(authorization);
+            MenuBox.setSubMenu(authorizationMenu);
+        });
+        registration.setOnMouseClicked(event -> {
+            doButtonClickEffect(registration);
+            MenuBox.setSubMenu(registrationMenu);
+        });
+        exitGame.setOnMouseClicked(event -> {
+            doButtonClickEffect(exitGame);
+            System.exit(0);
+        });
 
         return new SubMenu(authorization, registration, exitGame);
     }
@@ -48,8 +56,15 @@ public class StartMenu {
         Region confirmAuthorization = ComponentBuilder.getButton("ВХІД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
         Region optionsBack = ComponentBuilder.getButton("НАЗАД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
-        optionsBack.setOnMouseClicked(event -> MenuBox.setSubMenu(mainMenu));
-        confirmAuthorization.setOnMouseClicked(event -> authorization(login.getText(), password.getText()));
+        optionsBack.setOnMouseClicked(event -> {
+            doButtonClickEffect(optionsBack);
+            MenuBox.setSubMenu(mainMenu);
+        });
+
+        confirmAuthorization.setOnMouseClicked(event -> {
+            doButtonClickEffect(confirmAuthorization);
+            authorization(login.getText(), password.getText());
+        });
 
         return new SubMenu(auth, login, password, confirmAuthorization, optionsBack);
     }
@@ -61,8 +76,14 @@ public class StartMenu {
         Region confirmRegistration = ComponentBuilder.getButton("ЗАРЕЄСТРУВАТИСЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
         Region optionsBack = ComponentBuilder.getButton("НАЗАД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
-        optionsBack.setOnMouseClicked(event -> MenuBox.setSubMenu(mainMenu));
-        confirmRegistration.setOnMouseClicked(event -> registration(login.getText(), password.getText()));
+        optionsBack.setOnMouseClicked(event -> {
+            doButtonClickEffect(optionsBack);
+            MenuBox.setSubMenu(mainMenu);
+        });
+        confirmRegistration.setOnMouseClicked(event -> {
+            doButtonClickEffect(confirmRegistration);
+            registration(login.getText(), password.getText());
+        });
 
         return new SubMenu(reg, login, password, confirmRegistration, optionsBack);
     }
@@ -73,7 +94,10 @@ public class StartMenu {
 
             if (user != null) {
                 Platform.runLater(() -> Messenger.showMessage(SUCCESSFUL_AUTHORIZATION));
-                try { Thread.sleep(2000); } catch (InterruptedException ignored) {}
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException ignored) {
+                }
                 Platform.runLater(StartMenu::goToAccount);
             } else
                 Platform.runLater(() -> Messenger.showMessage(UNSUCCESSFUL_REGISTRATION));
@@ -88,7 +112,10 @@ public class StartMenu {
 
             if (Client.addUser(user)) {
                 Platform.runLater(() -> Messenger.showMessage(SUCCESSFUL_REGISTRATION));
-                try { Thread.sleep(500); } catch (InterruptedException ignored) {}
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ignored) {
+                }
                 Platform.runLater(() -> MenuBox.setSubMenu(StartMenu.authorizationMenu));
             } else
                 Platform.runLater(() -> Messenger.showMessage(UNSUCCESSFUL_REGISTRATION));
@@ -100,6 +127,14 @@ public class StartMenu {
         Main.getRoot().getChildren().add(SnakePane.instance);
         Main.getRoot().getChildren().add(MainMenu.instance);
         SnakesPane.init();
+    }
+
+    private static void doButtonClickEffect(Region optionsBack) {
+        new Thread(() -> {
+            Platform.runLater(() -> optionsBack.setEffect(Settings.itemEffect));
+            try { Thread.sleep(300); } catch (InterruptedException ignored) {}
+            Platform.runLater(() -> optionsBack.setEffect(null));
+        }).start();
     }
 
 }

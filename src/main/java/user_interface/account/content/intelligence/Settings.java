@@ -34,6 +34,8 @@ public class Settings {
             "-fx-background-image: url('" + projectPath + "/src/main/resources/side.jpg');" +
             "-fx-opacity: 0.7";
 
+    public static final String buttonPressEffect = ":hover { -fx-background-color: transparent; }";
+
 //        DropShadow effect = new DropShadow();
 //        effect.setColor(Color.BLUE);
 //        effect.setBlurType(BlurType.GAUSSIAN);
