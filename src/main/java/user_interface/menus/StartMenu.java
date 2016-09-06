@@ -132,7 +132,7 @@ public class StartMenu {
     private static void doButtonClickEffect(Region optionsBack) {
         new Thread(() -> {
             Platform.runLater(() -> optionsBack.setEffect(Settings.itemEffect));
-            try { Thread.sleep(300); } catch (InterruptedException ignored) {}
+            try { Thread.sleep(100); } catch (InterruptedException ignored) {}
             Platform.runLater(() -> optionsBack.setEffect(null));
         }).start();
     }

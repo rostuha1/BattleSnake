@@ -45,6 +45,20 @@ public class Messenger {
                         .showError();
                 break;
             }
+            case SAVED: {
+                Notifications.create()
+                        .text("Збережено").position(Pos.BOTTOM_LEFT)
+                        .hideAfter(Duration.seconds(0.5))
+                        .showError();
+                break;
+            }
+            case SAVE_FAIL: {
+                Notifications.create()
+                        .text("Помилка збереження").position(Pos.BOTTOM_LEFT)
+                        .hideAfter(Duration.seconds(0.5))
+                        .showError();
+                break;
+            }
         }
     }
 

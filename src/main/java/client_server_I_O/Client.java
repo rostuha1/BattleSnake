@@ -58,7 +58,7 @@ public class Client {
 
         User user = (User) message.getUnit();
 
-        user_interface.account.User.setInstance(Adapter.getUser(user));
+        user_interface.account.User.setInstance(Adapter.getAccountUser(user));
         return user;
     }
 

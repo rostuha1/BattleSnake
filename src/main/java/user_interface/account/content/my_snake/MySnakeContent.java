@@ -1,5 +1,10 @@
 package user_interface.account.content.my_snake;
 
+import client_server_I_O.Adapter;
+import client_server_I_O.Client;
+import javafx.application.Platform;
+import messages.MessageType;
+import messages.Messenger;
 import user_interface.account.SnakePlayer;
 import user_interface.account.User;
 import javafx.geometry.Insets;
@@ -80,7 +85,12 @@ public class MySnakeContent extends HBox {
                 "-fx-background-color: rgb(" + red + ", " + green + ", " + blue + ");");
         snakeAvatar.getChildren().add(avatar);
 
-        save.setOnAction(event -> save(avatar.getImage(), name.getText(), color.getValue(), passport.getText()));
+        save.setOnAction(event -> new Thread(() -> {
+            Platform.runLater(()-> save(avatar.getImage(), name.getText(), color.getValue(), passport.getText()));
+            if (Client.updateUser(Adapter.getServerUser(User.getInstance()))) {
+                Messenger.showMessage(MessageType.SAVED);
+            } else Messenger.showMessage(MessageType.SAVE_FAIL);
+        }).start());
         HBox box = new HBox();
         box.setAlignment(Pos.BOTTOM_RIGHT);
         box.getChildren().add(save);
@@ -104,7 +114,8 @@ public class MySnakeContent extends HBox {
 
     }
 
-    public MySnakeContent() {}
+    public MySnakeContent() {
+    }
 
     private void save(Image avatar, String name, Color color, String about) {
 
