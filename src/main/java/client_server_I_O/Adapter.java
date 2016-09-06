@@ -11,22 +11,30 @@ import user_interface.account.content.intelligence.card_elements.Card;
 import user_interface.account.content.intelligence.card_elements.CardElement;
 
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URL;
 
 public class Adapter {
 
     public static User getUser(client_server_I_O.classes.User serverUser) {
+
+        if (serverUser == null) return null;
+
         User accUser = new User();
         accUser.setLogin(serverUser.getLogin());
         accUser.setPassword(serverUser.getPassword());
+
+        System.out.println(serverUser.getSnake().getName());
+        System.out.println(serverUser.getSnake().getAbout());
 
         Snake servSnake = serverUser.getSnake();
         accUser.setCards(getCards(servSnake.getCards()));
         accUser.setSnakePlayer(getSnakePlayer(servSnake));
 
-        return null;
+        return accUser;
     }
 
     public static Image getImageFromBytes(byte[] bytes) {
@@ -41,6 +49,17 @@ public class Adapter {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(SwingFXUtils.fromFXImage(image, null), "jpg", baos);
+            return baos.toByteArray();
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    public static byte[] getBytesFromImage(String path) {
+        try {
+            BufferedImage image = ImageIO.read(new URL(path));
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image, "png", baos);
             return baos.toByteArray();
         } catch (IOException e) {
             return null;
@@ -82,6 +101,7 @@ public class Adapter {
     public static SnakePlayer getSnakePlayer(Snake serverSnake) {
         SnakePlayer resSnakePlayer = new SnakePlayer(false);
         resSnakePlayer.setName(serverSnake.getName());
+        resSnakePlayer.setRating(serverSnake.getRating());
         resSnakePlayer.setAbout(serverSnake.getAbout());
         resSnakePlayer.setColor(Color.valueOf(serverSnake.getColor()));
         resSnakePlayer.setAvatar(getImageFromBytes(serverSnake.getAvatar().getImageBytes()));

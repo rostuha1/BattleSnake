@@ -1,6 +1,5 @@
 package user_interface.account;
 
-import main.Receiver;
 import user_interface.account.content.intelligence.card_elements.Card;
 
 public class User {
@@ -10,15 +9,10 @@ public class User {
     private SnakePlayer snakePlayer;
     private Card[][] cards; // 3 * 3
 
-    private static User instance = Receiver.receiveUser(); // ToDo. Must be downloaded from server
+    private static User instance; // ToDo. Must be downloaded from server
 
-    public User() {}
-
-    public User(String login, String password) {
-        // ToDo. To remove
-
-        this.login = login;
-        this.password = password;
+    public static void setInstance(User instance) {
+        User.instance = instance;
     }
 
     public String getLogin() {

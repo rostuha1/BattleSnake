@@ -55,7 +55,11 @@ public class Client {
         Message message = new Message("get", "user", login, password);
         sendMessage(message);
         message = readMessage();
-        return (User) message.getUnit();
+
+        User user = (User) message.getUnit();
+
+        user_interface.account.User.setInstance(Adapter.getUser(user));
+        return user;
     }
 
     public static ArrayList<User> getUsers(){

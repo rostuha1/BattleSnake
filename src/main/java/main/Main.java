@@ -5,14 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import user_interface.account.MainMenu;
-import user_interface.account.battlefield.menu.SnakesPane;
-import user_interface.account.content.fight.slots.SlotsBox;
 import user_interface.account.content.intelligence.Settings;
 import user_interface.animation.AnimatedCircles;
 import user_interface.menus.MenuBox;
-
-import java.net.ServerSocket;
 
 public class Main extends Application {
 

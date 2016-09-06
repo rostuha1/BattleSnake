@@ -1,5 +1,6 @@
 package user_interface.menus;
 
+import client_server_I_O.Adapter;
 import client_server_I_O.Client;
 import client_server_I_O.classes.User;
 import javafx.application.Platform;
