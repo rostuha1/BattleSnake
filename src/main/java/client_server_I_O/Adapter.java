@@ -2,6 +2,8 @@ package client_server_I_O;
 
 import client_server_I_O.classes.Avatar;
 import client_server_I_O.classes.Snake;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -17,6 +19,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Adapter {
 
@@ -168,6 +171,12 @@ public class Adapter {
         client_server_I_O.classes.CardElement serverCardElement = new client_server_I_O.classes.CardElement();
         serverCardElement.setRole(cardElement.getRole().key);
         return serverCardElement;
+    }
+
+    public static ObservableList<SnakePlayer> getSnakes(ArrayList<Snake> list) {
+        ArrayList<SnakePlayer> resultList = new ArrayList<>();
+        list.forEach(el -> resultList.add(Adapter.getAccountSnakePlayer(el)));
+        return FXCollections.observableArrayList(resultList);
     }
 
 }

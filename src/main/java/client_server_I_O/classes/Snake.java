@@ -3,11 +3,7 @@ package client_server_I_O.classes;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by Анатолий on 25.07.2016.
- */
 public class Snake implements Serializable {
-    static final long serialVersionUID = 9213284845659098448L;
 
     private ArrayList<Block> body;
     private Card[][] cards;
@@ -17,8 +13,6 @@ public class Snake implements Serializable {
     private int rating;
     private String color;
     private String about;
-
-
 
     public ArrayList<Block> getBody() {
         return body;

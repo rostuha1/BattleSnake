@@ -54,4 +54,7 @@ public class SlotsBox extends HBox {
         TransitionAnimation.start(MainMenu.instance, SnakePane.instance);
     }
 
+    public static ArrayList<Slot> getEnemySlots() {
+        return enemySlots;
+    }
 }

@@ -1,11 +1,18 @@
 package user_interface.account;
 
+import client_server_I_O.Adapter;
+import client_server_I_O.Client;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.*;
 import user_interface.ComponentBuilder;
 import user_interface.account.content.ContentType;
+import user_interface.account.content.fight.list.SnakePlayerList;
+import user_interface.account.content.fight.slots.Slot;
+import user_interface.account.content.fight.slots.SlotsBox;
 import user_interface.account.content.intelligence.Settings;
 
 public class SideMenu extends ToolBar {
@@ -33,12 +40,27 @@ public class SideMenu extends ToolBar {
         setMinWidth(MainMenu.SIDE_MENU_WIDTH);
         setStyle(Settings.sideMenuBackground);
 
-        fight.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.FIGHT_CONTENT));
+        fight.setOnMouseClicked(event -> {
+            MainMenu.instance.setContent(ContentType.FIGHT_CONTENT);
+            updateSnakesList();
+        });
         intelligence.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.INTELLIGENCE_CONTENT));
         mySnake.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.MY_SNAKE_CONTENT));
         rules.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.RULES_CONTENT));
         developers.setOnMouseClicked(event -> MainMenu.instance.setContent(ContentType.DEVELOPERS_CONTENT));
         exit.setOnMouseClicked(event -> System.exit(0));
+
+    }
+
+    private void updateSnakesList() {
+        new Thread(() -> {
+            ObservableList<SnakePlayer> list = Adapter.getSnakes(Client.getUsers());
+            Platform.runLater(()->{
+                SnakePlayerList.getInstance().setList(list);
+                SnakePlayerList.getInstance().resize();
+                SlotsBox.getEnemySlots().forEach(Slot::releaseSlot);
+            });
+        }).start();
     }
 
 }

@@ -88,8 +88,8 @@ public class MySnakeContent extends HBox {
         save.setOnAction(event -> new Thread(() -> {
             Platform.runLater(()-> save(avatar.getImage(), name.getText(), color.getValue(), passport.getText()));
             if (Client.updateUser(Adapter.getServerUser(User.getInstance()))) {
-                Messenger.showMessage(MessageType.SAVED);
-            } else Messenger.showMessage(MessageType.SAVE_FAIL);
+                Platform.runLater(()-> Messenger.showMessage(MessageType.SAVED));
+            } else Platform.runLater(()-> Messenger.showMessage(MessageType.SAVE_FAIL));
         }).start());
         HBox box = new HBox();
         box.setAlignment(Pos.BOTTOM_RIGHT);

@@ -1,6 +1,7 @@
 package client_server_I_O;
 
 import client_server_I_O.classes.Message;
+import client_server_I_O.classes.Snake;
 import client_server_I_O.classes.User;
 import messages.MessageType;
 import messages.Messenger;
@@ -62,11 +63,12 @@ public class Client {
         return user;
     }
 
-    public static ArrayList<User> getUsers(){
-        Message message = new Message("get", "users");
+    public static ArrayList<Snake> getUsers(){
+        String login = user_interface.account.User.getInstance().getLogin();
+        Message message = new Message("get", "users", login);
         sendMessage(message);
         message = readMessage();
-        return (ArrayList<User>) message.getUnit();
+        return (ArrayList<Snake>) message.getUnit();
     }
 
     public static HashMap<Integer, String> getGames(){

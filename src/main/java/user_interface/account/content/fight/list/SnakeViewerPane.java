@@ -1,5 +1,7 @@
 package user_interface.account.content.fight.list;
 
+import client_server_I_O.Adapter;
+import client_server_I_O.Client;
 import main.Receiver;
 import user_interface.account.SnakePlayer;
 import javafx.collections.ObservableList;
@@ -55,8 +57,6 @@ public class SnakeViewerPane extends VBox {
         search.setAlignment(Pos.CENTER_RIGHT);
         search.setMaxHeight(20);
 
-        setSnakePlayers();
-
         btnSelect.setText("ВИБРАТИ");
         btnSelect.setFont(new Font(17));
         btnSelect.setOnAction(event -> {
@@ -100,10 +100,5 @@ public class SnakeViewerPane extends VBox {
             }
         }
     }
-
-    private void setSnakePlayers() {
-        snakePlayerList.setList(Receiver.receiveSnakeList());
-    }
-
 
 }
