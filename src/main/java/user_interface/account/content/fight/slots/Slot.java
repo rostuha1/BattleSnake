@@ -64,22 +64,22 @@ public class Slot extends HBox {
     public void takeSlot(SnakePlayer player) {
         getChildren().removeAll(avatar, description);
         this.currentPlayer = player;
-        avatar.setImage(player.getAvatar());
-        description.setText(player.getName() + "\n" + player.getRating());
+        updateSlot(player);
         getChildren().addAll(avatar, description);
         isOccupied = true;
-        setBackground(new Background(new BackgroundFill(player.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
         setOnContextMenuRequested(event -> contextMenu.show(this, Side.BOTTOM, 0, 10));
     }
 
     public void releaseSlot() {
-        SnakePlayerList.getInstance().getList().add(currentPlayer);
+        if (!currentPlayer.equals(SnakePlayer.DEFAULT_SNAKE_PLAYER))
+            SnakePlayerList.getInstance().getList().add(currentPlayer);
         SnakePlayerList.getInstance().resize();
         SnakeViewerPane.getInstance().show(SnakeViewerPane.getSnakePlayerList().getItems());
         takeSlot(SnakePlayer.DEFAULT_SNAKE_PLAYER);
         isOccupied = false;
         setOnContextMenuRequested(null);
     }
+
 
     public void updateSlot(SnakePlayer player) {
         avatar.setImage(player.getAvatar());
@@ -90,6 +90,7 @@ public class Slot extends HBox {
     public Image getAvatar() {
         return avatar.getImage();
     }
+
     public ImageView getAvatarViev() {
         return avatar;
     }
