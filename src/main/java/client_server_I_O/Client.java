@@ -64,8 +64,7 @@ public class Client {
     }
 
     public static ArrayList<Snake> getUsers(){
-        String login = user_interface.account.User.getInstance().getLogin();
-        Message message = new Message("get", "users", login);
+        Message message = new Message("get", "users");
         sendMessage(message);
         message = readMessage();
         return (ArrayList<Snake>) message.getUnit();

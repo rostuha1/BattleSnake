@@ -49,7 +49,7 @@ public class Messenger {
                 Notifications.create()
                         .text("Збережено").position(Pos.BOTTOM_LEFT)
                         .hideAfter(Duration.seconds(0.5))
-                        .showError();
+                        .showInformation();
                 break;
             }
             case SAVE_FAIL: {
