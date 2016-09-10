@@ -19,8 +19,8 @@ public class Game {
     }
 
     private static void playStep(Map.Entry<Integer, ArrayList<Block>> step) {
-        GameSpeedChanger.sleepForNextStep();
-        Snake.setSnakeBody(step.getKey(), step.getValue());
+//        GameSpeedChanger.sleepForNextStep();
+//        Snake.setSnakeBody(step.getKey(), step.getValue());
     }
 
 }

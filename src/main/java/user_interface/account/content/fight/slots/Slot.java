@@ -11,13 +11,14 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import user_interface.account.User;
 import user_interface.account.content.fight.list.SnakePlayerList;
 import user_interface.account.SnakePlayer;
 import user_interface.account.content.fight.list.SnakeViewerPane;
 
 public class Slot extends HBox {
 
-    private SnakePlayer currentPlayer = null;
+    private User currentPlayer = null;
     private boolean isOccupied = false;
     private ImageView avatar = new ImageView();
     private Text description = new Text();
@@ -44,7 +45,7 @@ public class Slot extends HBox {
 
     public Slot(int index) {
         this.index = index;
-        takeSlot(SnakePlayer.DEFAULT_SNAKE_PLAYER);
+        takeSlot(User.DEFAULT_USER);
         isOccupied = false;
         MenuItem deleteSlot = new MenuItem("Звільнити слот");
         deleteSlot.setOnAction(event -> releaseSlot());
@@ -52,7 +53,7 @@ public class Slot extends HBox {
         setOnContextMenuRequested(null);
     }
 
-    public Slot(SnakePlayer player, int index) {
+    public Slot(User player, int index) {
         this.index = index;
         takeSlot(player);
     }
@@ -61,7 +62,7 @@ public class Slot extends HBox {
         return isOccupied;
     }
 
-    public void takeSlot(SnakePlayer player) {
+    public void takeSlot(User player) {
         getChildren().removeAll(avatar, description);
         this.currentPlayer = player;
         updateSlot(player);
@@ -71,20 +72,20 @@ public class Slot extends HBox {
     }
 
     public void releaseSlot() {
-        if (!currentPlayer.equals(SnakePlayer.DEFAULT_SNAKE_PLAYER))
+        if (currentPlayer != User.DEFAULT_USER)
             SnakePlayerList.getInstance().getList().add(currentPlayer);
         SnakePlayerList.getInstance().resize();
         SnakeViewerPane.getInstance().show(SnakeViewerPane.getSnakePlayerList().getItems());
-        takeSlot(SnakePlayer.DEFAULT_SNAKE_PLAYER);
+        takeSlot(User.DEFAULT_USER);
         isOccupied = false;
         setOnContextMenuRequested(null);
     }
 
 
-    public void updateSlot(SnakePlayer player) {
-        avatar.setImage(player.getAvatar());
-        description.setText(player.getName() + "\n" + player.getRating());
-        setBackground(new Background(new BackgroundFill(player.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
+    public void updateSlot(User player) {
+        avatar.setImage(player.getSnakePlayer().getAvatar());
+        description.setText(player.getSnakePlayer().getName() + "\n" + player.getSnakePlayer().getRating());
+        setBackground(new Background(new BackgroundFill(player.getSnakePlayer().getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
     }
 
     public Image getAvatar() {
@@ -95,7 +96,7 @@ public class Slot extends HBox {
         return avatar;
     }
 
-    public SnakePlayer getCurrentPlayer() {
+    public User getCurrentPlayer() {
         return currentPlayer;
     }
 

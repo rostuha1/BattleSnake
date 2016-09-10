@@ -173,9 +173,9 @@ public class Adapter {
         return serverCardElement;
     }
 
-    public static ObservableList<SnakePlayer> getSnakes(ArrayList<Snake> list) {
-        ArrayList<SnakePlayer> resultList = new ArrayList<>();
-        list.forEach(el -> resultList.add(Adapter.getAccountSnakePlayer(el)));
+    public static ObservableList<User> getUsersList(ArrayList<client_server_I_O.classes.User> list) {
+        ArrayList<User> resultList = new ArrayList<>();
+        list.forEach(el -> resultList.add(Adapter.getAccountUser(el)));
         return FXCollections.observableArrayList(resultList);
     }
 

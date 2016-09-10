@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import main.WindowSettings;
 import user_interface.account.MainMenu;
+import user_interface.account.User;
 import user_interface.account.content.fight.slots.Slot;
 import user_interface.account.content.fight.slots.SlotsBox;
 
@@ -60,7 +61,7 @@ public class SnakeViewerPane extends VBox {
         btnSelect.setText("ВИБРАТИ");
         btnSelect.setFont(new Font(17));
         btnSelect.setOnAction(event -> {
-            MultipleSelectionModel<SnakePlayer> model = SnakePlayerList.getInstance().getSelectionModel();
+            MultipleSelectionModel<User> model = SnakePlayerList.getInstance().getSelectionModel();
             if (model.getSelectedIndex() != -1) {
                 onSelect(model.getSelectedItem());
                 show(snakePlayerList.getList());
@@ -84,13 +85,13 @@ public class SnakeViewerPane extends VBox {
         return snakePlayerList;
     }
 
-    public void show(ObservableList<SnakePlayer> list) {
+    public void show(ObservableList<User> list) {
         getChildren().removeAll(message, search, snakePlayerList, btnSelect);
         if (list.isEmpty()) getChildren().add(message);
         else getChildren().addAll(search, snakePlayerList, btnSelect);
     }
 
-    private void onSelect(SnakePlayer enemy) {
+    private void onSelect(User enemy) {
         for (Slot slot : SlotsBox.enemySlots) {
             if (!slot.isOccupied()) {
                 slot.takeSlot(enemy);

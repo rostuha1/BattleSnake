@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class SlotsBox extends HBox {
 
-    public static final Slot mySlot = new Slot(User.getInstance().getSnakePlayer(), 1);
+    public static final Slot mySlot = new Slot(User.getInstance(), 1);
     public static final ArrayList<Slot> enemySlots = new ArrayList<>(3);
 
     public static SlotsBox instance = new SlotsBox();

@@ -36,10 +36,10 @@ public class SnakesPane extends HBox {
         HBox.setMargin(thirdSnake, Settings.hInsets);
         HBox.setMargin(fourthSnake, Settings.hInsets);
 
-        firstSnake.setOnMouseClicked(event -> highlightSnake(firstSlot.getCurrentPlayer().getSnake(), firstSnake));
-        secondSnake.setOnMouseClicked(event -> highlightSnake(secondSlot.getCurrentPlayer().getSnake(), secondSnake));
-        thirdSnake.setOnMouseClicked(event -> highlightSnake(thirdSlot.getCurrentPlayer().getSnake(), thirdSnake));
-        fourthSnake.setOnMouseClicked(event -> highlightSnake(fourthSlot.getCurrentPlayer().getSnake(), fourthSnake));
+        firstSnake.setOnMouseClicked(event -> highlightSnake(firstSlot.getCurrentPlayer().getSnakePlayer().getSnake(), firstSnake));
+        secondSnake.setOnMouseClicked(event -> highlightSnake(secondSlot.getCurrentPlayer().getSnakePlayer().getSnake(), secondSnake));
+        thirdSnake.setOnMouseClicked(event -> highlightSnake(thirdSlot.getCurrentPlayer().getSnakePlayer().getSnake(), thirdSnake));
+        fourthSnake.setOnMouseClicked(event -> highlightSnake(fourthSlot.getCurrentPlayer().getSnakePlayer().getSnake(), fourthSnake));
     }
 
     public static void init() {
@@ -77,12 +77,12 @@ public class SnakesPane extends HBox {
     }
 
     private static void setSnake(ImageView snake, Slot slot) {
-        if (slot.getCurrentPlayer().getAvatar() == SnakePlayer.DEFAULT_AVATAR) {
+        if (slot.getCurrentPlayer().getSnakePlayer().getAvatar() == SnakePlayer.DEFAULT_AVATAR) {
             instance.getChildren().remove(snake);
             return;
         }
         if (!instance.getChildren().contains(snake)) instance.getChildren().add(snake);
-        new Thread(() -> snake.setImage(setSnakeBackground(slot.getAvatar(), slot.getCurrentPlayer().getColor()))).start();
+        new Thread(() -> snake.setImage(setSnakeBackground(slot.getAvatar(), slot.getCurrentPlayer().getSnakePlayer().getColor()))).start();
         snakesNumber++;
     }
 

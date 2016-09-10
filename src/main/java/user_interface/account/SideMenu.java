@@ -4,7 +4,6 @@ import client_server_I_O.Adapter;
 import client_server_I_O.Client;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.*;
@@ -54,7 +53,7 @@ public class SideMenu extends ToolBar {
 
     private void updateSnakesList() {
         new Thread(() -> {
-            ObservableList<SnakePlayer> list = Adapter.getSnakes(Client.getUsers());
+            ObservableList<User> list = Adapter.getUsersList(Client.getUsers());
             Platform.runLater(()->{
                 SnakePlayerList.getInstance().setList(list);
                 SnakePlayerList.getInstance().resize();
