@@ -1,5 +1,7 @@
 package user_interface.account;
 
+import events.KeyboardEvents;
+import events.Mode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.WindowSettings;
@@ -11,6 +13,7 @@ import user_interface.account.content.intelligence.IntelligenceContent;
 import user_interface.account.content.my_snake.MySnakeContent;
 import user_interface.account.content.rules.RulesContent;
 import user_interface.animation.TransitionAnimation;
+import user_interface.menus.StartMenu;
 
 public class MainMenu extends BorderPane {
 

@@ -2,9 +2,15 @@ package user_interface.menus;
 
 import client_server_I_O.Client;
 import client_server_I_O.classes.User;
+import events.KeyboardEvents;
+import events.Mode;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import main.Main;
@@ -28,6 +34,20 @@ public class StartMenu {
     public static final SubMenu authorizationMenu = getAuthorizationMenu();
     public static final SubMenu registrationMenu = getRegistrationMenu();
 
+    private static TextField regLoginField;
+    private static PasswordField regPassField;
+    private static Region regButton;
+    private static Region regBack;
+
+    private static TextField authLoginField;
+    private static PasswordField authPassField;
+    private static Region authButton;
+    private static Region authBack;
+
+    private static Region auth;
+    private static Region reg;
+    private static Region exit;
+
     public static SubMenu getMainMenu() {
         Region authorization = ComponentBuilder.getButton("АВТОРИЗАЦІЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
         Region registration = ComponentBuilder.getButton("РЕЄСТРАЦІЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
@@ -36,15 +56,22 @@ public class StartMenu {
         authorization.setOnMouseClicked(event -> {
             doButtonClickEffect(authorization);
             MenuBox.setSubMenu(authorizationMenu);
+            KeyboardEvents.setMode(Mode.AUTHORIZATION_MENU_MODE);
         });
         registration.setOnMouseClicked(event -> {
             doButtonClickEffect(registration);
             MenuBox.setSubMenu(registrationMenu);
+            KeyboardEvents.setMode(Mode.REGISTRATION_MENU_MODE);
         });
         exitGame.setOnMouseClicked(event -> {
             doButtonClickEffect(exitGame);
+            KeyboardEvents.setMode(Mode.NULL);
             System.exit(0);
         });
+
+        if (auth == null) auth = authorization;
+        if (reg == null) reg = registration;
+        if (exit == null) exit = exitGame;
 
         return new SubMenu(authorization, registration, exitGame);
     }
@@ -56,34 +83,41 @@ public class StartMenu {
         Region confirmAuthorization = ComponentBuilder.getButton("ВХІД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
         Region optionsBack = ComponentBuilder.getButton("НАЗАД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
-        optionsBack.setOnMouseClicked(event -> {
-            doButtonClickEffect(optionsBack);
-            MenuBox.setSubMenu(mainMenu);
-        });
+        optionsBack.setOnMouseClicked(backEvent(optionsBack, login, password));
 
         confirmAuthorization.setOnMouseClicked(event -> {
             doButtonClickEffect(confirmAuthorization);
             authorization(login.getText(), password.getText());
         });
 
+        if (authLoginField == null) authLoginField = login;
+        if (authPassField == null) authPassField = password;
+        if (authButton == null) authButton = confirmAuthorization;
+        if (authBack == null) authBack = optionsBack;
+
         return new SubMenu(auth, login, password, confirmAuthorization, optionsBack);
     }
 
-    public static SubMenu getRegistrationMenu() {
+    private static SubMenu getRegistrationMenu() {
         Region reg = ComponentBuilder.create(Component.LABEL, "РЕЄСТРАЦІЯ");
         TextField login = (TextField) ComponentBuilder.create(Component.FIELD, "Ваш логін");
         PasswordField password = (PasswordField) ComponentBuilder.create(Component.PASSWORD_FIELD, "Ваш пароль");
         Region confirmRegistration = ComponentBuilder.getButton("ЗАРЕЄСТРУВАТИСЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
         Region optionsBack = ComponentBuilder.getButton("НАЗАД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
-        optionsBack.setOnMouseClicked(event -> {
-            doButtonClickEffect(optionsBack);
-            MenuBox.setSubMenu(mainMenu);
-        });
+        optionsBack.setOnMouseClicked(backEvent(optionsBack, login, password));
+
         confirmRegistration.setOnMouseClicked(event -> {
+            System.out.println(11);
             doButtonClickEffect(confirmRegistration);
+            System.out.println(22);
             registration(login.getText(), password.getText());
         });
+
+        if (regLoginField == null) regLoginField = login;
+        if (regPassField == null) regPassField = password;
+        if (regButton == null) regButton = confirmRegistration;
+        if (regBack == null) regBack = optionsBack;
 
         return new SubMenu(reg, login, password, confirmRegistration, optionsBack);
     }
@@ -116,6 +150,7 @@ public class StartMenu {
                     Thread.sleep(500);
                 } catch (InterruptedException ignored) {
                 }
+                KeyboardEvents.setMode(Mode.AUTHORIZATION_MENU_MODE);
                 Platform.runLater(() -> MenuBox.setSubMenu(StartMenu.authorizationMenu));
             } else
                 Platform.runLater(() -> Messenger.showMessage(UNSUCCESSFUL_REGISTRATION));
@@ -132,9 +167,65 @@ public class StartMenu {
     private static void doButtonClickEffect(Region optionsBack) {
         new Thread(() -> {
             Platform.runLater(() -> optionsBack.setEffect(Settings.itemEffect));
-            try { Thread.sleep(100); } catch (InterruptedException ignored) {}
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ignored) {
+            }
             Platform.runLater(() -> optionsBack.setEffect(null));
         }).start();
     }
 
+    private static EventHandler<? super MouseEvent> backEvent(Region btnBack, TextField login, PasswordField password) {
+        return event -> {
+            login.setFocusTraversable(false);
+            password.setFocusTraversable(false);
+            doButtonClickEffect(btnBack);
+            MenuBox.setSubMenu(mainMenu);
+            KeyboardEvents.setMode(Mode.MAIN_MENU_MODE);
+        };
+    }
+
+    public static TextField getRegLoginField() {
+        return regLoginField;
+    }
+
+    public static PasswordField getRegPassField() {
+        return regPassField;
+    }
+
+    public static Region getRegButton() {
+        return regButton;
+    }
+
+    public static Region getRegBack() {
+        return regBack;
+    }
+
+    public static TextField getAuthLoginField() {
+        return authLoginField;
+    }
+
+    public static PasswordField getAuthPassField() {
+        return authPassField;
+    }
+
+    public static Region getAuthButton() {
+        return authButton;
+    }
+
+    public static Region getAuthBack() {
+        return authBack;
+    }
+
+    public static Region getAuth() {
+        return auth;
+    }
+
+    public static Region getReg() {
+        return reg;
+    }
+
+    public static Region getExit() {
+        return exit;
+    }
 }

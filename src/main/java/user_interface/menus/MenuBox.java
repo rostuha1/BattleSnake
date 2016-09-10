@@ -1,5 +1,7 @@
 package user_interface.menus;
 
+import events.KeyboardEvents;
+import events.Mode;
 import javafx.animation.FadeTransition;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -24,6 +26,8 @@ public class MenuBox {
 
         TransitionAnimation.load(pane);
 
+        KeyboardEvents.setMode(Mode.MAIN_MENU_MODE);
+
         pane.setVisible(false);
         pane.getChildren().add(subMenu);
         Centering.centering(subMenu, pane);
@@ -33,7 +37,6 @@ public class MenuBox {
 
     public static void setSubMenu(SubMenu newMenu) {
         if (TransitionAnimation.start(pane, subMenu, newMenu)) Centering.centering(newMenu, pane);
-
         subMenu = newMenu;
     }
 
