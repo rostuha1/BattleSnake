@@ -1,8 +1,7 @@
 package client_server_I_O;
 
 import client_server_I_O.classes.Message;
-import client_server_I_O.classes.Snake;
-import client_server_I_O.classes.Step;
+import client_server_I_O.classes.Turn;
 import client_server_I_O.classes.User;
 import messages.MessageType;
 import messages.Messenger;
@@ -64,12 +63,12 @@ public class Client {
         return user;
     }
 
-    public static ArrayList<Snake> getUsers(){
+    public static ArrayList<User> getUsers(){
         String login = user_interface.account.User.getInstance().getLogin();
         Message message = new Message("get", "users", login);
         sendMessage(message);
         message = readMessage();
-        return (ArrayList<Snake>) message.getUnit();
+        return (ArrayList<User>) message.getUnit();
     }
 
     public static HashMap<Integer, String> getGames(){
@@ -86,11 +85,11 @@ public class Client {
         return (boolean) message.getUnit();
     }
 
-    public static ArrayList<Step> getGameResult(String username1, String username2, String username3, String username4){
+    public static ArrayList<Turn> getGameResult(String username1, String username2, String username3, String username4){
         Message message = new Message("start", username1, username2, username3, username4);
         sendMessage(message);
         message = readMessage();
-        return (ArrayList<Step>) message.getUnit();
+        return (ArrayList<Turn>) message.getUnit();
     }
 
 }

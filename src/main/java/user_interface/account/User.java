@@ -9,7 +9,16 @@ public class User {
     private SnakePlayer snakePlayer;
     private Card[][] cards; // 3 * 3
 
+    public static final User DEFAULT_USER;
+
+    static {
+        DEFAULT_USER = new User();
+        DEFAULT_USER.setSnakePlayer(SnakePlayer.DEFAULT_SNAKE_PLAYER);
+    }
+
     private static User instance; // ToDo. Must be downloaded from server
+
+    public User() {}
 
     public static void setInstance(User instance) {
         User.instance = instance;
