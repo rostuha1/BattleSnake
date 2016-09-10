@@ -83,6 +83,9 @@ public class StartMenu {
         Region confirmAuthorization = ComponentBuilder.getButton("ВХІД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
         Region optionsBack = ComponentBuilder.getButton("НАЗАД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
 
+        login.setOnMouseClicked(event -> KeyboardEvents.setTab(true));
+        password.setOnMouseClicked(event -> KeyboardEvents.setTab(false));
+
         optionsBack.setOnMouseClicked(backEvent(optionsBack, login, password));
 
         confirmAuthorization.setOnMouseClicked(event -> {
@@ -104,6 +107,9 @@ public class StartMenu {
         PasswordField password = (PasswordField) ComponentBuilder.create(Component.PASSWORD_FIELD, "Ваш пароль");
         Region confirmRegistration = ComponentBuilder.getButton("ЗАРЕЄСТРУВАТИСЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
         Region optionsBack = ComponentBuilder.getButton("НАЗАД", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
+
+        login.setOnMouseClicked(event -> KeyboardEvents.setTab(true));
+        password.setOnMouseClicked(event -> KeyboardEvents.setTab(false));
 
         optionsBack.setOnMouseClicked(backEvent(optionsBack, login, password));
 
@@ -129,7 +135,7 @@ public class StartMenu {
             if (user != null) {
                 Platform.runLater(() -> Messenger.showMessage(SUCCESSFUL_AUTHORIZATION));
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(600);
                 } catch (InterruptedException ignored) {
                 }
                 Platform.runLater(StartMenu::goToAccount);
@@ -147,7 +153,7 @@ public class StartMenu {
             if (Client.addUser(user)) {
                 Platform.runLater(() -> Messenger.showMessage(SUCCESSFUL_REGISTRATION));
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(600);
                 } catch (InterruptedException ignored) {
                 }
                 KeyboardEvents.setMode(Mode.AUTHORIZATION_MENU_MODE);

@@ -47,6 +47,10 @@ public class KeyboardEvents {
         }
     }
 
+    public static void setTab(boolean tab) {
+        KeyboardEvents.tab = tab;
+    }
+
     private static void nullMode() {
         currentFocusedField = null;
         scene.removeEventFilter(keyEventType, currentEventFilter);

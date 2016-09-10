@@ -1,6 +1,7 @@
 package user_interface.account.battlefield.snake;
 
 import client_server_I_O.classes.Block;
+import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import nodes.Rect;
 import user_interface.account.battlefield.Cells;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 
 public class Snake {
 
-    private static Snake selectedSnake = null;
     private static ArrayList<Snake> snakes = new ArrayList<>(4);
 
     static {
@@ -24,19 +24,11 @@ public class Snake {
     private boolean isHighlight = false;
     private ArrayList<Block> body;
 
-    public ArrayList<Block> getBody() {
-        return body;
-    }
-
     public void setBody(ArrayList<Block> newBody) {
         if (body != null) body.forEach(Cells::remove);
         body = newBody;
-        if (!isHighlight) body.forEach(block -> Cells.draw(block, snakeColor));
-        else body.forEach(block -> {
-            Rect r = Cells.getRect(block.getX(), block.getY());
-            r.setEffect(Settings.itemEffect);
-            Cells.draw(r, snakeColor);
-        });
+        body.forEach(block -> Cells.draw(block, snakeColor));
+        if (isHighlight) body.forEach(Cells::setEffect);
     }
 
     public Color getColor() {
@@ -57,28 +49,42 @@ public class Snake {
 
     public static void highlightSnake(boolean flag, Snake snake) {
         if (flag) {
-            selectedSnake = snake;
             snake.isHighlight = true;
-            snake.body.forEach(Cells::setEffect);
+            Platform.runLater(() -> snake.body.forEach(Cells::setEffect));
             return;
         }
 
         snake.isHighlight = false;
-        snake.body.forEach(Cells::setEffectNull);
-        selectedSnake = null;
+        Platform.runLater(() -> snake.body.forEach(Cells::setEffectNull));
     }
 
-    private Rect getRect(Block pos) {
-        return Cells.getRect(pos);
-    }
-
-    public static void setSnakeBody(ArrayList<Block> newBody, int index) {
-        snakes.get(index).setBody(newBody);
+    public static void setSnakeBody(int index, ArrayList<Block> newBody) {
+        snakes.get(index - 1).setBody(newBody);
     }
 
     public static void clearField() {
         snakes.forEach(snake -> snake.isHighlight = false);
         Cells.clearField();
+    }
+
+    public static Snake getFirst() {
+        return snakes.get(0);
+    }
+
+    public static Snake getSecond() {
+        return snakes.get(1);
+    }
+
+    public static Snake getThird() {
+        return snakes.get(2);
+    }
+
+    public static Snake getFourth() {
+        return snakes.get(3);
+    }
+
+    public static ArrayList<Snake> getSnakes() {
+        return snakes;
     }
 
 }

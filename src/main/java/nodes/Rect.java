@@ -15,6 +15,11 @@ public class Rect extends Rectangle {
         parent = SnakePane.instance;
     }
 
+    {
+        parent.getChildren().add(this);
+        setVisible(false);
+    }
+
     private Position position;
 
     public static void setParent(Pane parent) {
@@ -25,22 +30,15 @@ public class Rect extends Rectangle {
         super(x, y, width, height);
     }
 
-    public Position getPos() {
-        return position;
-    }
-    public void setPos(int posX, int posY) {
-        this.position = new Position(posX, posY);
-    }
-
     public void draw() {
-        parent.getChildren().add(this);
+        setVisible(true);
     }
     public void draw(Color color) {
         setFill(color);
-        parent.getChildren().add(this);
+        setVisible(true);
     }
     public void remove() {
-        parent.getChildren().remove(this);
+        setVisible(false);
     }
 
 }

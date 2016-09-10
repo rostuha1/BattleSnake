@@ -1,10 +1,11 @@
 package user_interface.account.battlefield.menu;
 
-import user_interface.account.SnakePlayer;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.image.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import user_interface.account.User;
 import user_interface.account.battlefield.snake.Snake;
 import user_interface.account.content.fight.slots.Slot;
 import user_interface.account.content.fight.slots.SlotsBox;
@@ -36,10 +37,10 @@ public class SnakesPane extends HBox {
         HBox.setMargin(thirdSnake, Settings.hInsets);
         HBox.setMargin(fourthSnake, Settings.hInsets);
 
-        firstSnake.setOnMouseClicked(event -> highlightSnake(firstSlot.getCurrentPlayer().getSnakePlayer().getSnake(), firstSnake));
-        secondSnake.setOnMouseClicked(event -> highlightSnake(secondSlot.getCurrentPlayer().getSnakePlayer().getSnake(), secondSnake));
-        thirdSnake.setOnMouseClicked(event -> highlightSnake(thirdSlot.getCurrentPlayer().getSnakePlayer().getSnake(), thirdSnake));
-        fourthSnake.setOnMouseClicked(event -> highlightSnake(fourthSlot.getCurrentPlayer().getSnakePlayer().getSnake(), fourthSnake));
+        firstSnake.setOnMouseClicked(event -> highlightSnake(Snake.getFirst(), firstSnake));
+        secondSnake.setOnMouseClicked(event -> highlightSnake(Snake.getSecond(), secondSnake));
+        thirdSnake.setOnMouseClicked(event -> highlightSnake(Snake.getThird(), thirdSnake));
+        fourthSnake.setOnMouseClicked(event -> highlightSnake(Snake.getFourth(), fourthSnake));
     }
 
     public static void init() {
@@ -77,7 +78,7 @@ public class SnakesPane extends HBox {
     }
 
     private static void setSnake(ImageView snake, Slot slot) {
-        if (slot.getCurrentPlayer().getSnakePlayer().getAvatar() == SnakePlayer.DEFAULT_AVATAR) {
+        if (slot.getCurrentPlayer() == User.DEFAULT_USER) {
             instance.getChildren().remove(snake);
             return;
         }
@@ -104,21 +105,23 @@ public class SnakesPane extends HBox {
     }
 
     private void highlightSnake(Snake snake, ImageView imageView) {
-        if (selectedSnakeImage == imageView) {
-            selectedSnakeImage.setEffect(null);
-            selectedSnakeImage = null;
-            Snake.highlightSnake(false, selectedSnake);
-            selectedSnake = null;
-            return;
-        }
+        Platform.runLater(() -> {
+            if (selectedSnakeImage == imageView) {
+                selectedSnakeImage.setEffect(null);
+                selectedSnakeImage = null;
+                Snake.highlightSnake(false, selectedSnake);
+                selectedSnake = null;
+                return;
+            }
 
-        if (selectedSnakeImage != null) selectedSnakeImage.setEffect(null);
-        if (selectedSnake != null) Snake.highlightSnake(false, selectedSnake);
+            if (selectedSnakeImage != null) selectedSnakeImage.setEffect(null);
+            if (selectedSnake != null) Snake.highlightSnake(false, selectedSnake);
 
-        selectedSnakeImage = imageView;
-        selectedSnakeImage.setEffect(Settings.itemEffect);
-        selectedSnake = snake;
-        Snake.highlightSnake(true, selectedSnake);
+            selectedSnakeImage = imageView;
+            selectedSnakeImage.setEffect(Settings.itemEffect);
+            selectedSnake = snake;
+            Snake.highlightSnake(true, selectedSnake);
+        });
     }
 
 }

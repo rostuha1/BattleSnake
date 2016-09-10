@@ -1,14 +1,13 @@
 package user_interface.account.battlefield;
 
 import client_server_I_O.classes.Block;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import nodes.Line;
 import nodes.Rect;
 import user_interface.account.content.intelligence.Settings;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import static user_interface.account.battlefield.RenderField.PART;
 import static user_interface.account.battlefield.RenderField.SQUARE_NUMBER;
@@ -23,13 +22,12 @@ public class Cells {
     static {
         for (int i = 0; i < SQUARE_NUMBER; i++) {
             for (int j = 0; j < SQUARE_NUMBER; j++) {
-                rects[i][j] = getRect(i, j);
+                rects[i][j] = getNewRect(i, j);
             }
         }
     }
 
     public static void draw(Block block, Paint color) {
-
         int posX = block.getX();
         int posY = block.getY();
 
@@ -40,12 +38,23 @@ public class Cells {
         r.setFill(color);
         r.draw();
     }
+    public static void draw(int x, int y, Color color) {
+        draw(new Block(x, y), color);
+    }
 
     public static void remove(Block block) {
         int posX = block.getX();
         int posY = block.getY();
 
         rects[posX][posY].remove();
+    }
+
+    public static Rect get(int x, int y) {
+        return rects[x][y];
+    }
+
+    public static Rect get(Block block) {
+        return get(block.getX(), block.getY());
     }
 
     public static void drawByDefault(Block block) {
@@ -58,14 +67,14 @@ public class Cells {
         r.remove();
     }
 
-    public static Rect getRect(Block block) {
+    public static Rect getNewRect(Block block) {
         int posX = block.getX();
         int posY = block.getY();
 
-        return getRect(posX, posY);
+        return getNewRect(posX, posY);
     }
 
-    public static Rect getRect(int posX, int posY) {
+    public static Rect getNewRect(int posX, int posY) {
         if (posX < 0 || posX > SQUARE_NUMBER + 1 || posY < 0 || posY > SQUARE_NUMBER + 1)
             throw new IllegalArgumentException("Enter valid arguments");
 
@@ -80,25 +89,14 @@ public class Cells {
         double width = PART - Line.getLineWidth() * 2;
         double height = PART - Line.getLineWidth() * 2;
 
-        Rect resRec = new Rect(x, y, width, height);
-        resRec.setPos(posX, posY);
-
-        return resRec;
+        return new Rect(x, y, width, height);
     }
 
     public static void setEffect(Block block) {
-
-        int posX = block.getX() + 1;
-        int posY = block.getY() + 1;
-
-        rects[posX][posY].setEffect(Settings.itemEffect);
+        get(block).setEffect(Settings.itemEffect);
     }
     public static void setEffectNull(Block block) {
-
-        int posX = block.getX() + 1;
-        int posY = block.getY() + 1;
-
-        rects[posX][posY].setEffect(null);
+        get(block).setEffect(null);
     }
 
     public static void clearField() {

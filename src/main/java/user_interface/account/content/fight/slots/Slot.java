@@ -81,7 +81,6 @@ public class Slot extends HBox {
         setOnContextMenuRequested(null);
     }
 
-
     public void updateSlot(User player) {
         avatar.setImage(player.getSnakePlayer().getAvatar());
         description.setText(player.getSnakePlayer().getName() + "\n" + player.getSnakePlayer().getRating());

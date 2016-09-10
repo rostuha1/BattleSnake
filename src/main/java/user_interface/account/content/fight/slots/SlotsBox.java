@@ -5,12 +5,17 @@ import events.Mode;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import main.Receiver;
 import main.SnakePane;
 import main.WindowSettings;
 import user_interface.account.MainMenu;
 import user_interface.account.User;
+import user_interface.account.battlefield.Cells;
+import user_interface.account.battlefield.Game;
 import user_interface.account.battlefield.menu.SnakesPane;
+import user_interface.account.content.intelligence.Settings;
 import user_interface.animation.TransitionAnimation;
 
 import java.util.ArrayList;
@@ -52,6 +57,7 @@ public class SlotsBox extends HBox {
         SnakesPane.update();
         KeyboardEvents.setMode(Mode.BATTLEFIELD_MODE);
         TransitionAnimation.start(MainMenu.instance, SnakePane.instance);
+        Game.play(Receiver.getGameResult(User.getInstance().getLogin(), null, null, null));
     }
 
     public static ArrayList<Slot> getEnemySlots() {
