@@ -22,8 +22,8 @@ public class DevelopersContent extends HBox {
     private Label about = new Label("Snake Battle. Version 1.0\n\nCreated by:\nРостислав Балдовський\nДенис Куц\nАнна Чернівчан\n\n2016 © All rights reserved\n");
 
     {
-        logo.setFitHeight(160);
-        logo.setFitWidth(160);
+        logo.setFitHeight(250);
+        logo.setFitWidth(250);
         about.setStyle("-fx-text-fill: rgb(159, 188, 94); -fx-font-size: 18; -fx-font-weight: bold");
         setAlignment(Pos.CENTER);
         setSpacing(20);
