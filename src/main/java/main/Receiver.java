@@ -16,8 +16,8 @@ public class Receiver {
 
         ArrayList<Turn> list = new ArrayList<>();
 
-        Turn s1 = new Turn();
-        s1.setBody(new HashMap<Integer, ArrayList<Block>>() {
+        Turn t1 = new Turn();
+        t1.setBody(new HashMap<Integer, ArrayList<Block>>() {
             {
                 put(1, getSnakeBody1());
                 put(2, getSnakeBody2());
@@ -26,8 +26,8 @@ public class Receiver {
             }
         });
 
-        Turn s2 = new Turn();
-        s2.setBody(new HashMap<Integer, ArrayList<Block>>() {
+        Turn t2 = new Turn();
+        t2.setBody(new HashMap<Integer, ArrayList<Block>>() {
             {
                 put(1, getSnakeBody11());
                 put(2, getSnakeBody22());
@@ -36,8 +36,8 @@ public class Receiver {
             }
         });
 
-        Turn s3 = new Turn();
-        s3.setBody(new HashMap<Integer, ArrayList<Block>>() {
+        Turn t3 = new Turn();
+        t3.setBody(new HashMap<Integer, ArrayList<Block>>() {
             {
                 put(1, getSnakeBody111());
                 put(2, getSnakeBody222());
@@ -46,9 +46,25 @@ public class Receiver {
             }
         });
 
-        list.add(s1);
-        list.add(s2);
-        list.add(s3);
+        list.add(t1);
+        list.add(t2);
+        list.add(t3);
+
+        list.add(t1);
+        list.add(t2);
+        list.add(t3);
+
+        list.add(t1);
+        list.add(t2);
+        list.add(t3);
+
+        list.add(t1);
+        list.add(t2);
+        list.add(t3);
+
+        list.add(t1);
+        list.add(t2);
+        list.add(t3);
 
         return list;
 

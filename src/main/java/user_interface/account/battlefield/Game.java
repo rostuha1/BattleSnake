@@ -1,6 +1,7 @@
 package user_interface.account.battlefield;
 
 import client_server_I_O.classes.Block;
+import client_server_I_O.classes.GameEnd;
 import client_server_I_O.classes.Turn;
 import javafx.application.Platform;
 import user_interface.account.battlefield.menu.GameSpeedChanger;
@@ -32,6 +33,7 @@ public class Game extends Thread {
 
     private static void playTurn(Turn turn) {
         turn.getBody().entrySet().forEach(Game::playStep);
+        if (turn.getGameEnd() != null) endGame(turn.getGameEnd());
     }
 
     private static void playStep(Map.Entry<Integer, ArrayList<Block>> step) {
@@ -44,6 +46,10 @@ public class Game extends Thread {
         Snake.getSecond().setColor(SlotsBox.getEnemySlots().get(0).getCurrentPlayer().getSnakePlayer().getColor());
         Snake.getThird().setColor(SlotsBox.getEnemySlots().get(1).getCurrentPlayer().getSnakePlayer().getColor());
         Snake.getFourth().setColor(SlotsBox.getEnemySlots().get(2).getCurrentPlayer().getSnakePlayer().getColor());
+    }
+
+    private static void endGame(GameEnd gameEnd) {
+
     }
 
 }

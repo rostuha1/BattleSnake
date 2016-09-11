@@ -68,15 +68,21 @@ public class GameSpeedChanger extends VBox {
             return;
         }
 
-        try {
-            Thread.sleep((long) (1000 / instance.stepsPerSecond));
-        } catch (InterruptedException ignored) {
+        long i = 0;
+        while (i < (long) (1000 / instance.stepsPerSecond)) {
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            i += 5;
         }
+
     }
 
     private static void pause() {
         while (instance.stepsPerSecond == 0.0) {
-            try { Thread.sleep(1); } catch (InterruptedException ignored) {}
+            try { Thread.sleep(50); } catch (InterruptedException ignored) {}
         }
     }
 

@@ -40,9 +40,16 @@ public class Messenger {
             }
             case UNAVAILABLE_SERVER: {
                 Notifications.create()
-                        .text("Сервер недоступний :(").position(Pos.BOTTOM_LEFT)
-                        .hideAfter(Duration.seconds(0.5))
+                        .text("Сервер недоступний :(")
+                        .hideAfter(Duration.seconds(3))
                         .showError();
+                break;
+            }
+            case SERVER_CONNECTED: {
+                Notifications.create()
+                        .text("Під'єднано").position(Pos.BOTTOM_RIGHT)
+                        .hideAfter(Duration.seconds(2))
+                        .showInformation();
                 break;
             }
             case SAVED: {

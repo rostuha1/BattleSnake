@@ -48,6 +48,8 @@ public class StartMenu {
     private static Region reg;
     private static Region exit;
 
+    private static boolean lock;
+
     public static SubMenu getMainMenu() {
         Region authorization = ComponentBuilder.getButton("АВТОРИЗАЦІЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
         Region registration = ComponentBuilder.getButton("РЕЄСТРАЦІЯ", BUTTON_OPACITY, TEXT_COLOR, BUTTON_COLOR);
@@ -130,6 +132,16 @@ public class StartMenu {
 
     private static void authorization(String login, String password) {
         new Thread(() -> {
+
+            if (lock) return;
+
+            if (Client.getConnectionThread() != null) {
+                try {
+                    Client.getConnectionThread().join();
+                } catch (InterruptedException ignored) {
+                }
+            }
+
             User user = Client.getUser(login, password);
 
             if (user != null) {
@@ -141,14 +153,26 @@ public class StartMenu {
                 Platform.runLater(StartMenu::goToAccount);
             } else
                 Platform.runLater(() -> Messenger.showMessage(UNSUCCESSFUL_REGISTRATION));
+
+            lock = false;
         }).start();
     }
 
     private static void registration(String login, String password) {
         new Thread(() -> {
+
+            if (lock) return;
+
             User user = new User();
             user.setLogin(login);
             user.setPassword(password);
+
+            if (Client.getConnectionThread() != null) {
+                try {
+                    Client.getConnectionThread().join();
+                } catch (InterruptedException e) {
+                }
+            }
 
             if (Client.addUser(user)) {
                 Platform.runLater(() -> Messenger.showMessage(SUCCESSFUL_REGISTRATION));
@@ -160,6 +184,8 @@ public class StartMenu {
                 Platform.runLater(() -> MenuBox.setSubMenu(StartMenu.authorizationMenu));
             } else
                 Platform.runLater(() -> Messenger.showMessage(UNSUCCESSFUL_REGISTRATION));
+
+            lock = false;
         }).start();
     }
 
