@@ -7,7 +7,6 @@ import javafx.scene.effect.Effect;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -15,7 +14,6 @@ import java.nio.file.Paths;
 
 public class Settings {
     public static final double menuSpacing = 10;
-    public static final double controlMenuSpacing = 10;
 
     public static final String projectPath = Paths.get("").toAbsolutePath().toUri().normalize().toString();
 
@@ -30,11 +28,9 @@ public class Settings {
     public static final Background defaultMenuItemBackground = new Background(new BackgroundFill(Color.web("0x73D123", 0.2), new CornerRadii(3), null));
     public static final Background pressedMenuItemBackground = new Background(new BackgroundFill(Color.web("0x73D123", 0.5), new CornerRadii(3), null));
 
-    public static final String sideMenuBackground =
+    public static final String sideMenuBackgroundImage = "" +
             "-fx-background-image: url('" + projectPath + "/src/main/resources/side.jpg');" +
-            "-fx-opacity: 0.7";
-
-    public static final String buttonPressEffect = ":hover { -fx-background-color: transparent; }";
+            "-fx-opacity: 0.2;";
 
 //        DropShadow effect = new DropShadow();
 //        effect.setColor(Color.BLUE);
