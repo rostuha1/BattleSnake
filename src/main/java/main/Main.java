@@ -15,6 +15,8 @@ public class Main extends Application {
     private static Stage stage;
     private static Scene scene;
 
+    private static boolean isRun = true;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -24,6 +26,10 @@ public class Main extends Application {
         primaryStage.setFullScreen(WindowSettings.fullscreen);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         primaryStage.setTitle("JavaFx Game. BattleSnake");
+        primaryStage.setOnCloseRequest(event -> {
+            isRun = false;
+            System.exit(0);
+        });
 
         primaryStage.setScene(scene);
 
@@ -58,4 +64,7 @@ public class Main extends Application {
         launch(args);
     }
 
+    public static boolean isRun() {
+        return isRun;
+    }
 }

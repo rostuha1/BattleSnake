@@ -72,7 +72,6 @@ public class TransitionAnimation {
                 parent.getChildren().remove(currentMenu);
                 parent.getChildren().add(newMenu);
             }
-
             showAnimation.play();
         });
 

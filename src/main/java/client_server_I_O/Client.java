@@ -4,6 +4,7 @@ import client_server_I_O.classes.Message;
 import client_server_I_O.classes.Turn;
 import client_server_I_O.classes.User;
 import javafx.application.Platform;
+import main.Main;
 import messages.MessageType;
 import messages.Messenger;
 
@@ -30,6 +31,7 @@ public class Client {
             Platform.runLater(() -> Messenger.showMessage(MessageType.UNAVAILABLE_SERVER));
             connectionThread = new Thread(() -> {
                 while (true) {
+                    if (!Main.isRun()) return;
                     try {
                         try {
                             Thread.sleep(1000);
@@ -111,6 +113,12 @@ public class Client {
     }
 
     public static ArrayList<Turn> getGameResult(String username1, String username2, String username3, String username4) {
+
+        System.out.println(username1);
+        System.out.println(username2);
+        System.out.println(username3);
+        System.out.println(username4);
+
         Message message = new Message("start", username1, username2, username3, username4);
         sendMessage(message);
         message = readMessage();

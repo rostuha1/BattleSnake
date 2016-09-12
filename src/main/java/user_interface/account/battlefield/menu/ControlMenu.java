@@ -38,7 +38,6 @@ public class ControlMenu extends BorderPane {
 
         setCenter(GameSpeedChanger.instance);
         setBottom(buttonBack);
-
     }
 
 }

@@ -66,6 +66,20 @@ public class Messenger {
                         .showError();
                 break;
             }
+            case STARTING_GAME: {
+                Notifications.create()
+                        .text("Завантаження гри...").position(Pos.BOTTOM_LEFT)
+                        .hideAfter(Duration.seconds(2))
+                        .showInformation();
+                break;
+            }
+            case CHOOSE_ENEMY: {
+                Notifications.create()
+                        .text("Оберіть ворога!").position(Pos.BOTTOM_LEFT)
+                        .hideAfter(Duration.seconds(1))
+                        .showError();
+                break;
+            }
         }
     }
 

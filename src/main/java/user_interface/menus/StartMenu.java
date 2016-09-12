@@ -116,9 +116,7 @@ public class StartMenu {
         optionsBack.setOnMouseClicked(backEvent(optionsBack, login, password));
 
         confirmRegistration.setOnMouseClicked(event -> {
-            System.out.println(11);
             doButtonClickEffect(confirmRegistration);
-            System.out.println(22);
             registration(login.getText(), password.getText());
         });
 
@@ -132,8 +130,8 @@ public class StartMenu {
 
     private static void authorization(String login, String password) {
         new Thread(() -> {
-
             if (lock) return;
+            lock = true;
 
             if (Client.getConnectionThread() != null) {
                 try {
@@ -160,8 +158,9 @@ public class StartMenu {
 
     private static void registration(String login, String password) {
         new Thread(() -> {
-
             if (lock) return;
+
+            lock = true;
 
             User user = new User();
             user.setLogin(login);
