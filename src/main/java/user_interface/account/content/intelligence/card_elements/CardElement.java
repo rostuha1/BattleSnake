@@ -15,16 +15,16 @@ public class CardElement extends ImageView {
 
     private Role role;
 
-    {
+    public CardElement() {
         GridPane.setMargin(this, insets);
         setOnMouseClicked(event -> click());
-    }
-
-    public CardElement() {
         setRole(Role.EMPTY);
     }
 
     public CardElement(Role role) {
+        GridPane.setMargin(this, insets);
+        if (role != Role.OWN_HEAD)
+            setOnMouseClicked(event -> click());
         setRole(role);
     }
 
