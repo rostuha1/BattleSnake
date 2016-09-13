@@ -45,7 +45,10 @@ public class Slot extends HBox {
         takeSlot(User.DEFAULT_USER);
         isOccupied = false;
         MenuItem deleteSlot = new MenuItem("Звільнити слот");
-        deleteSlot.setOnAction(event -> releaseSlot());
+        deleteSlot.setOnAction(event -> {
+            releaseSlot();
+            SlotsBox.reset();
+        });
         contextMenu.getItems().add(deleteSlot);
         setOnContextMenuRequested(null);
     }
@@ -98,5 +101,9 @@ public class Slot extends HBox {
 
     public int getIndex() {
         return index;
+    }
+
+    public void setOccupied(boolean occupied) {
+        isOccupied = occupied;
     }
 }

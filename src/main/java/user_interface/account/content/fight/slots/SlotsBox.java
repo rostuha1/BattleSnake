@@ -123,4 +123,35 @@ public class SlotsBox extends HBox {
         });
     }
 
+    public static void reset() {
+        User first = enemySlots.get(0).getCurrentPlayer();
+        User second = enemySlots.get(1).getCurrentPlayer();
+        User third = enemySlots.get(2).getCurrentPlayer();
+
+        reset(first == User.DEFAULT_USER, second == User.DEFAULT_USER, third == User.DEFAULT_USER);
+    }
+
+    private static void reset(boolean isFirstDefault, boolean isSecondDefault, boolean isThirdDefault) {
+        if (isFirstDefault && isSecondDefault && !isThirdDefault) {
+            swap(0, 2);
+        }
+        if (isFirstDefault && !isSecondDefault && isThirdDefault) {
+            swap(0, 1);
+        }
+        if (isFirstDefault && !isSecondDefault && !isThirdDefault) {
+            swap(0, 2);
+        }
+        if (!isFirstDefault && isSecondDefault && !isThirdDefault) {
+            swap(1, 2);
+        }
+    }
+
+    private static void swap(int firstSlot, int secondSlot) {
+        User u2 = enemySlots.get(secondSlot).getCurrentPlayer();
+
+        enemySlots.get(firstSlot).takeSlot(u2);
+        enemySlots.get(secondSlot).takeSlot(User.DEFAULT_USER);
+        enemySlots.get(secondSlot).setOccupied(false);
+    }
+
 }
