@@ -62,9 +62,8 @@ public class SideMenu extends Pane {
 
     private void updateSnakesList() {
         new Thread(() -> {
-            ObservableList<User> list = Adapter.getUsersList(Client.getUsers());
             Platform.runLater(() -> {
-                SnakePlayerList.getInstance().setList(list);
+                SnakePlayerList.getInstance().setList(SnakePlayerList.usersList);
                 SnakePlayerList.getInstance().resize();
                 SlotsBox.getEnemySlots().forEach(Slot::releaseSlot);
             });
