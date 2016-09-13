@@ -1,6 +1,7 @@
 package main;
 
 import client_server_I_O.classes.Block;
+import client_server_I_O.classes.GameEnd;
 import client_server_I_O.classes.Turn;
 
 import java.util.ArrayList;
@@ -8,11 +9,7 @@ import java.util.HashMap;
 
 public class Receiver {
 
-    public static ArrayList<Turn> getGameResult(String... usersLogins) {
-
-        for (String login : usersLogins) {
-
-        }
+    public static ArrayList<Turn> getGameResult(String first, String second, String third, String fourth) {
 
         ArrayList<Turn> list = new ArrayList<>();
 
@@ -46,21 +43,7 @@ public class Receiver {
             }
         });
 
-        list.add(t1);
-        list.add(t2);
-        list.add(t3);
-
-        list.add(t1);
-        list.add(t2);
-        list.add(t3);
-
-        list.add(t1);
-        list.add(t2);
-        list.add(t3);
-
-        list.add(t1);
-        list.add(t2);
-        list.add(t3);
+        t3.setGameEnd(getGameEnd());
 
         list.add(t1);
         list.add(t2);
@@ -82,6 +65,7 @@ public class Receiver {
         return blocks;
 
     }
+
     private static ArrayList<Block> getSnakeBody2() {
         ArrayList<Block> blocks = new ArrayList<>();
 
@@ -94,6 +78,7 @@ public class Receiver {
         return blocks;
 
     }
+
     private static ArrayList<Block> getSnakeBody3() {
         ArrayList<Block> blocks = new ArrayList<>();
 
@@ -106,6 +91,7 @@ public class Receiver {
         return blocks;
 
     }
+
     private static ArrayList<Block> getSnakeBody4() {
         ArrayList<Block> blocks = new ArrayList<>();
 
@@ -131,6 +117,7 @@ public class Receiver {
         return blocks;
 
     }
+
     private static ArrayList<Block> getSnakeBody22() {
         ArrayList<Block> blocks = new ArrayList<>();
 
@@ -143,6 +130,7 @@ public class Receiver {
         return blocks;
 
     }
+
     private static ArrayList<Block> getSnakeBody33() {
         ArrayList<Block> blocks = new ArrayList<>();
 
@@ -155,6 +143,7 @@ public class Receiver {
         return blocks;
 
     }
+
     private static ArrayList<Block> getSnakeBody44() {
         ArrayList<Block> blocks = new ArrayList<>();
 
@@ -180,6 +169,7 @@ public class Receiver {
         return blocks;
 
     }
+
     private static ArrayList<Block> getSnakeBody222() {
         ArrayList<Block> blocks = new ArrayList<>();
 
@@ -192,6 +182,7 @@ public class Receiver {
         return blocks;
 
     }
+
     private static ArrayList<Block> getSnakeBody333() {
         ArrayList<Block> blocks = new ArrayList<>();
 
@@ -204,6 +195,7 @@ public class Receiver {
         return blocks;
 
     }
+
     private static ArrayList<Block> getSnakeBody444() {
         ArrayList<Block> blocks = new ArrayList<>();
 
@@ -215,6 +207,22 @@ public class Receiver {
 
         return blocks;
 
+    }
+
+    private static GameEnd getGameEnd() {
+        GameEnd gameEnd = new GameEnd();
+        gameEnd.setNewRatings(new ArrayList<Integer>(4) {
+            {
+                add(1010);
+                add(995);
+                add(995);
+                add(995);
+            }
+        });
+
+        gameEnd.setSnakeWinner(0);
+
+        return gameEnd;
     }
 
 }

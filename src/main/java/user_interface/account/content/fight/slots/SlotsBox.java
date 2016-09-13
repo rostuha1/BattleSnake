@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import main.Receiver;
 import main.SnakePane;
 import main.WindowSettings;
 import messages.MessageType;
@@ -15,6 +16,7 @@ import messages.Messenger;
 import user_interface.account.MainMenu;
 import user_interface.account.User;
 import user_interface.account.battlefield.Game;
+import user_interface.account.battlefield.menu.GameSpeedChanger;
 import user_interface.account.battlefield.menu.SnakesPane;
 import user_interface.animation.TransitionAnimation;
 
@@ -66,13 +68,17 @@ public class SlotsBox extends HBox {
                 return;
             }
 
+            SnakesPane.reset();
+
             Platform.runLater(SnakesPane::update);
             Platform.runLater(() -> KeyboardEvents.setMode(Mode.BATTLEFIELD_MODE));
             TransitionAnimation.start(MainMenu.instance, SnakePane.instance);
             Platform.runLater(() -> Messenger.showMessage(MessageType.STARTING_GAME));
 
-            Game.play(Client.getGameResult(first, second, third, fourth));
-//                Game.play(Receiver.getGameResult(getFirstLogin(), getSecondLogin(), getThirdLogin(), getFourthLogin())); // Hard code
+            GameSpeedChanger.reset();
+
+//            Game.play(Client.getGameResult(first, second, third, fourth));
+              Game.play(Receiver.getGameResult(first, second, third, fourth)); // Hard code
         }).start();
 
     }
@@ -100,6 +106,11 @@ public class SlotsBox extends HBox {
     private static String getLogin(int index) {
         User u = enemySlots.get(index).getCurrentPlayer();
         return u == User.DEFAULT_USER ? null : u.getLogin();
+    }
+
+    public static User getPlayer(int index) {
+        User u = enemySlots.get(index).getCurrentPlayer();
+        return u == User.DEFAULT_USER ? null : u;
     }
 
 }

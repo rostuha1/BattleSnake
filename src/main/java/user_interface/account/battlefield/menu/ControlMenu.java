@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import main.WindowSettings;
 import user_interface.ComponentBuilder;
+import user_interface.account.battlefield.Game;
 
 public class ControlMenu extends BorderPane {
     private static final double indent = 10;
@@ -24,7 +25,7 @@ public class ControlMenu extends BorderPane {
         BorderPane.setMargin(GameSpeedChanger.instance, new Insets(30));
         BorderPane.setAlignment(GameSpeedChanger.instance, Pos.TOP_CENTER);
 
-        Region buttonBack = ComponentBuilder.getButton("НАЗАД");
+        Region buttonBack = ComponentBuilder.getButton("ЗАВЕРШИТИ");
         buttonBack.setOpacity(0.8);
         buttonBack.setOnMouseClicked(event -> KeyboardEvents.backFromBattleField());
         BorderPane.setAlignment(buttonBack, Pos.BOTTOM_CENTER);

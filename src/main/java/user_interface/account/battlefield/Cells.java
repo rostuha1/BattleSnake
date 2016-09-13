@@ -99,12 +99,4 @@ public class Cells {
         get(block).setEffect(null);
     }
 
-    public static void clearField() {
-        visibleRects.forEach(rect -> {
-            rect.setEffect(null);
-            rect.remove();
-        });
-        visibleRects.clear();
-    }
-
 }

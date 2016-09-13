@@ -124,4 +124,15 @@ public class SnakesPane extends HBox {
         });
     }
 
+    public static void reset() {
+        Platform.runLater(() -> {
+            if (selectedSnake != null) {
+                selectedSnakeImage.setEffect(null);
+                Snake.highlightSnake(false, selectedSnake);
+                selectedSnake = null;
+            }
+            if (selectedSnakeImage != null) selectedSnakeImage = null;
+        });
+    }
+
 }

@@ -68,7 +68,7 @@ public class Messenger {
             }
             case STARTING_GAME: {
                 Notifications.create()
-                        .text("Завантаження гри...").position(Pos.BOTTOM_LEFT)
+                        .text("Початок гри...").position(Pos.BOTTOM_LEFT)
                         .hideAfter(Duration.seconds(2))
                         .showInformation();
                 break;
@@ -78,6 +78,13 @@ public class Messenger {
                         .text("Оберіть ворога!").position(Pos.BOTTOM_LEFT)
                         .hideAfter(Duration.seconds(1))
                         .showError();
+                break;
+            }
+            case GAME_EARLY_FINISHED: {
+                Notifications.create()
+                        .text("Дострокове завершення гри").position(Pos.BOTTOM_LEFT)
+                        .hideAfter(Duration.seconds(1))
+                        .showInformation();
                 break;
             }
         }

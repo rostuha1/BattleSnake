@@ -63,8 +63,10 @@ public class Snake {
     }
 
     public static void clearField() {
-        snakes.forEach(snake -> snake.isHighlight = false);
-        Cells.clearField();
+        Platform.runLater(() -> snakes.forEach(snake -> {
+            snake.isHighlight = false;
+            snake.body.forEach(Cells::remove);
+        }));
     }
 
     public static Snake getFirst() {

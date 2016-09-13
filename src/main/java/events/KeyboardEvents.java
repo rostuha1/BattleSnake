@@ -11,6 +11,8 @@ import javafx.scene.layout.Region;
 import main.Main;
 import main.SnakePane;
 import user_interface.account.MainMenu;
+import user_interface.account.battlefield.Game;
+import user_interface.account.battlefield.menu.ResultPane;
 import user_interface.account.battlefield.snake.Snake;
 import user_interface.animation.TransitionAnimation;
 import user_interface.menus.StartMenu;
@@ -68,7 +70,9 @@ public class KeyboardEvents {
     public static void backFromBattleField() {
         TransitionAnimation.start(SnakePane.instance, MainMenu.instance, () -> {
             scene.setOnKeyPressed(null);
+            Game.finishGame();
             Snake.clearField();
+            ResultPane.clearPane();
         });
     }
 
