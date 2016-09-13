@@ -10,12 +10,11 @@ import user_interface.account.User;
 import user_interface.account.battlefield.menu.GameSpeedChanger;
 import user_interface.account.battlefield.menu.ResultPane;
 import user_interface.account.battlefield.snake.Snake;
+import user_interface.account.content.fight.slots.Slot;
 import user_interface.account.content.fight.slots.SlotsBox;
 import user_interface.account.content.intelligence.Settings;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Game extends Thread {
     private static ArrayList<Turn> turns;
@@ -70,12 +69,13 @@ public class Game extends Thread {
     }
 
     private static void endGame(GameEnd gameEnd) {
-        Snake.clearField();
+        Cells.clear();
 
-        Map<User, Integer> playersRatings = new HashMap<>();
+        Map<User, Integer> playersRatings = new LinkedHashMap<>();
         ArrayList<Integer> newRatings = gameEnd.getNewRatings();
 
         playersRatings.put(SlotsBox.mySlot.getCurrentPlayer(), newRatings.get(0));
+
         for (int i = 0; i < 3; i++) {
             User player = SlotsBox.getPlayer(i);
             if (player == null) break;

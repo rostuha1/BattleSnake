@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Snake implements Serializable {
+    static final long serialVersionUID = 4566843898265039363L;
 
     private ArrayList<Block> body;
     private Card[][] cards;

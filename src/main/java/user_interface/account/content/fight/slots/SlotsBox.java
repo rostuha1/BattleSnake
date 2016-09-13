@@ -1,6 +1,5 @@
 package user_interface.account.content.fight.slots;
 
-import client_server_I_O.Client;
 import events.KeyboardEvents;
 import events.Mode;
 import javafx.application.Platform;
@@ -111,6 +110,17 @@ public class SlotsBox extends HBox {
     public static User getPlayer(int index) {
         User u = enemySlots.get(index).getCurrentPlayer();
         return u == User.DEFAULT_USER ? null : u;
+    }
+
+    public static void updateRating(int slotIndex, User user) {
+        Platform.runLater(()->{
+            switch (slotIndex) {
+                case 0: mySlot.updateSlot(user); break;
+                case 1: enemySlots.get(0).updateSlot(user); break;
+                case 2: enemySlots.get(1).updateSlot(user); break;
+                case 3: enemySlots.get(2).updateSlot(user); break;
+            }
+        });
     }
 
 }

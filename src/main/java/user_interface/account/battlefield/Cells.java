@@ -1,12 +1,15 @@
 package user_interface.account.battlefield;
 
 import client_server_I_O.classes.Block;
+import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import nodes.Line;
 import nodes.Rect;
+import user_interface.account.battlefield.snake.Snake;
 import user_interface.account.content.intelligence.Settings;
 
+import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
 
 import static user_interface.account.battlefield.RenderField.PART;
@@ -16,7 +19,7 @@ import static user_interface.account.battlefield.RenderField.startPoint;
 
 public class Cells {
 
-    private static Rect [][] rects = new Rect[SQUARE_NUMBER][SQUARE_NUMBER];
+    private static Rect[][] rects = new Rect[SQUARE_NUMBER][SQUARE_NUMBER];
     public static final ArrayList<Rect> visibleRects = new ArrayList<>(625);
 
     static {
@@ -34,10 +37,12 @@ public class Cells {
         Rect r = rects[posX][posY];
         draw(r, color);
     }
+
     public static void draw(Rect r, Paint color) {
         r.setFill(color);
         r.draw();
     }
+
     public static void draw(int x, int y, Color color) {
         draw(new Block(x, y), color);
     }
@@ -63,6 +68,7 @@ public class Cells {
 
         rects[posX][posY].remove();
     }
+
     public static void drawByDefault(Rect r) {
         r.remove();
     }
@@ -78,13 +84,13 @@ public class Cells {
         if (posX < 0 || posX > SQUARE_NUMBER + 1 || posY < 0 || posY > SQUARE_NUMBER + 1)
             throw new IllegalArgumentException("Enter valid arguments");
 
-        if (posX == 0) posX = SQUARE_NUMBER;
-        if (posY == 0) posY = SQUARE_NUMBER;
-        if (posX == SQUARE_NUMBER + 1) posX = 1;
-        if (posY == SQUARE_NUMBER + 1) posY = 1;
+        if (posX == -1) posX = SQUARE_NUMBER;
+        if (posY == -1) posY = SQUARE_NUMBER;
+        if (posX == SQUARE_NUMBER + 1) posX = 0;
+        if (posY == SQUARE_NUMBER + 1) posY = 0;
 
-        double x = startPoint + parts[posX - 1] + Line.getLineWidth();
-        double y = parts[posY - 1] + Line.getLineWidth();
+        double x = startPoint + parts[posX] + Line.getLineWidth();
+        double y = parts[posY] + Line.getLineWidth();
 
         double width = PART - Line.getLineWidth() * 2;
         double height = PART - Line.getLineWidth() * 2;
@@ -95,8 +101,20 @@ public class Cells {
     public static void setEffect(Block block) {
         get(block).setEffect(Settings.itemEffect);
     }
+
     public static void setEffectNull(Block block) {
         get(block).setEffect(null);
     }
 
+    public static void clear() {
+        Platform.runLater(() -> {
+            for (int i = 0; i < SQUARE_NUMBER; i++) {
+                for (int j = 0; j < SQUARE_NUMBER; j++) {
+                    get(i, j).setEffect(null);
+                    get(i, j).remove();
+                }
+            }
+            Snake.clearField();
+        });
+    }
 }

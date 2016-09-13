@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GameEnd implements Serializable {
+    static final long serialVersionUID = 4566843898265039363L;
 
     private int snakeWinner;
     ArrayList<Integer> newRatings;

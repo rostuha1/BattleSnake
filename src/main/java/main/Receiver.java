@@ -16,30 +16,30 @@ public class Receiver {
         Turn t1 = new Turn();
         t1.setBody(new HashMap<Integer, ArrayList<Block>>() {
             {
-                put(1, getSnakeBody1());
-                put(2, getSnakeBody2());
-                put(3, getSnakeBody3());
-                put(4, getSnakeBody4());
+                put(0, getSnakeBody1());
+                put(1, getSnakeBody2());
+                put(2, getSnakeBody3());
+                put(3, getSnakeBody4());
             }
         });
 
         Turn t2 = new Turn();
         t2.setBody(new HashMap<Integer, ArrayList<Block>>() {
             {
-                put(1, getSnakeBody11());
-                put(2, getSnakeBody22());
-                put(3, getSnakeBody33());
-                put(4, getSnakeBody44());
+                put(0, getSnakeBody11());
+                put(1, getSnakeBody22());
+                put(2, getSnakeBody33());
+                put(3, getSnakeBody44());
             }
         });
 
         Turn t3 = new Turn();
         t3.setBody(new HashMap<Integer, ArrayList<Block>>() {
             {
-                put(1, getSnakeBody111());
-                put(2, getSnakeBody222());
-                put(3, getSnakeBody333());
-                put(4, getSnakeBody444());
+                put(0, getSnakeBody111());
+                put(1, getSnakeBody222());
+                put(2, getSnakeBody333());
+                put(3, getSnakeBody444());
             }
         });
 
@@ -56,11 +56,11 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody1() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(1, 1));
-        blocks.add(new Block(2, 1));
-        blocks.add(new Block(3, 1));
-        blocks.add(new Block(4, 1));
-        blocks.add(new Block(5, 1));
+        blocks.add(new Block(0, 0));
+        blocks.add(new Block(1, 0));
+        blocks.add(new Block(2, 0));
+        blocks.add(new Block(3, 0));
+        blocks.add(new Block(4, 0));
 
         return blocks;
 
@@ -69,11 +69,11 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody2() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(1, 3));
-        blocks.add(new Block(2, 3));
-        blocks.add(new Block(3, 3));
-        blocks.add(new Block(4, 3));
-        blocks.add(new Block(5, 3));
+        blocks.add(new Block(0, 2));
+        blocks.add(new Block(1, 2));
+        blocks.add(new Block(2, 2));
+        blocks.add(new Block(3, 2));
+        blocks.add(new Block(4, 2));
 
         return blocks;
 
@@ -82,11 +82,11 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody3() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(1, 5));
-        blocks.add(new Block(2, 5));
-        blocks.add(new Block(3, 5));
-        blocks.add(new Block(4, 5));
-        blocks.add(new Block(5, 5));
+        blocks.add(new Block(0, 4));
+        blocks.add(new Block(1, 4));
+        blocks.add(new Block(2, 4));
+        blocks.add(new Block(3, 4));
+        blocks.add(new Block(4, 4));
 
         return blocks;
 
@@ -95,11 +95,11 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody4() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(1, 7));
-        blocks.add(new Block(2, 7));
-        blocks.add(new Block(3, 7));
-        blocks.add(new Block(4, 7));
-        blocks.add(new Block(5, 7));
+        blocks.add(new Block(0, 6));
+        blocks.add(new Block(1, 6));
+        blocks.add(new Block(2, 6));
+        blocks.add(new Block(3, 6));
+        blocks.add(new Block(4, 6));
 
         return blocks;
 
@@ -108,11 +108,11 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody11() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(2, 1));
-        blocks.add(new Block(3, 1));
-        blocks.add(new Block(4, 1));
-        blocks.add(new Block(5, 1));
-        blocks.add(new Block(6, 1));
+        blocks.add(new Block(1, 0));
+        blocks.add(new Block(2, 0));
+        blocks.add(new Block(3, 0));
+        blocks.add(new Block(4, 0));
+        blocks.add(new Block(5, 0));
 
         return blocks;
 
@@ -121,11 +121,11 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody22() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(2, 3));
-        blocks.add(new Block(3, 3));
-        blocks.add(new Block(4, 3));
-        blocks.add(new Block(5, 3));
-        blocks.add(new Block(6, 3));
+        blocks.add(new Block(1, 2));
+        blocks.add(new Block(2, 2));
+        blocks.add(new Block(3, 2));
+        blocks.add(new Block(4, 2));
+        blocks.add(new Block(5, 2));
 
         return blocks;
 
@@ -134,11 +134,11 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody33() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(2, 5));
-        blocks.add(new Block(3, 5));
-        blocks.add(new Block(4, 5));
-        blocks.add(new Block(5, 5));
-        blocks.add(new Block(6, 5));
+        blocks.add(new Block(1, 4));
+        blocks.add(new Block(2, 4));
+        blocks.add(new Block(3, 4));
+        blocks.add(new Block(4, 4));
+        blocks.add(new Block(5, 4));
 
         return blocks;
 
@@ -147,24 +147,23 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody44() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(2, 7));
-        blocks.add(new Block(3, 7));
-        blocks.add(new Block(4, 7));
-        blocks.add(new Block(5, 7));
-        blocks.add(new Block(6, 7));
+        blocks.add(new Block(1, 6));
+        blocks.add(new Block(2, 6));
+        blocks.add(new Block(3, 6));
+        blocks.add(new Block(4, 6));
+        blocks.add(new Block(5, 6));
 
         return blocks;
-
     }
 
     private static ArrayList<Block> getSnakeBody111() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(3, 1));
-        blocks.add(new Block(4, 1));
-        blocks.add(new Block(5, 1));
-        blocks.add(new Block(6, 1));
-        blocks.add(new Block(7, 1));
+        blocks.add(new Block(2, 0));
+        blocks.add(new Block(3, 0));
+        blocks.add(new Block(4, 0));
+        blocks.add(new Block(5, 0));
+        blocks.add(new Block(6, 0));
 
         return blocks;
 
@@ -173,11 +172,11 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody222() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(3, 3));
-        blocks.add(new Block(4, 3));
-        blocks.add(new Block(5, 3));
-        blocks.add(new Block(6, 3));
-        blocks.add(new Block(7, 3));
+        blocks.add(new Block(2, 2));
+        blocks.add(new Block(3, 2));
+        blocks.add(new Block(4, 2));
+        blocks.add(new Block(5, 2));
+        blocks.add(new Block(6, 2));
 
         return blocks;
 
@@ -186,11 +185,11 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody333() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(3, 5));
-        blocks.add(new Block(4, 5));
-        blocks.add(new Block(5, 5));
-        blocks.add(new Block(6, 5));
-        blocks.add(new Block(7, 5));
+        blocks.add(new Block(2, 4));
+        blocks.add(new Block(3, 4));
+        blocks.add(new Block(4, 4));
+        blocks.add(new Block(5, 4));
+        blocks.add(new Block(6, 4));
 
         return blocks;
 
@@ -199,11 +198,11 @@ public class Receiver {
     private static ArrayList<Block> getSnakeBody444() {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        blocks.add(new Block(3, 7));
-        blocks.add(new Block(4, 7));
-        blocks.add(new Block(5, 7));
-        blocks.add(new Block(6, 7));
-        blocks.add(new Block(7, 7));
+        blocks.add(new Block(2, 6));
+        blocks.add(new Block(3, 6));
+        blocks.add(new Block(4, 6));
+        blocks.add(new Block(5, 6));
+        blocks.add(new Block(6, 6));
 
         return blocks;
 

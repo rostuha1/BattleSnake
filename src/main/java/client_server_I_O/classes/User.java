@@ -3,6 +3,8 @@ package client_server_I_O.classes;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    static final long serialVersionUID = 4566843898265039363L;
+
     private String login;
     private String password;
     private Snake snake;

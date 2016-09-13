@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Message implements Serializable {
+    static final long serialVersionUID = 4566843898265039363L;
+
     private Queue<Object> parcel = new LinkedList<>();
 
     public Message() {}

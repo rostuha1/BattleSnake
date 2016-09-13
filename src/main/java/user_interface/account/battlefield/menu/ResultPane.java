@@ -15,6 +15,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import user_interface.account.SnakePlayer;
 import user_interface.account.User;
+import user_interface.account.battlefield.Cells;
+import user_interface.account.content.fight.slots.SlotsBox;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -43,16 +45,16 @@ public class ResultPane extends VBox {
     }
 
     public static void show() {
+        Platform.runLater(() -> {
 
-        int w = 0;
-        for (Map.Entry<User, Integer> playerRating : newPlayersRatings.entrySet()) {
-            SnakePlayer p = playerRating.getKey().getSnakePlayer();
-            results.add(getResult(p.getAvatar(), p.getName(), p.getColor(), playerRating.getValue(), w == winner));
-            w++;
-        }
+            int w = 0;
+            for (Map.Entry<User, Integer> playerRating : newPlayersRatings.entrySet()) {
+                SnakePlayer p = playerRating.getKey().getSnakePlayer();
+                results.add(getResult(p.getAvatar(), p.getName(), p.getColor(), playerRating.getValue(), w++ == winner));
+            }
 
-        Platform.runLater(() -> results.forEach(hBox -> instance.getChildren().add(hBox)));
-
+            results.forEach(hBox -> instance.getChildren().add(hBox));
+        });
     }
 
     public static void clearPane() {
@@ -95,7 +97,13 @@ public class ResultPane extends VBox {
 
     public static void updateRatings() {
         if (newPlayersRatings == null) return;
-        newPlayersRatings.forEach((user, integer) -> user.getSnakePlayer().setRating(integer));
+        int index = 0;
+        for (Map.Entry<User, Integer> playerRating: newPlayersRatings.entrySet()) {
+            playerRating.getKey().getSnakePlayer().setRating(playerRating.getValue());
+            SlotsBox.updateRating(index, playerRating.getKey());
+            index++;
+        }
+        Cells.clear();
     }
 
 }

@@ -48,25 +48,25 @@ public class Snake {
     }
 
     public static void highlightSnake(boolean flag, Snake snake) {
-        if (flag) {
-            snake.isHighlight = true;
-            Platform.runLater(() -> snake.body.forEach(Cells::setEffect));
-            return;
-        }
+        Platform.runLater(()->{
 
-        snake.isHighlight = false;
-        Platform.runLater(() -> snake.body.forEach(Cells::setEffectNull));
+            if (flag) {
+                snake.isHighlight = true;
+                snake.body.forEach(Cells::setEffect);
+                return;
+            }
+
+            snake.isHighlight = false;
+            snake.body.forEach(Cells::setEffectNull);
+        });
     }
 
     public static void setSnakeBody(int index, ArrayList<Block> newBody) {
-        snakes.get(index - 1).setBody(newBody);
+        snakes.get(index).setBody(newBody);
     }
 
     public static void clearField() {
-        Platform.runLater(() -> snakes.forEach(snake -> {
-            snake.isHighlight = false;
-            snake.body.forEach(Cells::remove);
-        }));
+        snakes.forEach(snake -> snake.isHighlight = false);
     }
 
     public static Snake getFirst() {

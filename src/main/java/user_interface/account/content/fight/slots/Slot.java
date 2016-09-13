@@ -38,9 +38,6 @@ public class Slot extends HBox {
         setPadding(new Insets(0, 0, 0, 10));
         setBackground(new Background(new BackgroundFill(SnakePlayer.DEFAULT_SNAKE_PLAYER.getColor(), new CornerRadii(0, 0, 10, 10, false), null)));
         setBorder(new Border(new BorderStroke(Color.rgb(120, 125, 75), BorderStrokeStyle.SOLID, new CornerRadii(0, 0, 10, 10, false), new BorderWidths(3), null)));
-//        setStyle("-fx-border-width: 3px; -fx-border-color: ); " +
-//                "-fx-background-color: rgb(140, 145, 95) ; -fx-border-radius: 0px 0px 10px 10px; -fx-background-radius: 0 0 10 10");
-
     }
 
     public Slot(int index) {
