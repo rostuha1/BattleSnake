@@ -1,5 +1,7 @@
 package user_interface.account.content.fight.list;
 
+import client_server_I_O.Adapter;
+import client_server_I_O.Client;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -16,6 +18,8 @@ public class SnakePlayerList extends ListView<User> {
     private static final double WIDTH = MainMenu.CONTENT_WIDTH / 2;
     private static final double HEIGHT = CELL_SIZE * 5 + 2;
     private static final SnakePlayerList instance = new SnakePlayerList();
+    public static ObservableList<User> usersList = Adapter.getUsersList(Client.getUsers());
+
 
     public static SnakePlayerList getInstance() {
         return instance;
@@ -54,7 +58,6 @@ public class SnakePlayerList extends ListView<User> {
     public void setList(ObservableList<User> list) {
         setItems(list);
         resize();
-//        SnakeViewerPane.getInstance().show(list);
     }
 
     public void resize() {
