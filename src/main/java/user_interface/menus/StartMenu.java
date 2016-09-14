@@ -144,6 +144,7 @@ public class StartMenu {
 
             if (user != null) {
                 Platform.runLater(() -> Messenger.showMessage(SUCCESSFUL_AUTHORIZATION));
+                KeyboardEvents.setMode(Mode.NULL);
                 try {
                     Thread.sleep(600);
                 } catch (InterruptedException ignored) {

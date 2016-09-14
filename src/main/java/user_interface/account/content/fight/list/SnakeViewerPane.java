@@ -1,9 +1,6 @@
 package user_interface.account.content.fight.list;
 
-import client_server_I_O.Adapter;
-import client_server_I_O.Client;
-import main.Receiver;
-import user_interface.account.SnakePlayer;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,6 +17,11 @@ import user_interface.account.User;
 import user_interface.account.content.fight.slots.Slot;
 import user_interface.account.content.fight.slots.SlotsBox;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.util.LinkedList;
+import java.util.List;
+
 public class SnakeViewerPane extends VBox {
 
     private static final double WIDTH_SPACING = 25;
@@ -31,6 +33,8 @@ public class SnakeViewerPane extends VBox {
     private static SnakePlayerList snakePlayerList = SnakePlayerList.getInstance();
     private static Button btnSelect = new Button();
     private static Label message = new Label();
+
+    private static TextField textField;
 
     private static final SnakeViewerPane instance = new SnakeViewerPane();
 
@@ -44,16 +48,16 @@ public class SnakeViewerPane extends VBox {
         label.setFont(new Font(18));
         label.setStyle("-fx-font-size: 18; -fx-text-fill: rgb(209, 214, 144); -fx-font-weight: bold");
 
-        TextField textField = new TextField();
+        textField = new TextField();
         textField.setPromptText("Пошук по імені...");
+        textField.setOnKeyReleased(event -> {
+            ObservableList<User> newList = getSearchedList(SnakePlayerList.getInstance().getMainList(), textField.getText());
+            if (newList == null) return;
+            SnakePlayerList.getInstance().setList(newList);
+        });
         textField.setFocusTraversable(false);
 
-        Button btnFind = new Button("Шукати");
-        btnFind.setOnAction(event -> {
-            // ToDo
-        });
-
-        search.getChildren().addAll(label, textField, btnFind);
+        search.getChildren().addAll(label, textField);
         search.setSpacing(10);
         search.setAlignment(Pos.CENTER_RIGHT);
         search.setMaxHeight(20);
@@ -94,12 +98,33 @@ public class SnakeViewerPane extends VBox {
     private void onSelect(User enemy) {
         for (Slot slot : SlotsBox.enemySlots) {
             if (!slot.isOccupied()) {
+                textField.clear();
+                SnakePlayerList.getInstance().setDefaultMainList();
+
                 slot.takeSlot(enemy);
                 SnakePlayerList.getInstance().getList().remove(enemy);
                 SnakePlayerList.getInstance().resize();
                 break;
             }
         }
+    }
+
+    private ObservableList<User> getSearchedList(ObservableList<User> mainList, String name) {
+
+        if (name.isEmpty()) {
+            SnakePlayerList.getInstance().setDefaultMainList();
+            return null;
+        }
+
+        List<User> resultList = new LinkedList<>();
+
+        mainList.forEach(user -> {
+            if (user.getSnakePlayer().getName().contains(name)) {
+                resultList.add(user);
+            }
+        });
+
+        return FXCollections.observableArrayList(resultList);
     }
 
 }

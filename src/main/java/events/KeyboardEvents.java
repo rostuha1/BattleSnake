@@ -58,6 +58,7 @@ public class KeyboardEvents {
         currentFocusedField = null;
         scene.removeEventFilter(keyEventType, currentEventFilter);
         scene.setOnKeyPressed(null);
+        scene.setOnKeyReleased(null);
     }
 
     private static void battlefieldMode() {

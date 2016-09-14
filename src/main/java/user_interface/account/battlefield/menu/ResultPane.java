@@ -46,7 +46,6 @@ public class ResultPane extends VBox {
 
     public static void show() {
         Platform.runLater(() -> {
-
             int w = 0;
             for (Map.Entry<User, Integer> playerRating : newPlayersRatings.entrySet()) {
                 SnakePlayer p = playerRating.getKey().getSnakePlayer();

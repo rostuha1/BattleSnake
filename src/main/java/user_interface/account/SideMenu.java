@@ -6,8 +6,6 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ToolBar;
-import javafx.scene.effect.Blend;
-import javafx.scene.effect.Bloom;
 import javafx.scene.layout.*;
 import main.WindowSettings;
 import user_interface.ComponentBuilder;
@@ -64,7 +62,7 @@ public class SideMenu extends Pane {
         new Thread(() -> {
             ObservableList<User> list = Adapter.getUsersList(Client.getUsers());
             Platform.runLater(() -> {
-                SnakePlayerList.getInstance().setList(list);
+                SnakePlayerList.getInstance().setMainList(list);
                 SnakePlayerList.getInstance().resize();
                 SlotsBox.getEnemySlots().forEach(Slot::releaseSlot);
             });

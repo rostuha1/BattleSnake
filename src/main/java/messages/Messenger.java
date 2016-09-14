@@ -62,7 +62,7 @@ public class Messenger {
             case SAVE_FAIL: {
                 Notifications.create()
                         .text("Помилка збереження").position(Pos.BOTTOM_LEFT)
-                        .hideAfter(Duration.seconds(0.5))
+                        .hideAfter(Duration.seconds(1))
                         .showError();
                 break;
             }
