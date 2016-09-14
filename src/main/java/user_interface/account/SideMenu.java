@@ -6,6 +6,8 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ToolBar;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.Bloom;
 import javafx.scene.layout.*;
 import main.WindowSettings;
 import user_interface.ComponentBuilder;

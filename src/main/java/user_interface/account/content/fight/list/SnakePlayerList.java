@@ -17,6 +17,8 @@ public class SnakePlayerList extends ListView<User> {
     private static final double HEIGHT = CELL_SIZE * 5 + 2;
     private static final SnakePlayerList instance = new SnakePlayerList();
     private static ObservableList<User> mainList;
+    public static ObservableList<User> usersList = Adapter.getUsersList(Client.getUsers());
+
 
     public static SnakePlayerList getInstance() {
         return instance;
@@ -52,23 +54,10 @@ public class SnakePlayerList extends ListView<User> {
         return getItems();
     }
 
-    public void setMainList(ObservableList<User> list) {
-        mainList = list;
-        setItems(list);
-        resize();
-    }
-
     public void setList(ObservableList<User> list) {
         setItems(list);
         resize();
-    }
-
-    public void setDefaultMainList() {
-        setMainList(mainList);
-    }
-
-    public ObservableList<User> getMainList() {
-        return mainList;
+//        SnakeViewerPane.getInstance().show(list);
     }
 
     public void resize() {
