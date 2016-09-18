@@ -1,5 +1,6 @@
 package user_interface.account.content.fight.slots;
 
+import client_server_I_O.Client;
 import events.KeyboardEvents;
 import events.Mode;
 import javafx.application.Platform;
@@ -76,8 +77,7 @@ public class SlotsBox extends HBox {
 
             GameSpeedChanger.reset();
 
-//            Game.play(Client.getGameResult(first, second, third, fourth));
-              Game.play(Receiver.getGameResult(first, second, third, fourth)); // Hard code
+            Game.play(Client.getGameResult(first, second, third, fourth));
         }).start();
 
     }

@@ -14,7 +14,7 @@ public class GameSpeedChanger extends VBox {
 
     private static final int MIN_VALUE = 0;
     private static final int START_VALUE = 1;
-    private static final int MAX_VALUE = 10;
+    private static final int MAX_VALUE = 50;
     private static final int VALUE_LABEL_WIDTH = 38;
     private static final double SLIDER_BOX_SPACING = 20;
     private static final Slider slider = new Slider(MIN_VALUE, MAX_VALUE, START_VALUE);

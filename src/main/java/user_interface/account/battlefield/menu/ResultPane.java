@@ -49,9 +49,8 @@ public class ResultPane extends VBox {
             int w = 0;
             for (Map.Entry<User, Integer> playerRating : newPlayersRatings.entrySet()) {
                 SnakePlayer p = playerRating.getKey().getSnakePlayer();
-                results.add(getResult(p.getAvatar(), p.getName(), p.getColor(), playerRating.getValue(), w++ == winner));
+                results.add(getResult(p.getAvatar(), p.getName(), p.getColor(), playerRating.getValue(), winner == -1 || w++ == winner));
             }
-
             results.forEach(hBox -> instance.getChildren().add(hBox));
         });
     }

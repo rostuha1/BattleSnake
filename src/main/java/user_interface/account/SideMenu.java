@@ -13,6 +13,7 @@ import main.WindowSettings;
 import user_interface.ComponentBuilder;
 import user_interface.account.content.ContentType;
 import user_interface.account.content.fight.list.SnakePlayerList;
+import user_interface.account.content.fight.list.SnakeViewerPane;
 import user_interface.account.content.fight.slots.Slot;
 import user_interface.account.content.fight.slots.SlotsBox;
 import user_interface.account.content.intelligence.Settings;
@@ -64,9 +65,9 @@ public class SideMenu extends Pane {
         new Thread(() -> {
             ObservableList<User> list = Adapter.getUsersList(Client.getUsers());
             Platform.runLater(() -> {
+                SlotsBox.getEnemySlots().forEach(Slot::clear);
                 SnakePlayerList.getInstance().setMainList(list);
-                SnakePlayerList.getInstance().resize();
-                SlotsBox.getEnemySlots().forEach(Slot::releaseSlot);
+                SnakeViewerPane.getInstance().show();
             });
         }).start();
     }

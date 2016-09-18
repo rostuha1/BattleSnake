@@ -95,6 +95,12 @@ public class SnakeViewerPane extends VBox {
         else getChildren().addAll(search, snakePlayerList, btnSelect);
     }
 
+    public void show() {
+        getChildren().removeAll(message, search, snakePlayerList, btnSelect);
+        if (snakePlayerList.getList().isEmpty()) getChildren().add(message);
+        else getChildren().addAll(search, snakePlayerList, btnSelect);
+    }
+
     private void onSelect(User enemy) {
         for (Slot slot : SlotsBox.enemySlots) {
             if (!slot.isOccupied()) {
