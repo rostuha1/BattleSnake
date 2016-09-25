@@ -28,7 +28,7 @@ public class Receiver {
             {
                 put(0, getSnakeBody11());
                 put(1, getSnakeBody22());
-                put(2, getSnakeBody33());
+//                put(2, getSnakeBody33());
                 put(3, getSnakeBody44());
             }
         });
@@ -38,7 +38,7 @@ public class Receiver {
             {
                 put(0, getSnakeBody111());
                 put(1, getSnakeBody222());
-                put(2, getSnakeBody333());
+//                put(2, getSnakeBody333());
                 put(3, getSnakeBody444());
             }
         });

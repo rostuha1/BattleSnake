@@ -10,9 +10,7 @@ import user_interface.account.User;
 import user_interface.account.battlefield.menu.GameSpeedChanger;
 import user_interface.account.battlefield.menu.ResultPane;
 import user_interface.account.battlefield.snake.Snake;
-import user_interface.account.content.fight.slots.Slot;
 import user_interface.account.content.fight.slots.SlotsBox;
-import user_interface.account.content.intelligence.Settings;
 
 import java.util.*;
 
@@ -21,6 +19,14 @@ public class Game extends Thread {
     private static boolean lock;
     private static boolean isPlayed;
     private static boolean alreadyFinished;
+    private static ArrayList<Boolean> booleanArrayList = new ArrayList<>(4);
+
+    static {
+        booleanArrayList.add(false);
+        booleanArrayList.add(false);
+        booleanArrayList.add(false);
+        booleanArrayList.add(false);
+    }
 
     private Game() {
         super(() -> {
@@ -28,6 +34,15 @@ public class Game extends Thread {
             if (!isPlayed) {
                 lock = false;
                 return;
+            }
+            turns.get(0).getBody().entrySet().forEach(step -> Platform.runLater(() -> {
+                Snake.setSnakeBody(step.getKey(), step.getValue());
+                booleanArrayList.set(step.getKey(), true);
+            }));
+            turns.remove(0);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
             }
             turns.forEach(Game::playTurn);
             lock = false;
@@ -48,7 +63,19 @@ public class Game extends Thread {
             earlyEndGame();
             return;
         }
+
+        for (int i = 0; i < 4; i++) {
+            booleanArrayList.set(i, false);
+        }
+
+        turn.getBody().entrySet().forEach(Game::checkSnake);
+
+        for (int i = 0; i < 4; i++) {
+            if (!booleanArrayList.get(i)) Snake.setSnakeBody(i, null);
+        }
+
         turn.getBody().entrySet().forEach(Game::playStep);
+
         if (turn.getGameEnd() != null) endGame(turn.getGameEnd());
     }
 
@@ -57,9 +84,15 @@ public class Game extends Thread {
             earlyEndGame();
             return;
         }
+
         Platform.runLater(() -> Snake.setSnakeBody(step.getKey(), step.getValue()));
         GameSpeedChanger.sleepForNextStep();
     }
+
+    private static void checkSnake(Map.Entry<Integer, ArrayList<Block>> step) {
+        booleanArrayList.set(step.getKey(), true);
+    }
+
 
     private static void initSnakes() {
         Snake.getFirst().setColor(SlotsBox.mySlot.getCurrentPlayer().getSnakePlayer().getColor());

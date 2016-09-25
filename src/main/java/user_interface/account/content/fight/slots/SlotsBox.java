@@ -77,8 +77,8 @@ public class SlotsBox extends HBox {
 
             GameSpeedChanger.reset();
 
-            Game.play(Receiver.getGameResult(first, second, third, fourth));
-//            Game.play(Client.getGameResult(first, second, third, fourth));
+//            Game.play(Receiver.getGameResult(first, second, third, fourth));
+            Game.play(Client.getGameResult(first, second, third, fourth));
         }).start();
 
     }

@@ -25,10 +25,17 @@ public class Snake {
     private ArrayList<Block> body;
 
     public void setBody(ArrayList<Block> newBody) {
+
         if (body != null) {
             body.forEach(Cells::setEffectNull);
             body.forEach(block -> Cells.remove(block, snakeColor));
         }
+
+        if (newBody == null) {
+            body = null;
+            return;
+        }
+
         body = newBody;
         body.forEach(block -> Cells.draw(block, snakeColor));
         if (isHighlight) body.forEach(Cells::setEffect);
