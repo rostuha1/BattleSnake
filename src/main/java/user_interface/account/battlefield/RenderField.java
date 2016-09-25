@@ -4,7 +4,7 @@ import main.WindowSettings;
 
 public class RenderField {
 
-    public static final int SQUARE_NUMBER = 25; // n * n
+    public static final int SQUARE_NUMBER = 15; // n * n
     public static final double startPoint = WindowSettings.sidesRatio();
     public static final double PART = WindowSettings.height / SQUARE_NUMBER;
     public static final double[] parts = new double[SQUARE_NUMBER + 1];

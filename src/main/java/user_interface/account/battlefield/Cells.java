@@ -9,18 +9,11 @@ import nodes.Rect;
 import user_interface.account.battlefield.snake.Snake;
 import user_interface.account.content.intelligence.Settings;
 
-import java.lang.management.PlatformLoggingMXBean;
-import java.util.ArrayList;
-
-import static user_interface.account.battlefield.RenderField.PART;
-import static user_interface.account.battlefield.RenderField.SQUARE_NUMBER;
-import static user_interface.account.battlefield.RenderField.parts;
-import static user_interface.account.battlefield.RenderField.startPoint;
+import static user_interface.account.battlefield.RenderField.*;
 
 public class Cells {
 
     private static Rect[][] rects = new Rect[SQUARE_NUMBER][SQUARE_NUMBER];
-    public static final ArrayList<Rect> visibleRects = new ArrayList<>(625);
 
     static {
         for (int i = 0; i < SQUARE_NUMBER; i++) {
@@ -47,11 +40,14 @@ public class Cells {
         draw(new Block(x, y), color);
     }
 
-    public static void remove(Block block) {
+    public static void remove(Block block, Color color) {
         int posX = block.getX();
         int posY = block.getY();
 
-        rects[posX][posY].remove();
+        Rect rect = rects[posX][posY];
+
+        if (rect.getFill() == color) rect.remove();
+
     }
 
     public static Rect get(int x, int y) {
